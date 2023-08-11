@@ -1,0 +1,127 @@
+﻿@using Microsoft.AspNet.Identity
+@*@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class="nav-link" })
+        </li>
+        <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class="nav-link" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class="nav-link" })</li>
+    </ul>
+}*@
+<header class="page-header">
+    <div class="container-header">
+        <div class="logo">
+            <a href="/"><img src="/static/images/logo.png" alt=""> </a>
+        </div>
+        <div class="box-shadow-mb"></div>
+        <div class="toggle-icon">
+            <div class="inner-toggle-icon"> <span></span> <span></span> <span></span> </div>
+        </div>
+        <div class="main-menu">
+            <ul class="ul-main">
+                <li><a href="/">Trang chủ</a> </li>
+                <li class="has-sub-menu-1">
+                    <a href="javascript:void(0)"><span class=" main">Về TOMATO</span></a>
+                    <div class="sub-menu-1">
+                        <ul>
+                            <li><a href="/ve-tomato/cau-chuyen-cua-tomato">Câu chuyện Tomato</a> </li>
+                            <li><a href="/ve-tomato/triet-ly-va-phuong-phap-giao-duc">Triết lý và phương pháp giáo dục</a> </li>
+                            <li><a href="/ve-tomato/goc-nhin-ve-tomato">Góc nhìn về Tomato</a> </li>
+                            <li><a href="/ve-tomato/cong-dong-tomato">Cộng đồng Tomato</a> </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="has-sub-menu-1">
+                    <a href="javascript:void(0)"><span class="menu-text-nowrap main">Chương trình</span></a>
+                    <div class="sub-menu-1">
+                        <ul>
+                            <li>
+                                <a class="icon-right-sub" href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc"><span>Chương trình tiểu học </span></a>
+                                <div class="sub-menu-2">
+                                    <ul>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/net-smart">Net Smart - Thông minh &amp; An toàn Trong Thế giới Online</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/mind-map-for-kids">Mind Map for Kids - Bé ghi nhớ và học tốt với “Bản đồ tư duy”</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/mindfulness-for-children">Mindfulness for Children - Kỹ năng tập trung và làm chủ suy nghĩ</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/sing-sing-english">Sing Sing English - Bé học Tiếng Anh qua bài hát và đồng dao</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/social-emotinal-skills">Social &amp; Emotional Skills  - Kỹ năng cảm xúc xã hội</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/kid-power">KID POWER - Bộ ba kỹ năng dành cho lứa tuổi tiểu học</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/happy-read-happy-talk">Happy read, Happy talk - Bé rèn kỹ năng đọc hiểu và trình bày</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/tutor-me">Tutor Me - Chăm sóc và giúp bé sắp xếp bài vở sau giờ học</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/the-story-maket">The story maker - Kỹ năng viết sáng tạo cho trẻ em</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/travelling-school">Travelling School - Trường học dịch chuyển</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/stop-think">Stop &amp; Think - Kỹ năng an toàn và tự bảo vệ bản thân cho bé</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-tieu-hoc/strong-kid">Strong Kid - Dạy trẻ bảo vệ bản thân và mạnh mẽ trong biến cố</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="icon-right-sub" href="/chuong-trinh-hoc-tap/chuong-trinh-mam-non"><span>Chương trình mầm non </span></a>
+                                <div class="sub-menu-2">
+                                    <ul>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-mam-non/sing-sing-english">Sing Sing English - Bé học Tiếng Anh qua bài hát và đồng dao</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-mam-non/smart-kids-junior">Smart Kids Junior - Bé thông minh về cảm xúc</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-mam-non/smart-play">Smart Play - Chơi để trẻ thông minh hơn</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-mam-non/fun-abc">Fun ABC - Phát triển ngôn ngữ cho trẻ mầm non</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-mam-non/happy-saturday">Happy Saturday - Giải pháp để bé có một ngày cuối tuần, thú vị khi ba mẹ bận rộn</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-mam-non/tutor-me">Tutor Me - Chăm sóc và giúp bé sắp xếp bài vở sau giờ học</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-mam-non/travelling-school">Travelling School - Trường học dịch chuyển</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-mam-non/stop-think">Stop &amp; Think - Kỹ năng an toàn và tự bảo vệ bản thân cho bé</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="icon-right-sub" href="/chuong-trinh-hoc-tap/be-vao-lop-1"><span>Bé vào lớp 1 </span></a>
+                                <div class="sub-menu-2">
+                                    <ul>
+                                        <li><a href="/chuong-trinh-hoc-tap/be-vao-lop-1/strong-start">Strong Start - Để bé bước vào lớp 1 tự tin &amp; vững vàng</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/be-vao-lop-1/happy-read">Happy read, Happy talk - Bé rèn kỹ năng đọc hiểu và trình bày</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/be-vao-lop-1/fun-abc">Fun ABC - Phát triển ngôn ngữ cho trẻ mầm non</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="icon-right-sub" href="/chuong-trinh-hoc-tap/chuong-trinh-he"><span>Chương trình Hè </span></a>
+                                <div class="sub-menu-2">
+                                    <ul>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-he/tuoi-mam-non">Dành cho bé mầm non</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-he/tuoi-tieu-hoc">Dành cho bé tiểu học</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-he/green-camp-bali-2023">Green Camp Bali 2023</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/chuong-trinh-he/hoi-an-design-thinking-camp">Hội An Design Thinking Camp</a> </li>
+                                        <li><a href="/chuong-trinh-hoc-tap/Ch%C6%B0%C6%A1ng%20tr%C3%ACnh%20H%C3%A8/D%C3%A0nh%20cho%20Teen">Dành cho thanh thiếu niên</a> </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/hoc-phi-tomato">Học phí</a> </li>
+                <li class="has-sub-menu-1">
+                    <a href="javascript:void(0)"><span class=" main">Thư viện</span></a>
+                    <div class="sub-menu-1">
+                        <ul>
+                            <li><a href="/thu-vien-hoc-tap/ebook">Ebook</a> </li>
+                            <li><a href="/thu-vien-hoc-tap/hoc-cung-con">Học cùng con</a> </li>
+                            <li><a href="/ve-tomato/thu-vien-anh">Thư viện ảnh</a> </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/tin-tuc">Tin tức</a> </li>
+                <li><a href="/lien-he">Liên hệ</a> </li>
+                <li> <a class="register" href="/dang-ky">ĐĂNG KÝ </a> </li>
+            </ul>
+            <div class="clearfix"></div> <a class="register-mobile" href="/dang-ky">ĐĂNG KÝ</a>
+        </div>
+    </div>
+</header>

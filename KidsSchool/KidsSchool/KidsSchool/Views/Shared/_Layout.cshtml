@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="/static/images/fav.png">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <title>Trường ngoại khóa TOMATO | TOMATO Children's Home</title>
+    <meta property="og:title" content="Trường ngoại khóa TOMATO | TOMATO Children's Home">
+    <meta name="description" content="TOMATO là một trường ngoại khóa chuyên sâu đầu tiên dành cho trẻ em, nơi trí tuệ, tình cảm và ước mơ của các bé được tôn trọng và nuôi dưỡng. ">
+    <meta property="og:description" content="TOMATO là một trường ngoại khóa chuyên sâu đầu tiên dành cho trẻ em, nơi trí tuệ, tình cảm và ước mơ của các bé được tôn trọng và nuôi dưỡng. ">
+    <meta property="og:type" content="article">
+    <meta property="og:app_id" content="">
+    <meta property="og:image" content="https://tomato.edu.vn/_default_upload_bucket/tomato-og.png">
+    <meta property="og:title" content="TOMATO – Trường ngoại khóa chuyên sâu đầu tiên dành cho trẻ em ">
+    <meta property="og:description" content="TOMATO là một trường ngoại khóa chuyên sâu đầu tiên dành cho trẻ em, nơi trí tuệ, tình cảm và ước mơ của các bé được tôn trọng và nuôi dưỡng. ">
+
+    <link href="/static/vendor/bootstrap/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/vendor/owlcarousel/owl.carousel.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/vendor/owlcarousel/owl.theme.default.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/vendor/wow/animation.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/vendor/semantic/semantic.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/vendor/fancybox/jquery.fancybox.min.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/css/style.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="/static/css/customer.css" media="screen" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/static/vendor/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/jquery/vue.js"></script>
+    <script type="text/javascript" src="/static/vendor/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+</head>
+<body>
+    @Html.Partial("_HeaderPartial")
+    @RenderBody()
+    @Html.Partial("_FooterPartial")
+    @Html.Partial("_DialogPartial")
+    <script src="/static/vendor/bootstrap/popper.min.js"></script>
+    <script src="/static/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="/static/vendor/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/jquery/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/vendor/semantic/semantic.min.js"></script>
+    <script src="/static/vendor/fancybox/jquery.fancybox.min.js"></script>
+    <script src="/static/vendor/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/static/vendor/wow/wow.min.js"></script>
+    <script src="/static/scripts/an.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+    <script type="application/javascript">
+        $('.owl-carouselsss').owlCarousel({
+            loop:false,
+            dots: false,
+            margin:10,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1,
+                    nav:true
+                },
+                600:{
+                    items:2,
+                    nav:true
+                },
+                1000:{
+                    items:3,
+                    nav:true,
+                    loop:false
+                }
+            }
+        })
+
+
+        var IndexVuejs = new Vue({
+            el: '#register_forms',
+            delimiters: ['{[{', '}]}'],
+            data: {
+                form: {
+                    fullname: '',
+                    fullname_baby: '',
+                    email: '',
+                    phone: '',
+                    question:'',
+                    center: ''
+                },
+                submit: false,
+                res: {
+                    message: '',
+                    status: ''
+                }
+
+            },
+            methods: {
+                onSubmit(){
+                    var sef = this;
+                    sef.submit = true;
+                    sef.res.message = '';
+                    $.ajax({
+                        url: "/tong-dai-tomato/register",
+                        type: "POST",
+                        dataType: "json",
+                        headers: {
+                        },
+                        data: sef.form,
+                        success: function(result) {
+                            sef.res.message = result.message;
+                            sef.submit = false;
+
+                            if (result.status){
+                                sef.form.fullname = '';
+                                sef.form.fullname_baby = '';
+                                sef.form.email = '';
+                                sef.form.phone = '';
+                                sef.form.question = '';
+                                sef.form.center = '';
+
+                                gtag('event', 'consultation-success', {
+                                  'event_category' : 'general',
+                                  'event_label' : 'consultation'
+                                });
+                                dataLayer.push({'event': 'gtm_form_submit_success'});
+                            }
+                            $('#exampleModal2').modal('show');
+
+                        },
+                        error: function(xhr, textStatus, errorThrown ) {
+                            sef.submit = false;
+                        }
+                    })
+                },
+            }
+        })
+
+
+        $('a[data-click-download-book]').click(function(){
+            $("#modal-get-info").fancybox().trigger('click');
+        })
+    </script>
+</body>
+</html>

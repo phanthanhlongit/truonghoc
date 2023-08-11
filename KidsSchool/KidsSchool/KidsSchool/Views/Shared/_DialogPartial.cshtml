@@ -1,0 +1,61 @@
+﻿<!-- Modal -->
+<div class="popup_mes" id="register_forms">
+    <ul class="side-tool__tools">
+        <li>
+            <a href="tel:0906616212" target="_blank">
+                <div><span class="icon-hcm"></span></div>
+                <div>0906 616 212</div>
+            </a>
+        </li>
+    </ul>
+    <div class="side-tool__sign-up">
+        <form action="#" method="post" id="formNewsletter2" target="_top" onsubmit="return false">
+            <div class="side-tool__sign-up__expand-btn">
+                <img src="/static/images/register.png" alt="register">
+                <p>Đăng ký <br>ngay</p>
+            </div>
+            <div class="side-tool__sign-up__form">
+                <input type="text" v-model="form.fullname" placeholder="Họ tên phụ huynh">
+                <input type="text" v-model="form.fullname_baby" placeholder="Họ tên bé">
+                <input type="phone" v-model="form.phone" placeholder="Số điện thoại">
+                <input type="email" v-model="form.email" placeholder="Email">
+                <select v-model="form.center">
+                    <option value="" disabled="disabled" selected="center">Trung tâm
+                    <option value="TOMATO Phú Nhuận">TOMATO Phú Nhuận
+                    <option value="TOMATO SALA">TOMATO SALA
+                    <option value="TOMATO LAKEVIEW CITY">TOMATO LAKEVIEW CITY
+                    <option value="TOMATO Quận 7">
+                        TOMATO Quận 7
+                        <!-- <option value="TOMATO Biên Hòa">TOMATO Biên Hòa</option> -->
+                    <option value="TOMATO Quận 9">TOMATO Quận 9
+
+                </select>
+                <textarea v-model="form.question" name="" id="" cols="30" rows="3" placeholder="Câu hỏi…"></textarea>
+            </div>
+
+            <div class="side-tool__sign-up__submit">
+                <button v-if="!submit" type="button" click="onSubmit" class="btn-form-register"> <i class="fa fa-send"></i><br>Gửi </button>
+                <button v-else="" type="button" class="btn-form-register"> <i class="fa fa-send"></i><br>Loading...</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+
+                    <img width="200" class="mb-2" src="/static/images/logo.png" alt="">
+
+                    <p>{[{res.message}]}</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
