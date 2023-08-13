@@ -1,0 +1,195 @@
+﻿@using Microsoft.AspNet.Identity;
+@model KidsSchool.Models.Entities.Post
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+<script src="~/Assets/Admin/plugins/ckeditor/ckeditor.js"></script>
+<script src="~/Assets/Admin/plugins/ckfinder/ckfinder.js"></script>
+<style>
+    select[multiple], select[size] {
+        height: 300px;
+    }
+
+    .multiselect-container {
+        overflow: auto;
+        height: 300px;
+    }
+
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+        .upload-btn-wrapper input[type=text], .upload-btn-wrapper input[type=button] {
+            height: 100%;
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @*@Html.HiddenFor(model => model.Slug)*@
+    @Html.HiddenFor(model => model.createDate)
+    @Html.Hidden("userId", HttpContext.Current.User.Identity.GetUserId())
+    <div class="row">
+        <div class="form-group col-md-12">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="app-title">
+        <ul class="app-breadcrumb breadcrumb">
+            <li class="breadcrumb-item">Blog</li>
+            <li class="breadcrumb-item"><a href="#">@ViewBag.Title</a></li>
+        </ul>
+        <div id="clock"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <h3 class="tile-title">@ViewBag.Title</h3>
+                <div class="tile-body">
+                    <div class="row">
+
+                        <div class="form-group col-md-12">
+                            <center>
+                                <div class="upload-btn-wrapper">
+                                    <img id="myImg" src="@Model.Image?w=250&h=250&mode=pad" alt="your image" style="width:100%; border: 1px solid #ffd43b;">
+                                    <br />
+                                    @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                                    <input type="button" value="Browse Server" onclick="BrowseServer();" />
+                                </div>
+                            </center>
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.CatId, "CatId", htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.DropDownList("CatId", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CatId, "", new { @class = "text-danger" })
+
+                        </div>
+
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">
+                                Slug
+                            </label>
+                            @Html.EditorFor(model => model.Slug, new { htmlAttributes = new { @class = "form-control", @placeholder = "URL" } })
+                            @Html.ValidationMessageFor(model => model.Slug, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.TextAreaFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" }, @id = "ckeditor" })
+                            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                            <script>CKEDITOR.replace('Content');</script>
+                        </div>
+
+
+
+
+                        <div class="form-group col-md-12">
+
+                            <label class="control-label">
+                                <h3>Nộ dung Meta:</h3>
+                            </label>
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.MetaTitle, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.MetaTitle, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MetaTitle, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.MetaDescription, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.MetaDescription, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MetaDescription, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.MetaKeyword, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.MetaKeyword, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MetaKeyword, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(model => model.Script, htmlAttributes: new { @class = "control-label" })
+
+                                @Html.EditorFor(model => model.Script, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Script, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label class="control-label">
+                                    Lên lịch Post
+                                </label>
+                                @Html.TextBoxFor(m => m.AutoPostDate, "{0:yyyy-MM-ddThh:mm:ss}", new { @class = "form-control", @type = "datetime-local" })
+                                @Html.ValidationMessageFor(model => model.AutoPostDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10 col-md-offset-2">
+                                @Html.CheckBoxFor(model => model.Active, new { htmlAttributes = new { @class = "minimal" } })
+                                @Html.LabelFor(model => model.Active)
+                                @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                        <div class="form-group col-md-12">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Lưu lại" class="btn btn-default btn-save" />
+                                <a class="btn btn-cancel" href="/Admin/Posts">Hủy bỏ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section footerScript {
+    <!-- Essential javascripts for application to work-->
+    <script src="~/Assets/Admin/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/popper.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/plugins/sweetalert.min.js"></script>
+
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        function BrowseServer() {
+            var finder = new CKFinder();
+            finder.basePath = '../';
+            finder.selectActionFunction = SetFileField;
+            finder.popup();
+        }
+        function SetFileField(fileUrl) {
+            $('#myImg').attr('src', fileUrl);
+            document.getElementById('Image').value = fileUrl;
+        }
+    </script>
+}
+

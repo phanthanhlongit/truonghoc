@@ -1,0 +1,82 @@
+﻿   <!-- Sidebar menu-->
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+    <div class="app-sidebar__user">
+
+        @*@Html.GravatarImage(User.Identity.Name, new GravatarOptions { Size = 50, DefaultImageType = "wavatar", CssClass = "app-sidebar__user-avatar" })*@
+        <img class="app-sidebar__user-avatar" src="/Assets/Home/images/home/tomato.png">
+        <div>
+            <p class="app-sidebar__user-name"><b>@User.Identity.Name</b></p>
+            <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
+        </div>
+    </div>
+    <hr>
+    <ul class="app-menu">
+        <li>
+            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/home") || Request.Url.AbsoluteUri.Split('/').Count() <= 4? "active":"")" href="/Admin/Home/Index">
+                <i class='app-menu__icon bx bx-tachometer'></i><span class="app-menu__label">Bảng điều khiển</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/menus")? "active":"")" href="/Admin/Menus">
+                <i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">QL Menu</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/pages")? "active":"")" href="/Admin/Pages/Index">
+                <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Trang đặc biệt</span>
+            </a>
+        </li>
+        <li>
+            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/posts")? "active":"")" href="/Admin/Posts/Index">
+                <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý Blog</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/banners")? "active":"")" href="/Admin/banners/Index">
+                <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý Banner</span>
+            </a>
+        </li>
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/users") || Request.Url.AbsoluteUri.ToLower().Contains("/admin/roles")? "active":"")" data-toggle="dropdown" role="button" aria-expanded="false"><i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">QL User </span><span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    <a class="app-menu__item" href="/Admin/Users">
+                        <i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Danh sách User</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="app-menu__item" href="/Admin/Roles">
+                        <i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Nhóm quyền hệ thống</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+
+        <li>
+            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/contactghelps")? "active":"")" href="/Admin/ContactGHelps/Index">
+                <i class='app-menu__icon bx bx-id-card'></i> <span class="app-menu__label">Liên hệ</span>
+            </a>
+        </li>
+
+        <li>
+            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/configs")? "active":"")" href="/Admin/Configs/index">
+                <i class='app-menu__icon bx bx-cog'></i><span class="app-menu__label">
+                    Cài
+                    đặt seo
+                </span>
+            </a>
+        </li>
+    </ul>
+</aside>
+
+<style>
+    .dropdown-menu
+    {
+        background-color:#f59d39;
+    }
+</style>

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<KidsSchool.Models.Entities.Banner>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lý banner</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create")
+</p>
+
+<div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+    </ul>
+    <div id="clock"></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="row element-button">
+                    <div class="col-sm-2">
+                        <a class="btn btn-add btn-sm" href="/Admin/Banners/Create" title="Thêm">
+                            <i class="fas fa-plus"></i>
+                            Tạo Banner
+                        </a>
+                    </div>
+                </div>
+                <table class="table table-hover table-bordered" id="sampleTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BannerPosition.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BannerType.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                Image
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Active)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BannerPosition.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BannerType.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td class="colimage"><img src="@Html.DisplayFor(modelItem => item.Content)?w=250&h=250&mode=pad" alt="" width="100px;"></td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Active)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.BannerId }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.BannerId })
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section footerScript {
+    <!-- Essential javascripts for application to work-->
+    <script src="~/Assets/Admin/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/popper.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/bootstrap.min.js"></script>
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="~/Assets/Admin/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Admin/js/plugins/dataTables.bootstrap.min.js"></script>
+
+}
+@section Scripts {
+    <script type="text/javascript">
+        $('#sampleTable').DataTable();
+
+        //In dữ liệu
+        var myApp = new function () {
+            this.printTable = function () {
+                var tab = document.getElementById('sampleTable');
+                var win = window.open('', '', 'height=700,width=700');
+                win.document.write(tab.outerHTML);
+                win.document.close();
+                win.print();
+            }
+        }
+    </script>
+  }

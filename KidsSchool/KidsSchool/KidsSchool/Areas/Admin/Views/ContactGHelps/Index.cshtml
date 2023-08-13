@@ -1,0 +1,100 @@
+﻿@model IEnumerable<KidsSchool.Models.Entities.ContactGHelp>
+
+@{
+    ViewBag.Title = "Khách hàng liên hệ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="form-group col-md-3 col-md-12">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div class="app-title">
+    <ul class="app-breadcrumb breadcrumb">
+        <li class="breadcrumb-item"><a href="#">@ViewBag.Title</a></li>
+    </ul>
+    <div id="clock"></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <h3 class="tile-title">@ViewBag.Title</h3>
+            <div class="tile-body">
+                <table class="table">
+                    <tr>
+                        <th>
+                            Loại liên hệ
+                        </th>
+                        <th>
+                            Tên khách hàng
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Phone)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            Ngày cập nhật
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContactGHelpGroup.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CusName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Upd_Date)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section footerScript {
+    <!-- Essential javascripts for application to work-->
+    <script src="~/Assets/Admin/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/popper.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/plugins/sweetalert.min.js"></script>
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="~/Assets/Admin/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Admin/js/plugins/dataTables.bootstrap.min.js"></script>
+
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // data-tables
+            $('#dataTable').DataTable({
+                "order": [[4, "desc"]]
+            });
+        });
+    </script>
+}

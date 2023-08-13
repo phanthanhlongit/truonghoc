@@ -1,0 +1,191 @@
+﻿@model IEnumerable<KidsSchool.Models.Entities.Menu>
+
+@{
+    ViewBag.Title = "Quản lý menu";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item active"><a href="#"><b>@ViewBag.Title</b></a></li>
+    </ul>
+    <div id="clock"></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="row element-button">
+                    <div class="col-sm-2">
+                        <a class="btn btn-add btn-sm" href="/Admin/Menus/Create" title="Thêm">
+                            <i class="fas fa-plus"></i>
+                            Tạo menu mới
+                        </a>
+                    </div>
+
+                </div>
+                <table id="sampleTable" class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MenuLocation.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Text)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Url)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OrderBy)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr id="@("menu_"+item.Id)">
+                            <td>
+                                @("ORDER"+ item.OrderBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MenuLocation.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Text)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Url)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrderBy)
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn-sm view" target="_blank" href="@item.Url">Xem</a>
+
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                        onclick="deletePage('@("menu_"+item.Id)')">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                                <a href="/Admin/Menus/Edit/@item.Id" class="btn btn-primary btn-sm edit">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                            var getlist = ViewBag.MenuChillDen as IEnumerable<KidsSchool.Models.Entities.Menu>;
+                            var MenuChild = getlist.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
+                            if (MenuChild.Count > 0)
+                            {
+                                foreach (var item2 in MenuChild)
+                                {
+                                <tr id="@("menu_"+item2.Id)">
+                                    <td>
+                                        @("ORDER"+item.Id + item2.OrderBy)
+                                    </td>
+                                     <td>
+                                         @Html.DisplayFor(modelItem => item.MenuLocation.Name)
+                                     </td>
+                                    <td>
+                                        ---->@Html.DisplayFor(modelItem => item2.Text)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item2.Url)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item2.OrderBy)
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-sm view" target="_blank" href="@item2.Url">Xem</a>
+                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                                                onclick="deletePage('@("menu_"+item2.Id)')">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        <a href="/Admin/Menus/Edit/@item2.Id" class="btn btn-primary btn-sm edit">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section footerScript {
+    <!-- Essential javascripts for application to work-->
+    <script src="~/Assets/Admin/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/popper.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/plugins/sweetalert.min.js"></script>
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="~/Assets/Admin/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Admin/js/plugins/dataTables.bootstrap.min.js"></script>
+
+}
+@section Scripts {
+    <script type="text/javascript">
+        $('#sampleTable').DataTable({ "order": [[1, 'asc']]});
+
+        function deletePage(id) {
+            var menuid = id.split("_")[1];
+            swal({
+                title: "Cảnh báo?",
+                text: "Bạn có chắc chắn là muốn xóa menu này?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Đồng ý xóa!',
+                closeOnConfirm: false,
+            },
+                function () {
+                    $.ajax({
+                        url: '/Admin/Menus/DeleteMenuAjax',
+                        type: 'GET',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: { listid: menuid },
+                        success: function (data) {
+                            if (data.success) {
+                                removeRow(id);
+                                swal("Xóa thành công!", "Bạn đã xóa thành công!", "success");
+                            } else {
+                                swal("Cancelled", data.msg + " :)", "error");
+
+                            }
+                        }
+                    });
+
+                });
+        }
+
+        function removeRow(id) {
+            var tr = document.getElementById(id);
+            if (tr) {
+                if (tr.nodeName == 'TR') {
+                    var tbl = tr; // Look up the hierarchy for TABLE
+                    while (tbl != document && tbl.nodeName != 'TABLE') {
+                        tbl = tbl.parentNode;
+                    }
+
+                    if (tbl && tbl.nodeName == 'TABLE') {
+                        while (tr.hasChildNodes()) {
+                            tr.removeChild(tr.lastChild);
+                        }
+                        tr.parentNode.removeChild(tr);
+                    }
+                }
+            }
+        }
+    </script>
+}
+
