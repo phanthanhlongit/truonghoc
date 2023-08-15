@@ -1,0 +1,108 @@
+﻿@model PagedList.IPagedList<KidsSchool.Models.DB.Post>
+@using KidsSchool.Models
+@using System.Web.Configuration
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = string.IsNullOrEmpty(ViewBag.Cat.MetaTitle) ? ViewBag.Cat.Name : ViewBag.Cat.MetaTitle;
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+@section HeaderMetas{
+    <!-- HTML Meta Tags -->
+    <meta name="description" content="@Html.Raw(ViewBag.Cat.MetaDescription)" />
+    <meta name="keywords" content="@Html.Raw(ViewBag.Cat.MetaKeyword)" />
+    <meta name="author" content="@Request.Url.Host" />
+    <meta rel="canonical" href="@Request.Url" />
+
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="@Html.Raw(ViewBag.Cat.MetaTitle)">
+    <meta itemprop="description" content="@Html.Raw(ViewBag.Cat.MetaDescription)" />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="@Request.Url" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@Html.Raw(ViewBag.Cat.MetaTitle)" />
+    <meta property="og:description" content="@Html.Raw(ViewBag.Cat.MetaDescription)" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:title" content="@Html.Raw(ViewBag.Cat.MetaTitle)" />
+    <meta name="twitter:description" content="@Html.Raw(ViewBag.Cat.MetaDescription)" />
+}
+<style>
+    .card-title {
+        text-transform: inherit;
+        font-size:17px;
+    }
+</style>
+<!-- Page content-->
+<div class="container" style="padding-top:50px;">
+    <ul class="breadcrumb">
+        <li>
+            <a href="/">Trang chủ</a>
+        </li>
+        /
+        <li>
+            <a>@ViewBag.Cat.Name</a>
+        </li>
+    </ul>
+    <div class="row">
+        <!-- Blog entries-->
+        <div class="col-lg-8">
+            <!-- Nested row for non-featured blog posts-->
+            <div class="row">
+                @{
+                    var DivStart = "<div class=\"col-lg-6\">";
+                    var fixDivEnd = "</div>";
+                    var stt = 0;
+                }
+                @foreach (var m in Model)
+                {
+                    if (stt == 0)
+                    {
+                        <!-- Featured blog post-->
+                        <div class="card mb-4">
+                            <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })">
+                                <img class="card-img-top" onerror="this.src = '/Images/loading.gif';" src="@m.Image" alt="@m.Title" title="@m.Title" />
+                            </a>
+                            <div class="card-body">
+                                <div class="small text-muted">Đăng lúc @m.createDate.Value.ToString("dd/MM/yyyy")</div>
+                                <h2 class="card-title"><a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })">@m.Title</a></h2>
+                                <p class="card-text"> @Html.Raw(m.Content.Remove_Html_Tags().LimitLength(120, "..."))</p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        if (stt % 2 == 1)
+                        {
+                            @Html.Raw(DivStart)
+                        }
+                        <!-- Blog post-->
+                        <div class="card mb-4">
+                            <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })" itemprop="url" title="@m.Title">
+                                <img class="card-img-top img-thumbnail" onerror="this.src = '/Images/noimage.gif';" src="@m.Image?w=400&h=250&mode=pad" alt="@m.Title" title="@m.Title" />
+                            </a>
+                            <div class="card-body">
+                                <div class="small text-muted">Đăng lúc @m.createDate.Value.ToString("dd/MM/yyyy")</div>
+                                <h2 class="card-title h4"><a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })"> @Html.Raw(m.Title.Remove_Html_Tags().LimitLength(60, "..."))</a></h2>
+                                <p class="card-text">
+                                    @Html.Raw(m.Content.Remove_Html_Tags().LimitLength(60, "..."))
+                                </p>
+                            </div>
+                        </div>
+                        if (stt % 2 == 0 || stt == (Model.Count - 1))
+                        {
+                            @Html.Raw(fixDivEnd)
+                        }
+                    }
+                    stt++;
+                }
+            </div>
+            @Html.PagedListPager(Model, page => Url.HttpRouteUrl("FriendlyRouteCate", new { Slug = ViewBag.Cat.Slug, page = page }))
+        </div>
+        @Html.Action("_Sidebar", "Blogs")
+    </div>
+</div>
+@section scripts{
+    @(string.IsNullOrEmpty(ViewBag.Cat.Script) ? ViewBag.Cat.Script : "")
+}

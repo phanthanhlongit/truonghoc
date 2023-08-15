@@ -1,0 +1,22 @@
+﻿@model IEnumerable<KidsSchool.Models.DB.Post>
+<div class="clearfix mr"></div>
+<h3 class="module-title"><span>TIN LIÊN QUAN</span></h3>
+<div class="row">
+    @foreach (var m in Model)
+    {
+    <div class="col-md-3 col-lg-3 col-xs-12">
+        <div class="card mb-4">
+            <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })" itemprop="url" title="@m.Title">
+                <img class="card-img-top" onerror="this.src = '/Images/loading.gif';" src="@m.Image?w=350&h=350&mode=pad" alt="@m.Title" title="@m.Title" />
+            </a>
+            <div class="card-body">
+                <div class="small text-muted"><i class="fa fa-calendar">&nbsp;</i> Đăng lúc@(m.AutoPostDate!=null ? m.AutoPostDate.Value.ToString("dd/MM/yyyy") : m.DateUpdate.Value.ToString("dd/MM/yyyy"))</div>
+                <h2 class="card-title h4" style="font-size:17px;"><a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })">@m.Title</a></h2>
+                <p class="card-text" style="font-size:13px;">
+                    @Html.Raw(m.Content.Remove_Html_Tags().LimitLength(80, "..."))
+                </p>
+            </div>
+        </div>
+    </div>
+    }
+</div>
