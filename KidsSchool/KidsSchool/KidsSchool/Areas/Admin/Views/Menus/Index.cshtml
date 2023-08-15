@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KidsSchool.Models.Entities.Menu>
+﻿@model IEnumerable<KidsSchool.Models.DB.Menu>
 
 @{
     ViewBag.Title = "Quản lý menu";
@@ -74,7 +74,7 @@
                                 </a>
                             </td>
                         </tr>
-                            var getlist = ViewBag.MenuChillDen as IEnumerable<KidsSchool.Models.Entities.Menu>;
+                            var getlist = ViewBag.MenuChillDen as IEnumerable<KidsSchool.Models.DB.Menu>;
                             var MenuChild = getlist.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
                             if (MenuChild.Count > 0)
                             {

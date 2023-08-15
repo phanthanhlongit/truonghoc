@@ -1404,7 +1404,7 @@ p.error {
       overflow: hidden;
       border: 4px solid #C7FDB4;
       height: 100%;
-      padding: 0px 0px 50px; }
+      padding: 0px 0px 0px; }
       @media screen and (max-width: 768px) {
         .md-news .md-col .inner {
           border-radius: 30px; } }
@@ -3152,8 +3152,13 @@ p.error {
             border: 2px solid #D3FDAF; } }
 
 .blk-home-gellary {
-  padding-bottom: 50px;
-  text-align: center; }
+    background: url(https://static.vecteezy.com/system/resources/previews/013/138/412/original/meadow-panorama-3d-illustration-bright-landscape-of-green-valley-kids-background-colorful-cute-scenery-with-spring-green-grass-trees-flowers-blue-sky-sun-clouds-for-children-s-sites-free-vector.jpg) #dbdce5 no-repeat;
+    -webkit-background-size: 100% auto;
+    background-size: 100% auto;
+    padding-bottom: 130px;
+    text-align: center;
+    padding-top: 100px;
+}
   @media screen and (max-width: 768px) {
     .blk-home-gellary {
       margin-top: -6%; } }

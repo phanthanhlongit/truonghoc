@@ -37,9 +37,10 @@
 
 </head>
 <body>
-    @Html.Partial("_HeaderPartial")
+    @Html.Action("Header", "Home")
+    @{ Html.RenderPartial("_Alerts"); }
     @RenderBody()
-    @Html.Partial("_FooterPartial")
+    @Html.Action("Footer", "Home")
     @Html.Partial("_DialogPartial")
     <script src="/Assets/Home/vendor/bootstrap/popper.min.js"></script>
     <script src="/Assets/Home/vendor/bootstrap/bootstrap.min.js"></script>

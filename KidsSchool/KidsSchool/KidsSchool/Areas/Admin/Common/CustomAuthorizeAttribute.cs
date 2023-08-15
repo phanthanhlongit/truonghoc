@@ -1,4 +1,4 @@
-﻿using KidsSchool.Models.Entities;
+﻿using KidsSchool.Models.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;

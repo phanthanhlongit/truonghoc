@@ -1,4 +1,4 @@
-﻿using KidsSchool.Models.Entities;
+﻿using KidsSchool.Models.DB;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using KidsSchool.Areas.Admin.Common;
-using KidsSchool.Models.Entities;
+using KidsSchool.Models.DB;
 using KidsSchool.Models.Commons.Libs;
 
 namespace KidsSchool.Areas.Admin.Controllers
