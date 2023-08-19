@@ -47,7 +47,13 @@
                                 @Html.DisplayNameFor(model => model.title)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.slug)
+                                @Html.DisplayNameFor(model => model.Image)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsSpecial)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsShowHome)
                             </th>
                             <th></th>
                         </tr>
@@ -61,11 +67,17 @@
                                     @Html.DisplayFor(modelItem => item.title)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.slug)
+                                    <img src="@item.Image?w=155&h=155&mode=pad" style="max-width:48px;" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsSpecial)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsShowHome)
                                 </td>
                                 <td>
                                     <a class="btn btn-primary btn-sm view" target="_blank" href="/@(item.Type !=0?item.slug +".html":item.slug)">Xem</a>
-                                    
+
                                     <button class="btn btn-primary btn-sm edit" onclick=" window.location = '/Admin/Pages/Edit/@item.id'" type="button" title="Sửa" id="show-emp" data-toggle="modal"
                                             data-target="#ModalUP">
                                         <i class="fas fa-edit"></i>

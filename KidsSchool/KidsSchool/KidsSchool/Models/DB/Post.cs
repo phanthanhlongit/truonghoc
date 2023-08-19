@@ -5,6 +5,7 @@ namespace KidsSchool.Models.DB
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     public partial class Post
     {
@@ -17,8 +18,10 @@ namespace KidsSchool.Models.DB
 
         [StringLength(250)]
         public string Slug { get; set; }
+        public string Description { get; set; }
 
         [Column(TypeName = "ntext")]
+        [AllowHtml]
         public string Content { get; set; }
 
         [StringLength(250)]
@@ -37,6 +40,7 @@ namespace KidsSchool.Models.DB
 
         public string MetaKeyword { get; set; }
 
+        [AllowHtml]
         public string Script { get; set; }
 
         public DateTime? AutoPostDate { get; set; }
@@ -46,6 +50,8 @@ namespace KidsSchool.Models.DB
         public DateTime? DateCreate { get; set; }
 
         public int Views { get; set; }
+
+        public bool IsSpecial { get; set; }
 
         public virtual Category Category { get; set; }
     }

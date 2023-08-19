@@ -1,28 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    @*<meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>@ViewBag.Title - My ASP.NET Application</title>
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")*@
+    <!-- Basic Page Needs
+      ================================================== -->
     <meta charset="utf-8">
+    <title>@Html.Raw(ViewBag.Title)</title>
+    <!-- Mobile Specific Metas-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="icon" type="image/png" href="/Assets/Home/images/fav.png">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;0,900;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
-    <title>Trường ngoại khóa TOMATO | TOMATO Children's Home</title>
-    <meta property="og:title" content="Trường ngoại khóa TOMATO | TOMATO Children's Home">
-    <meta name="description" content="TOMATO là một trường ngoại khóa chuyên sâu đầu tiên dành cho trẻ em, nơi trí tuệ, tình cảm và ước mơ của các bé được tôn trọng và nuôi dưỡng. ">
-    <meta property="og:description" content="TOMATO là một trường ngoại khóa chuyên sâu đầu tiên dành cho trẻ em, nơi trí tuệ, tình cảm và ước mơ của các bé được tôn trọng và nuôi dưỡng. ">
-    <meta property="og:type" content="article">
-    <meta property="og:app_id" content="">
-    <meta property="og:image" content="https://tomato.edu.vn/_default_upload_bucket/tomato-og.png">
-    <meta property="og:title" content="TOMATO – Trường ngoại khóa chuyên sâu đầu tiên dành cho trẻ em ">
-    <meta property="og:description" content="TOMATO là một trường ngoại khóa chuyên sâu đầu tiên dành cho trẻ em, nơi trí tuệ, tình cảm và ước mơ của các bé được tôn trọng và nuôi dưỡng. ">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <link rel="icon" type="image/png" href="/assets/Client/images/pc/logo_blue.png" />
+    <meta name="robots" content="index,follow,noarchive,max-image-preview:large" />
+    <meta name="Googlebot" content="index,follow" />
+    @RenderSection("HeaderMetas", false)
     <link href="/Assets/Home/vendor/bootstrap/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css">
     <link href="/Assets/Home/vendor/owlcarousel/owl.carousel.min.css" media="screen" rel="stylesheet" type="text/css">
     <link href="/Assets/Home/vendor/owlcarousel/owl.theme.default.min.css" media="screen" rel="stylesheet" type="text/css">
@@ -31,17 +20,19 @@
     <link href="/Assets/Home/vendor/fancybox/jquery.fancybox.min.css" media="screen" rel="stylesheet" type="text/css">
     <link href="/Assets/Home/css/style.css" media="screen" rel="stylesheet" type="text/css">
     <link href="/Assets/Home/css/customer.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="~/Assets/Admin/css/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha256-JirYRqbf+qzfqVtEE4GETyHlAbiCpC005yBTa4rj6xg=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/Assets/Home/vendor/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/Assets/Home/vendor/jquery/vue.js"></script>
     <script type="text/javascript" src="/Assets/Home/vendor/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-
+    @RenderSection("headerScript", false)
 </head>
-<body>
+<body class="body-template1">
     @Html.Action("Header", "Home")
     @{ Html.RenderPartial("_Alerts"); }
     @RenderBody()
     @Html.Action("Footer", "Home")
-    @Html.Partial("_DialogPartial")
+    @Html.Partial("_ContactScrollPartial")
     <script src="/Assets/Home/vendor/bootstrap/popper.min.js"></script>
     <script src="/Assets/Home/vendor/bootstrap/bootstrap.min.js"></script>
     <script src="/Assets/Home/vendor/owlcarousel/owl.carousel.min.js"></script>
@@ -51,8 +42,6 @@
     <script src="/Assets/Home/vendor/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/Assets/Home/vendor/wow/wow.min.js"></script>
     <script src="/Assets/Home/scripts/an.js"></script>
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
     <script type="application/javascript">
         $('.owl-carouselsss').owlCarousel({
@@ -142,6 +131,44 @@
         $('a[data-click-download-book]').click(function(){
             $("#modal-get-info").fancybox().trigger('click');
         })
+    </script>
+
+    <script>
+        function SubmitSentContact(idname, chilname, chilage, idmail, idphone, idaddress, idselect, idquestion, type) {
+            
+            var coldata = {};
+            coldata.name = idname == "none" ? "none" : document.getElementById(idname).value;
+            coldata.chilname = chilname == "none" ? "none" : document.getElementById(chilname).value;
+            coldata.chilage = chilage == "none" ? "none" : document.getElementById(chilage).value;
+            coldata.email = idmail == "none" ? "none" : document.getElementById(idmail).value;
+            coldata.phone = idphone == "none" ? "none" : document.getElementById(idphone).value;
+            coldata.address = idaddress == "none" ? "none" : document.getElementById(idaddress).value;
+            coldata.idselect = idselect == "none" ? "none" : document.getElementById(idselect).value;
+            coldata.idquestion = idquestion == "none" ? "none" : document.getElementById(idquestion).value;
+
+            if (coldata.name == "" || coldata.email == "" || coldata.phone == "" || coldata.address == "") {
+                swal("Cancelled", "Vui lòng điền thông tin đầy đủ khi gửi đi  :)", "error");
+                return;
+            }
+            var content = "";
+            content = coldata.idquestion + " - " + coldata.idselect
+
+            $.ajax({
+                url: '/Home/SendContactAjax',
+                type: 'GET',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: { name: coldata.name, chilname: coldata.chilname, chilage: coldata.chilage, email: coldata.email, phone: coldata.phone, address: coldata.address, type: type, content: content },
+                success: function (data) {
+                    if (data.success > 0) {
+                        swal("GỬI YÊU CẦU THÀNH CÔNG", "“Cảm ơn Bạn đã quan tâm các sản phảm và Dịch vụ của TOMATO . Chúng tôi đã tiếp nhận thành công Yêu cầu của bạn, Đội Ngũ tư vấn viên của Chúng tôi sẽ liên hệ bạn trong giây Lát ” ", "success");
+
+                    } else {
+                        swal("Cancelled", "Hệ thống gửi thất bại vui lòng liên hệ với chúng tôi qua số điện thoại cảm ơn!  :)", "error");
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>

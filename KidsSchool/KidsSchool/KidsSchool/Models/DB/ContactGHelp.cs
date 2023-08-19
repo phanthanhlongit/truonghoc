@@ -18,6 +18,15 @@ namespace KidsSchool.Models.DB
         public string CusName { get; set; }
 
         [StringLength(250)]
+        public string ChilName { get; set; }
+
+        [StringLength(50)]
+        public string ChilAge { get; set; }
+
+        [StringLength(250)]
+        public string Mail { get; set; }
+
+        [StringLength(250)]
         public string Address { get; set; }
 
         [StringLength(350)]

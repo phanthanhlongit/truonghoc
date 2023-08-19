@@ -16,7 +16,7 @@
 </div>
 <div class="row">
     <!--Left-->
-    <div class="col-md-12 col-lg-6">
+    <div class="col-md-12 col-lg-12">
         <div class="row">
             <!-- col-12 -->
             <div class="col-md-12">
@@ -24,25 +24,78 @@
                     <h3 class="tile-title">Khách hàng liên hệ</h3>
                     <div>
                         <table class="table table-bordered">
-                            <thead>
+                            <tr>
+                                <th>
+                                    Phone
+                                </th>
+                                <th>
+                                    Tên phụ huynh
+                                </th>
+                                <th>
+                                    Tên bé
+                                </th>
+                                <th>
+                                    Tuổi bé
+                                </th>
+                                <th>
+                                    Mail
+                                </th>
+                                <th>
+                                    Địa chỉ
+                                </th>
+                                <th>
+                                    Nội dung
+                                </th>
+                                <th>
+                                    Upd_Date
+                                </th>
+                                <th>
+                                    IsRead
+                                </th>
+                                <th>
+                                    DateCreate
+                                </th>
+                                <th></th>
+                            </tr>
+
+                            @foreach (var item in ViewBag.ContactGHelp)
+                            {
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Tên khách hàng</th>
-                                    <th>Ngày tạo</th>
-                                    <th>Trạng thái</th>
+                                    <td>
+                                        @item.Phone
+                                    </td>
+                                    <td>
+                                        @item.CusName
+                                    </td>
+                                    <td>
+                                        @item.ChilName
+                                    </td>
+                                    <td>
+                                        @item.ChilAge
+                                    </td>
+                                    <td>
+                                        @item.Mail
+                                    </td>
+                                    <td>
+                                        @item.Address
+                                    </td>
+                                    <td>
+                                        @item.Content
+                                    </td>
+                                    <td>
+                                        @item.Upd_Date
+                                    </td>
+                                    <td>
+                                        @item.IsRead
+                                    </td>
+                                    <td>
+                                        @item.DateCreate
+                                    </td>
+                                    <td>
+                                        <a href="/Admin/ContactGHelps/Edit/@item.Id" id="7">Edit</a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @*@foreach (var order in ViewBag.NewOrders)
-                                {
-                                    <tr>
-                                        <td><a target="_blank" href="/Order/Detail/@order.Id">@order.Id</a></td>
-                                        <td>@order.ReceiveName</td>
-                                        <td><div class="sparkbar" data-color="#00a65a" data-height="20">@Html.FormatValue(order.TotalOrder, "{0:0,0}")đ</div></td>
-                                        <td><span class="label label-success">@order.OrderStatu.Name</span></td>
-                                    </tr>
-                                }*@
-                            </tbody>
+                            }
                         </table>
                     </div>
                     <!-- / div trống-->
@@ -53,7 +106,7 @@
     </div>
     <!--END left-->
     <!--Right-->
-    <div class="col-md-12 col-lg-6">
+    <div class="col-md-12 col-lg-12">
         <div class="row">
             <div class="col-md-12">
                 <div class="tile">

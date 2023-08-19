@@ -79,7 +79,11 @@
 
                         </div>
 
-
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-12" for="title">Mô tả</label>
+                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        </div>
                         <div class="form-group col-md-12">
                             <label class="control-label col-md-3" for="title">Nội dung</label>
 
@@ -87,6 +91,21 @@
                             @Html.ValidationMessageFor(model => model.content, "", new { @class = "text-danger" })
                             <script>CKEDITOR.replace('content');</script>
 
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-6" for="IsSpecial">Tự tạo template</label>
+                            @Html.CheckBoxFor(model => model.IsSpecial, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label col-md-6" for="IsSpecial">Hiển thị trang chủ (chỉ 1 page) </label>
+
+                            @Html.CheckBoxFor(model => model.IsShowHome, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="control-label col-md-6" for="IsSpecial">Hình ảnh nằm bên trái, mô tả bên phải</label>
+
+                            @Html.CheckBoxFor(model => model.IsImgLeft, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
 
                         <h4>Nội dung SEO:</h4>

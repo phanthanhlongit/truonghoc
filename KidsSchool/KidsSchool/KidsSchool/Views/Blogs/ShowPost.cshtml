@@ -1,7 +1,7 @@
 ﻿@model KidsSchool.Models.DB.Post
 @{
     ViewBag.Title = string.IsNullOrEmpty(Model.MetaTitle) ? Model.Title : Model.MetaTitle;
-    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section HeaderMetas
 {
@@ -28,20 +28,23 @@
 @if (Model != null)
 {
     <style>
-        h1{
-           font-size:23px;
+        h1 {
+            font-size: 23px;
         }
+
         h2 {
             font-size: 19px;
         }
+
         h3 {
             font-size: 15px;
         }
+
         h2, h3 {
             text-transform: initial;
         }
-		
-		  #toc_container {
+
+        #toc_container {
             background: #f9f9f9 none repeat scroll 0 0;
             border: 1px solid #aaa;
             display: table;
@@ -57,74 +60,37 @@
         }
 
         .detail a {
-            color:red;
+            color: red;
         }
 
-        .detail a:hover {
-            color: blue;
-        }
-    </style>
-    <!-- Page content-->
-    <div class="container" style="padding-top:50px;">
-        <ul class="breadcrumb">
-            <li>
-                <a href="/">Trang chủ</a> /
-            </li>
-            @if (Model.Category.Slug.ToLower().Trim() != "trang")
-            {
-                <li><a href="@Url.RouteUrl("FriendlyRouteCate", new { FriendlyUrl = Model.Category.Slug })">@Model.Category.Name</a> /</li>
-
+            .detail a:hover {
+                color: blue;
             }
-            <li>
-                <a>  @Model.Title.LimitLength(150, "...")</a>
-            </li>
-        </ul>
-        <div class="row">
-            <!-- Blog entries-->
-            <div class="col-lg-8">
-                <!-- Nested row for non-featured blog posts-->
-                <div class="row">
-                    <h1 class="uppercase col-md-12">
-                        @Model.Title
-                    </h1>
-                    <br />
-                    <div class="clear"></div>
-                    <p class="posted-date col-md-12">
-                       <i class="fa fa-eye"></i> @Model.Views Lượt xem - Ngày đăng: @(Model.AutoPostDate!=null ? Model.AutoPostDate.Value.ToString("dd/MM/yyyy") : Model.DateUpdate.Value.ToString("dd/MM/yyyy"))  -
-                        <a href="@Url.RouteUrl("FriendlyRouteCate", new { FriendlyUrl = Model.Category.Slug })" style="font-weight:600;" title="@Model.Category.Name"><span itemprop="genre">@Model.Category.Name</span></a>
-                    </p>
-                    <div class="clear"></div>
-                      <br />
-                    <div id="toc_container" class="col-md-12" data-toc>
-                      
-                    </div>
-
-                    <br />
-                     <div class="detail col-md-12" data-content>
-                        @Html.Raw(Model.Content)
-                    </div>
-                    <div class="clear"></div>
-                    @*<div class="news-back"><a href="javascript:void(0);" onclick="window.history.go(-1);">[ Trở lại ]</a></div>*@
-                    <div class="clear"></div>
-                    <div class="fb-like" data-href="@HttpContext.Current.Request.Url.AbsoluteUri" title="" data-width="740px" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-                    <div class="fb-comments" data-href="@HttpContext.Current.Request.Url.AbsoluteUri" data-width="740px" data-numposts="5" data-colorscheme="light"></div>
+    </style>
+    <main class="page-main page-about">
+        <div class="md-banner">
+            <div class="container-90">
+                <img title="" class="md-desktop wow zoomIn" alt="" src="@Model.Image" style="visibility: visible; animation-name: zoomIn;">
+            </div>
+        </div>
+        <div class="meta-group clearfix">
+            <div class="container-90">
+                <div class="bls-title">
+                    <h1 title="@Model.Title">@Model.Title</h1>
                 </div>
             </div>
-            @Html.Action("_Sidebar", "Blogs")
         </div>
-
-        @Html.Action("_LastNews", "Blogs")
-
-    </div>
+        <div class="blk-about-us md-relative">
+            <div class="container-70 wysiwyg">
+                <div class="title_page">
+                    <div class="detail col-md-12" data-content>
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 }
 @section scripts{
- <script src="~/Scripts/Toc/table-of-contents.js"></script>
-    <script>
-        tableOfContents('[data-content]', '[data-toc]', {
-            heading: 'MỤC LỤC ', // Change the headings
-            listType: 'ul', // Change the list type
-            // levels: 'h2, h3' // Change the levels used
-        });
-    </script>
     @(string.IsNullOrEmpty(Model.Script) ? Model.Script : "")
 }

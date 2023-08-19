@@ -1,0 +1,358 @@
+﻿@model IEnumerable<KidsSchool.Models.DB.Category>
+
+@{
+    ViewBag.Title = "Danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+<link href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<div class="app-title">
+    <ul class="app-breadcrumb breadcrumb side">
+        <li class="breadcrumb-item active"><a href="#"><b>Quản lý Danh mục</b></a></li>
+    </ul>
+    <div id="clock"></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile">
+            <div class="tile-body">
+                <div class="row element-button">
+                    <div class="col-sm-2">
+                        <a class="btn btn-add btn-sm" href="/Admin/Posts/Create" title="Thêm">
+                            <i class="fas fa-plus"></i>
+                            Tạo tin mới
+                        </a>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <a class="btn btn-add btn-sm" href="/Admin/Categories/Create" title="Thêm">
+                            <i class="fas fa-folder-plus"></i> Thêm danh mục
+                        </a>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()">
+                            <i class="fas fa-print"></i> In dữ liệu
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="DeleteListPageCheck()">
+                            <i class="fas fa-trash-alt"></i> Xóa các trang đã chọn
+                        </a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-excel btn-sm" onclick="ExportExcel()" title="In"><i class="fas fa-file-excel"></i> Xuất Excel Web</a>
+                    </div>
+                </div>
+                <table id="sampleTable" class="table table-striped table-bordered dt-responsive nowrap">
+                    <thead>
+                        <tr>
+                            <th width="10"><input type="checkbox" id="all"></th>
+                            <th>
+                                Mã tin
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Image)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ShowIndex)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr id="@("page_"+item.Id)">
+                                <td class="colcheckbox" width="10"><input type="checkbox" class="Checkdel" name="check1" value="0"></td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    <img src="@item.Image?w=155&h=155&mode=pad" style="max-width:48px;" />
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Category1.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ShowIndex)
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm view" target="_blank" href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">Xem</a>
+
+                                    @*<button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
+                    onclick="deleteCate('@("page_"+item.Id)')">
+                <i class="fas fa-trash-alt"></i>
+            </button>*@
+                                    <button class="btn btn-primary btn-sm edit" onclick=" window.location = '/Admin/Categories/Edit/@item.Id'" type="button" title="Sửa" id="show-emp" data-toggle="modal"
+                                            data-target="#ModalUP">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th width="10"><input type="checkbox" id="all"></th>
+                            <th>
+                                Mã tin
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Image)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                Category
+                            </th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section footerScript {
+    <!-- Essential javascripts for application to work-->
+    <script src="~/Assets/Admin/js/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/popper.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/plugins/table2excel/jquery.table2excel.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Assets/Admin/js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="~/Assets/Admin/js/plugins/pace.min.js"></script>
+    <script src="~/Assets/Admin/js/plugins/sweetalert.min.js"></script>
+    <!-- Data table plugin-->
+    <script type="text/javascript" src="~/Assets/Admin/js/plugins/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/Assets/Admin/js/plugins/dataTables.bootstrap.min.js"></script>
+
+}
+@section Scripts {
+    <script type="text/javascript">
+        function deleteCat(id) {
+            var pageid = id.split("_")[1];
+            swal({
+                title: "Cảnh báo?",
+                text: "Bạn có chắc chắn là muốn xóa nhóm trang này?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Đồng ý xóa!',
+                closeOnConfirm: false,
+            },
+                function () {
+                    $.ajax({
+                        url: '/Admin/Posts/DeletePostCate',
+                        type: 'GET',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: { listid: pageid },
+                        success: function (data) {
+                            if (data.success) {
+                                document.getElementById(id).remove();
+                                swal("Xóa thành công!", "Bạn đã xóa thành công!", "success");
+                            } else {
+                                swal("Cancelled", data.msg + " :)", "error");
+
+                            }
+                        }
+                    });
+
+                });
+        }
+
+
+        function addPostCate() {
+            if (document.getElementById("txtgroupName").value == "") { swal("Cancelled", " :)", "error"); return; }
+            $.ajax({
+                url: '/Admin/Posts/AddPostCate',
+                type: 'GET',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: { groupName: document.getElementById("txtgroupName").value },
+                success: function (data) {
+                    if (data.success) {
+                        var ul = document.getElementById("cateul");
+                        var li = document.createElement("li");
+                        li.appendChild(document.createTextNode(document.getElementById("txtgroupName").value));
+                        ul.appendChild(li);
+                        document.getElementById("txtgroupName").value = "";
+                        swal("Thành công!", "Bạn đã thêm nhóm group post thành công!", "success");
+                    } else {
+                        swal("Cancelled", data.msg + " :)", "error");
+
+                    }
+                }
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        $('#sampleTable').DataTable({
+            "order": [[1, "desc"]],
+            initComplete: function () {
+                var i = 0;
+                this.api().columns().every(function () {
+                    if (i == 4) {
+                        var column = this;
+                        var select = $('<select><option value=""></option></select>')
+                            .appendTo($(column.footer()).empty())
+                            .on('change', function () {
+                                var val = $.fn.dataTable.util.escapeRegex(
+                                    $(this).val()
+                                );
+
+                                column
+                                    .search(val ? '^' + val + '$' : '', true, false)
+                                    .draw();
+                            });
+
+                        column.data().unique().sort().each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>')
+                        });
+                    }
+                    i++;
+                });
+            }
+        });
+
+        //In dữ liệu
+        var myApp = new function () {
+            this.printTable = function () {
+                var tab = document.getElementById('sampleTable');
+                var win = window.open('', '', 'height=700,width=700');
+                win.document.write(tab.outerHTML);
+                win.document.close();
+                win.print();
+            }
+        }
+
+        $('#all').click(function (e) {
+            $('#sampleTable tbody :checkbox').prop('checked', $(this).is(':checked'));
+            e.stopImmediatePropagation();
+        });
+
+
+        function deleteCate(id) {
+            var pageid = id.split("_")[1];
+            swal({
+                title: "Cảnh báo?",
+                text: "Bạn có chắc chắn là muốn xóa trang này?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Đồng ý xóa!',
+                closeOnConfirm: false,
+            },
+                function () {
+                    $.ajax({
+                        url: '/Admin/Categories/DeletePostCate',
+                        type: 'GET',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: { listid: pageid },
+                        success: function (data) {
+                            if (data.success) {
+                                removeRow(id);
+                                swal("Xóa thành công!", "Bạn đã xóa thành công!", "success");
+                            } else {
+                                swal("Cancelled", data.msg + " :)", "error");
+
+                            }
+                        }
+                    });
+
+                });
+        }
+
+        function DeleteListPageCheck() {
+            var selected = new Array();
+            var listid = "";
+            $('#sampleTable').find('tr').each(function () {
+                var row = $(this);
+                if (row.find('input[type="checkbox"][class="Checkdel"]').is(':checked')) {
+                    selected.push(row[0].id);
+                    listid += row[0].id.split("_")[1] + ",";
+                }
+            });
+            if (selected.length > 0) {
+                swal({
+                    title: "Cảnh báo?",
+                    text: "Bạn có chắc chắn là muốn xóa " + selected.length + " trang đã chọn này?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Đồng ý xóa!',
+                    closeOnConfirm: false,
+                },
+                    function () {
+                        $.ajax({
+                            url: '/Admin/Posts/DeletePostCate',
+                            type: 'GET',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: { listid: listid },
+                            success: function (data) {
+                                if (data.success > 0) {
+                                    swal("Xóa thành công!", "Bạn đã xóa thành công " + selected.length + "  trang!", "success");
+                                    for (var i = 0; i < selected.length; i++) {
+                                        removeRow(selected[i]);
+                                    }
+                                } else {
+                                    swal("Cancelled", "Xóa thất bại rồi  :)", "error");
+                                }
+                            }
+                        });
+                    }
+                );
+            }
+        }
+
+        function removeRow(id) {
+            var tr = document.getElementById(id);
+            if (tr) {
+                if (tr.nodeName == 'TR') {
+                    var tbl = tr; // Look up the hierarchy for TABLE
+                    while (tbl != document && tbl.nodeName != 'TABLE') {
+                        tbl = tbl.parentNode;
+                    }
+
+                    if (tbl && tbl.nodeName == 'TABLE') {
+                        while (tr.hasChildNodes()) {
+                            tr.removeChild(tr.lastChild);
+                        }
+                        tr.parentNode.removeChild(tr);
+                    }
+                }
+            }
+        }
+
+        function ExportExcel() {
+            $("#sampleTable").table2excel({
+                exclude: ".noExl",
+                name: "Worksheet Name",
+                filename: "SomeFile",//do not include extension
+                fileext: ".xls" // file extension
+            });
+        }
+
+    </script>
+}

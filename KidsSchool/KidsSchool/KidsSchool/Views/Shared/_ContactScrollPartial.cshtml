@@ -1,0 +1,38 @@
+﻿@using KidsSchool.Models.Dao;
+@{
+    var getconfig = DataPuplic.GetInstance().GetConfig(false);
+    if (getconfig != null)
+    {
+        <!-- Modal -->
+        <div class="popup_mes" id="register_forms">
+            <ul class="side-tool__tools">
+                <li>
+                    <a href="tel:@getconfig.Phone" target="_blank">
+                        <div><span class="icon-hcm"></span></div>
+                        <div>@getconfig.Phone</div>
+                    </a>
+                </li>
+            </ul>
+            <div class="side-tool__sign-up">
+                <form action="javascript:SubmitSentContact('txtName2','txtchildName2','none','txtmail2','txtphone2','none','none','txtquestion2', 1)" method="post" id="formNewsletter2" target="_top" onsubmit="return false">
+                    <div class="side-tool__sign-up__expand-btn">
+                        <img src="/Assets/Home/images/register.png" alt="register">
+                        <p>Đăng ký <br>ngay</p>
+                    </div>
+                    <div class="side-tool__sign-up__form">
+                        <input type="text" id="txtName2" placeholder="Họ tên phụ huynh">
+                        <input type="text" id="txtchildName2" placeholder="Họ tên bé">
+                        <input type="phone" id="txtphone2" placeholder="Số điện thoại">
+                        <input type="email" id="txtmail2" placeholder="Email">
+                        <textarea  id="txtquestion2" cols="30" rows="3" placeholder="Câu hỏi…"></textarea>
+                    </div>
+
+                    <div class="side-tool__sign-up__submit">
+                        <button onclick="SubmitSentContact('txtName2','txtchildName2','none','txtmail2','txtphone2','none','none','txtquestion2', 1)" type="button" click="onSubmit" class="btn-form-register"> <i class="fa fa-send"></i><br>Gửi </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        }
+    }

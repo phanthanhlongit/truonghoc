@@ -1,0 +1,33 @@
+﻿@model IEnumerable<KidsSchool.Models.DB.Banner>
+@using KidsSchool.Models.Dao;
+@{
+    var banner = DataPuplic.GetInstance().GetBanner(false).Where(x => x.Active && x.BannerPositionId == 2).ToList();
+    if (banner != null && banner.Count > 0)
+    {
+        <div class="blk-home-gellary">
+            <div class="container-70">
+                <h3 class="md-title">HÌNH ẢNH HOẠT ĐỘNG</h3>
+                <div class="slider-news dot-start">
+                    <div class="md-news customer_bantin">
+                        <div class="owl-carousel owl-theme">
+                            @foreach (var item in banner)
+                            {
+                                <div class="item">
+                                    <div class="md-col wow fadeInUp-hl" data-wo-delay="0.3s">
+                                        <div class="inner img">
+                                            <div class="thumb">
+                                                <a data-fancybox="hinh-hoat-dong" data-caption="@item.Name" href="@item.Images">
+                                                    <img src="@item.Images" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

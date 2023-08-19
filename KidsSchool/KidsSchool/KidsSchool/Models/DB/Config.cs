@@ -11,7 +11,16 @@ namespace KidsSchool.Models.DB
     {
         public int id { get; set; }
 
+        public string Phone { get; set; }
+
+        public string Mail { get; set; }
+
         public string MetaTitle { get; set; }
+
+        public string Copyright { get; set; }
+        public string UrlMap { get; set; }
+
+        public int? CatId { get; set; }
 
         public string MetaDescription { get; set; }
 

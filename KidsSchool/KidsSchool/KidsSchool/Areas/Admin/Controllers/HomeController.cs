@@ -13,7 +13,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: admin/Default
         public ActionResult Index()
         {
-            ViewBag.NewOrders = 0;
+            ViewBag.ContactGHelp = db.ContactGHelps.Take(10).OrderByDescending(x=>x.DateCreate).ToList();
             ViewBag.CountOrder = 0;
             ViewBag.CountProduct = 0;
             ViewBag.CountProductExits = 0;

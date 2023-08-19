@@ -1,8 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
+using System.Web.Mvc;
+using HtmlAgilityPack;
+using KidsSchool.Models;
+using KidsSchool.Models.DB;
 
 static public class Xstring
 {
@@ -330,6 +337,34 @@ static public class Xstring
         }
         return s;
     }
+    public static String ToUniqueUrl(this String s, Entities db)
+    {
+        if (s == null) return "";
+
+        String[][] symbols = {
+        // ... Các luật chuyển đổi URL như bạn đã định nghĩa ...
+    };
+
+        s = s.ToAscii();
+
+        string originalUrl = s;
+        int counter = 1;
+
+        while (true)
+        {
+            // Kiểm tra xem URL đã tồn tại trong cơ sở dữ liệu hay chưa
+            bool urlExists = db.SeoUrlRecords.Any(entity => entity.url == s);
+
+            if (!urlExists)
+            {
+                return s;
+            }
+
+            // Nếu URL đã tồn tại, thêm số đằng sau và kiểm tra lại
+            s = $"{originalUrl}-{counter}";
+            counter++;
+        }
+    }
 
     public static bool hasSpecialCharUrl(this string input)
     {
@@ -493,4 +528,106 @@ static public class Xstring
 
         return NewPassword;
     }
+
+    public static List<WebsiteData> ConvertPageIsSpecial(this string htmlContent)//xóa html
+    {
+        HtmlDocument document = new HtmlDocument();
+        document.LoadHtml(htmlContent);
+
+        List<WebsiteData> websiteDataList = new List<WebsiteData>();
+        WebsiteData currentData = new WebsiteData();
+        int stt = 1;
+
+        foreach (HtmlNode node in document.DocumentNode.Descendants())
+        {
+            if (node.Name == "img")
+            {
+                if (!string.IsNullOrEmpty(currentData.Images) ||
+                    currentData.H1.Count > 0 ||
+                    currentData.H2.Count > 0 ||
+                    currentData.H3.Count > 0 ||
+                    currentData.H4.Count > 0 ||
+                    currentData.H5.Count > 0 ||
+                    currentData.OtherTags.Count > 0)
+                {
+                    currentData.Stt = stt++;
+                    websiteDataList.Add(currentData);
+                    currentData = new WebsiteData();
+                }
+
+                currentData.Images = node.GetAttributeValue("src", "");
+            }
+            else if (node.Name.StartsWith("h") && node.Name.Length == 2 && char.IsDigit(node.Name[1]))
+            {
+                var headerText = GetInnerText(node);
+                if (!string.IsNullOrWhiteSpace(headerText))
+                {
+                    switch (node.Name)
+                    {
+                        case "h1":
+                            currentData.H1.Add(headerText);
+                            break;
+                        case "h2":
+                            currentData.H2.Add(headerText);
+                            break;
+                        case "h3":
+                            currentData.H3.Add(headerText);
+                            break;
+                        case "h4":
+                            currentData.H4.Add(headerText);
+                            break;
+                        case "h5":
+                            currentData.H5.Add(headerText);
+                            break;
+                    }
+                }
+            }
+            else if (node.Name == "p" || node.Name == "li")
+            {
+                var innerText = GetInnerText(node);
+                if (!string.IsNullOrWhiteSpace(innerText))
+                {
+                    currentData.OtherTags.Add(innerText);
+                }
+            }
+        }
+
+        // Thêm dữ liệu từ phần tử cuối cùng vào danh sách
+        if (!string.IsNullOrEmpty(currentData.Images) ||
+            currentData.H1.Count > 0 ||
+            currentData.H2.Count > 0 ||
+            currentData.H3.Count > 0 ||
+            currentData.H4.Count > 0 ||
+            currentData.H5.Count > 0 ||
+            currentData.OtherTags.Count > 0)
+        {
+            currentData.Stt = stt++;
+            websiteDataList.Add(currentData);
+        }
+
+
+        return websiteDataList;
+    }
+
+    static string GetInnerText(HtmlNode node)
+    {
+        if (node.HasChildNodes)
+        {
+            var innerText = "";
+            foreach (var childNode in node.ChildNodes)
+            {
+                if (childNode.NodeType == HtmlNodeType.Text)
+                {
+                    innerText += childNode.InnerText;
+                }
+                else if (childNode.NodeType == HtmlNodeType.Element)
+                {
+                    innerText += GetInnerText(childNode);
+                }
+            }
+            return innerText.Trim();
+        }
+        return node.InnerText.Trim();
+    }
+
 }

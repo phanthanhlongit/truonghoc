@@ -13,6 +13,8 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using KidsSchool.Models.Dao;
+using System.Web.Services.Description;
 
 namespace KidsSchool.Areas.Admin.Controllers
 {
@@ -24,25 +26,9 @@ namespace KidsSchool.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var posts = db.Posts.Include(p => p.Category);
-            ViewBag.Group= db.Categories.Where(x=>!x.IsDelete&& x.ParentId!=null && !x.Slug.Equals("trang"));
+            ViewBag.Group= DataPuplic.GetInstance().GetCate(false).Where(x=>!x.IsDelete&& x.ParentId!=null && !x.Slug.Equals("trang"));
             return View(posts.ToList());
         }
-
-        // GET: Admin/Posts/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Post post = db.Posts.Find(id);
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-            return View(post);
-        }
-
 
         #region ValidatePage
         public void ValidatePost(Post post)
@@ -87,9 +73,13 @@ namespace KidsSchool.Areas.Admin.Controllers
             ValidatePost(post);
             if (ModelState.IsValid)
             {
-                if (post.Slug == null)
+                if (string.IsNullOrEmpty(post.Slug))
                 {
-                    post.Slug = post.Title.ToAscii();
+                    post.Slug = post.Title.ToUniqueUrl(db);
+                }
+                else
+                {
+                    post.Slug = post.Slug.ToUniqueUrl(db);
                 }
                 post.Slug = post.Slug.ToLower();
                 post.Active = true;
@@ -108,6 +98,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.SeoUrlRecords.Add(seoUrl);
                 #endregion
                 db.SaveChanges();
+                DataPuplic.GetInstance().GetPost(true,db);
                 Success("Thêm trang thành công: " + post.Title, true);
                 return RedirectToAction("Index");
             }
@@ -142,16 +133,23 @@ namespace KidsSchool.Areas.Admin.Controllers
             ValidatePost(post);
             if (ModelState.IsValid)
             {
-                //post.Content= ParseHtml(post.Content);
-                if (post.Slug == null)
+                var oldEntity = DataPuplic.GetInstance().GetPost(false).FirstOrDefault(x => x.Id == post.Id);
+                if (oldEntity != null)
                 {
-                    post.Slug = post.Title.ToAscii();
+                    if (oldEntity.Title != post.Title || string.IsNullOrEmpty(post.Slug))
+                    {
+                        post.Slug = post.Title.ToUniqueUrl(db);
+                    }
+                    else if (oldEntity.Slug != post.Slug)
+                    {
+                        post.Slug = post.Slug.ToUniqueUrl(db);
+                    }
                 }
-                post.Slug = post.Slug.ToLower();
+
                 post.DateUpdate = DateTime.Now;
                 db.Entry(post).State = EntityState.Modified;
                 #region seoUrl
-                var urlRecord = db.SeoUrlRecords.Where(u => u.objectId == post.Id.ToString() && u.controller == "Blogs").ToList();
+                var urlRecord = db.SeoUrlRecords.Where(u => u.objectId == post.Id.ToString() && u.controller == "Blogs" && u.action == "ShowPost").ToList();
                 if (urlRecord.Count == 0)
                 {
                     var seoUrl = new SeoUrlRecord
@@ -173,6 +171,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 #endregion
                 db.SaveChanges();
                 Success("Thay đổi thông tin tin thành công: " + post.Title, true);
+                DataPuplic.GetInstance().GetPost(true,db);
                 return RedirectToAction("Index");
             }
             ViewBag.CatId = new SelectList(db.Categories, "Id", "Name", post.CatId);
@@ -201,6 +200,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                         {
                             db.Posts.Remove(pro);
                             db.SaveChanges();
+                            DataPuplic.GetInstance().GetPost(true);
                             info = new
                             {
                                 success = true,
@@ -246,6 +246,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                             pro.DateUpdate = DateTime.Now;
                             pro.IsDelete = true;
                             db.SaveChanges();
+                            DataPuplic.GetInstance().GetCate(true);
                             info = new
                             {
                                 success = true,
@@ -281,7 +282,14 @@ namespace KidsSchool.Areas.Admin.Controllers
                 //Id,Name,Slug,Description,ParentId,DisplayOrder,MetaTitle,MetaDescription,MetaKeyword,Icon,ImageIcon,IsDelete
                 cate.ParentId = 9;
                 cate.Name = groupName;
-                cate.Slug = cate.Name.ToAscii();
+                if (string.IsNullOrEmpty(cate.Slug))
+                {
+                    cate.Slug = cate.Name.ToUniqueUrl(db);
+                }
+                else
+                {
+                    cate.Slug = cate.Slug.ToUniqueUrl(db);
+                }
                 cate.DateUpdate = DateTime.Now;
                 db.Categories.Add(cate);
                 db.SaveChanges();
@@ -296,6 +304,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.SeoUrlRecords.Add(seoUrl);
                 #endregion
                 db.SaveChanges();
+                DataPuplic.GetInstance().GetCate(true);
                 info = new
                 {
                     success = true,

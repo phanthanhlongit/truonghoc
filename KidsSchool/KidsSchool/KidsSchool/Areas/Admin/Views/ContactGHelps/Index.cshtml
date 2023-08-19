@@ -24,20 +24,40 @@
                 <table class="table">
                     <tr>
                         <th>
-                            Loại liên hệ
-                        </th>
-                        <th>
-                            Tên khách hàng
+                            @Html.DisplayNameFor(model => model.ContactGHelpGroup.Name)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Phone)
                         </th>
-
                         <th>
-                            @Html.DisplayNameFor(model => model.Address)
+                           Tên phụ huynh
                         </th>
                         <th>
-                            Ngày cập nhật
+                            Tên bé
+                        </th>
+                        <th>
+                            Tuổi bé
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Mail)
+                        </th>
+                        <th>
+                            Địa chỉ
+                        </th>
+                        <th>
+                            Nội dung
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Upd_Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsDelete)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsRead)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateCreate)
                         </th>
                         <th></th>
                     </tr>
@@ -49,20 +69,40 @@
                                 @Html.DisplayFor(modelItem => item.ContactGHelpGroup.Name)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.CusName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Phone)
+                                @Html.DisplayFor(modelItem => item.ChilName)
                             </td>
-
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ChilAge)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mail)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Content)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Upd_Date)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                @Html.DisplayFor(modelItem => item.IsDelete)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsRead)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateCreate)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
                             </td>
                         </tr>
                     }

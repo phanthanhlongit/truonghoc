@@ -68,9 +68,6 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Views)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.createDate)
-                            </th>
 
                             <th></th>
                         </tr>
@@ -99,10 +96,6 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Views)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.createDate)
-                            </td>
-
                             <td>
                                 <a class="btn btn-primary btn-sm view" target="_blank" href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">Xem</a>
 

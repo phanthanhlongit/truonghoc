@@ -5,7 +5,7 @@
 
 @{
     ViewBag.Title = string.IsNullOrEmpty(ViewBag.Cat.MetaTitle) ? ViewBag.Cat.Name : ViewBag.Cat.MetaTitle;
-    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section HeaderMetas{
     <!-- HTML Meta Tags -->
@@ -28,81 +28,56 @@
     <meta name="twitter:title" content="@Html.Raw(ViewBag.Cat.MetaTitle)" />
     <meta name="twitter:description" content="@Html.Raw(ViewBag.Cat.MetaDescription)" />
 }
-<style>
-    .card-title {
-        text-transform: inherit;
-        font-size:17px;
-    }
-</style>
-<!-- Page content-->
-<div class="container" style="padding-top:50px;">
-    <ul class="breadcrumb">
-        <li>
-            <a href="/">Trang chủ</a>
-        </li>
-        /
-        <li>
-            <a>@ViewBag.Cat.Name</a>
-        </li>
-    </ul>
-    <div class="row">
-        <!-- Blog entries-->
-        <div class="col-lg-8">
-            <!-- Nested row for non-featured blog posts-->
-            <div class="row">
-                @{
-                    var DivStart = "<div class=\"col-lg-6\">";
-                    var fixDivEnd = "</div>";
-                    var stt = 0;
-                }
-                @foreach (var m in Model)
-                {
-                    if (stt == 0)
-                    {
-                        <!-- Featured blog post-->
-                        <div class="card mb-4">
-                            <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })">
-                                <img class="card-img-top" onerror="this.src = '/Images/loading.gif';" src="@m.Image" alt="@m.Title" title="@m.Title" />
-                            </a>
-                            <div class="card-body">
-                                <div class="small text-muted">Đăng lúc @m.createDate.Value.ToString("dd/MM/yyyy")</div>
-                                <h2 class="card-title"><a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })">@m.Title</a></h2>
-                                <p class="card-text"> @Html.Raw(m.Content.Remove_Html_Tags().LimitLength(120, "..."))</p>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        if (stt % 2 == 1)
-                        {
-                            @Html.Raw(DivStart)
-                        }
-                        <!-- Blog post-->
-                        <div class="card mb-4">
-                            <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })" itemprop="url" title="@m.Title">
-                                <img class="card-img-top img-thumbnail" onerror="this.src = '/Images/noimage.gif';" src="@m.Image?w=400&h=250&mode=pad" alt="@m.Title" title="@m.Title" />
-                            </a>
-                            <div class="card-body">
-                                <div class="small text-muted">Đăng lúc @m.createDate.Value.ToString("dd/MM/yyyy")</div>
-                                <h2 class="card-title h4"><a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = m.Slug })"> @Html.Raw(m.Title.Remove_Html_Tags().LimitLength(60, "..."))</a></h2>
-                                <p class="card-text">
-                                    @Html.Raw(m.Content.Remove_Html_Tags().LimitLength(60, "..."))
-                                </p>
-                            </div>
-                        </div>
-                        if (stt % 2 == 0 || stt == (Model.Count - 1))
-                        {
-                            @Html.Raw(fixDivEnd)
-                        }
-                    }
-                    stt++;
-                }
-            </div>
-            @Html.PagedListPager(Model, page => Url.HttpRouteUrl("FriendlyRouteCate", new { Slug = ViewBag.Cat.Slug, page = page }))
+<main class="page-main page-lop-hoc">
+    <div class="md-banner">
+        <div class="container-90">
+            <img title="" class="md-desktop wow zoomIn" alt="" src="@ViewBag.Cat.Image" style="visibility: visible; animation-name: zoomIn;">
         </div>
-        @Html.Action("_Sidebar", "Blogs")
     </div>
-</div>
+    <div class="meta-group clearfix">
+        <div class="container-70">
+            <div class="bls-title">
+                <h1 title="@ViewBag.Cat.Name">@ViewBag.Cat.Name</h1>
+            </div>
+        </div>
+    </div>
+    <div class="blk-lop-hoc md-relative">
+        <div class="container-70">
+            <div class="blk-1">
+                <h3 class="title wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                    @ViewBag.Cat.Name
+                </h3>
+                <p class="wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                    @ViewBag.Cat.Description
+                </p>
+            </div>
+            <div class="md-news">
+                @foreach (var item in Model)
+                {
+                    <div class="md-col wow fadeInUp-hl" data-wo-delay="0.3s" style="visibility: visible; animation-name: fadeInUp-hl;">
+                        <div class="inner">
+                            <div class="thumb">
+                                <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">
+                                    <img onerror="this.src = '/Images/noimage.gif';" src="@item.Image" alt="@item.Title">
+                                </a>
+                            </div>
+                            <div class="info clearfix customer_hight">
+                                <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">
+                                    <h3 class="font-size-30 color-green">@item.Title</h3>
+                                </a>
+
+                                <a class="md-more" href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">Chi tiết</a>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+            </div> 
+            @Html.PagedListPager(Model, page => Url.HttpRouteUrl("FriendlyRouteCate", new { Slug = ViewBag.Cat.Slug, page = page }))
+
+        </div>
+    </div>
+</main>
 @section scripts{
     @(string.IsNullOrEmpty(ViewBag.Cat.Script) ? ViewBag.Cat.Script : "")
 }

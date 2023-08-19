@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using KidsSchool.Models.Dao;
-using KidsSchool.Controllers;
+using KidsSchool.Models.DB;
 
-namespace WebStoreShop.Controllers
+namespace KidsSchool.Controllers
 {
     public class BlogsController : BaseController
     {
@@ -16,25 +14,11 @@ namespace WebStoreShop.Controllers
         public ActionResult Index(int? page)
         {
             return Redirect("/404.html");
-            int pageNumber = (page ?? 1);
-            var pageSize = 8;
-            try
-            {
-                var cate = DataPuplic.Cate.Where(x => x.Slug.Contains("trang")).FirstOrDefault();
-                if (cate != null)
-                {
-                    var model = DataPuplic.post.Where(x => x.CatId != cate.Id).OrderByDescending(p => p.createDate).ToList();
-                    return View(model.ToPagedList(pageNumber, pageSize));
-                }
-            }
-            catch { }
-            var model2 = DataPuplic.post.OrderByDescending(p => p.createDate).ToList();
-            return View(model2.ToPagedList(pageNumber, pageSize));
         }
 
 
         // GET: Category
-        [OutputCache(VaryByParam = "Slug;page", Duration = 300)]
+        //[OutputCache(VaryByParam = "Slug;page", Duration = 300)]
         public ActionResult Category(string Slug, int? page)
         {
             int pageNumber = (page ?? 1);

@@ -50,6 +50,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\CKFinder.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=2.0.20.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.Net45.2.0.20\lib\net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Lib\ImageResizer.dll</HintPath>
@@ -187,18 +190,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ALBUM ẢNH TOMATO\anh home\NAM_0076_4K+ %281%29.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0003_4K+.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0065_4K+.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0214_4K %281%29.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0322_4K %282%29.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0357_4K.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0393_4K %281%29.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0423_4K %281%29.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0458_4K %281%29.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0548_4K %281%29.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0585_4K.jpg" />
-    <Content Include="ALBUM ẢNH TOMATO\anh home\TOMATO_0634_4K.jpg" />
     <Content Include="App_Code\GlobalGZip.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -223,9 +214,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BannerAdsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BlogsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MenusController.cs" />
+    <Compile Include="Controllers\PagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,6 +244,7 @@
     <Compile Include="Models\Commons\Libs\XCaptcha.cs" />
     <Compile Include="Models\Commons\Libs\XMail.cs" />
     <Compile Include="Models\Commons\Libs\XString.cs" />
+    <Compile Include="Models\Dao\DataPuplic.cs" />
     <Compile Include="Models\DB\AspNetRole.cs" />
     <Compile Include="Models\DB\AspNetUser.cs" />
     <Compile Include="Models\DB\AspNetUserClaim.cs" />
@@ -278,67 +273,11 @@
     <Compile Include="Models\DB\Testimonial.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PageSpecial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Content Include="_default_upload_bucket\1.png" />
-    <Content Include="_default_upload_bucket\100.png" />
-    <Content Include="_default_upload_bucket\11.png" />
-    <Content Include="_default_upload_bucket\134.png" />
-    <Content Include="_default_upload_bucket\146.png" />
-    <Content Include="_default_upload_bucket\1768x1267.jpg" />
-    <Content Include="_default_upload_bucket\2.png" />
-    <Content Include="_default_upload_bucket\3.png" />
-    <Content Include="_default_upload_bucket\3_1.png" />
-    <Content Include="_default_upload_bucket\53.png" />
-    <Content Include="_default_upload_bucket\8-3-WEB %281%29.jpg" />
-    <Content Include="_default_upload_bucket\81.png" />
-    <Content Include="_default_upload_bucket\banner ngay hoi DFC-WEB %281%29.jpg" />
-    <Content Include="_default_upload_bucket\banner ngay hoi tuyen sinh 2022-2023-WEB.jpg" />
-    <Content Include="_default_upload_bucket\banner web - trung thu.jpg" />
-    <Content Include="_default_upload_bucket\banner web mam non-01 %281%29_1.png" />
-    <Content Include="_default_upload_bucket\banner web mam non-tin tuc.jpg" />
-    <Content Include="_default_upload_bucket\banner web-01.jpg" />
-    <Content Include="_default_upload_bucket\banner web-strong start.jpg" />
-    <Content Include="_default_upload_bucket\bao ve ban than-banner fb.jpg" />
-    <Content Include="_default_upload_bucket\be the change 2022-web.jpg" />
-    <Content Include="_default_upload_bucket\cho con hoc chu-thumb %281%29_2.jpg" />
-    <Content Include="_default_upload_bucket\christmas 2022-web_1.jpg" />
-    <Content Include="_default_upload_bucket\chuan bi cho con vao lop 1 - web.jpg" />
-    <Content Include="_default_upload_bucket\day con ve tien - WEB.jpg" />
-    <Content Include="_default_upload_bucket\EDUCATE A GIRL, CHANGE THE WORLD - web.jpg" />
-    <Content Include="_default_upload_bucket\halloween - web.jpg" />
-    <Content Include="_default_upload_bucket\halloween-thumb.jpg" />
-    <Content Include="_default_upload_bucket\ico-tomato-1_2.jpg" />
-    <Content Include="_default_upload_bucket\ico-tomato-2_1.jpg" />
-    <Content Include="_default_upload_bucket\ico-tomato-3_1.jpg" />
-    <Content Include="_default_upload_bucket\kham pha cac giac quan-WEB.jpg" />
-    <Content Include="_default_upload_bucket\khoa tet 2023-web.jpg" />
-    <Content Include="_default_upload_bucket\kich off he 2022-thumb web %281%29.jpg" />
-    <Content Include="_default_upload_bucket\lam gi khi con gap van de ngon ngu-thumb.jpg" />
-    <Content Include="_default_upload_bucket\Logo ngang  %282%29.png" />
-    <Content Include="_default_upload_bucket\NAMX0492.JPG" />
-    <Content Include="_default_upload_bucket\noi voi con ve tinh yeu &amp; gioi tinh-web.jpg" />
-    <Content Include="_default_upload_bucket\smart kid junior online-banner 1920x1080.png" />
-    <Content Include="_default_upload_bucket\su kien trai nghiem he 2023-WEB.jpg" />
-    <Content Include="_default_upload_bucket\summer school 2023 - banner web trang chu-01khampha.png" />
-    <Content Include="_default_upload_bucket\THE JOY FATHERHOOD- web %281%29.jpg" />
-    <Content Include="_default_upload_bucket\thumb sjdhdf.jpg" />
-    <Content Include="_default_upload_bucket\thumb-1_1.png" />
-    <Content Include="_default_upload_bucket\tomato - doan dai sư %281%29.jpg" />
-    <Content Include="_default_upload_bucket\tomato - trung thu  %287%29.jpg" />
-    <Content Include="_default_upload_bucket\Untitled design %281%29.png" />
-    <Content Include="_default_upload_bucket\uu dai he 2022-web.jpg" />
-    <Content Include="_default_upload_bucket\ws - abc - PN-banner fb_3.jpg" />
-    <Content Include="_default_upload_bucket\ws cham soc suc khoe-web.jpg" />
-    <Content Include="_default_upload_bucket\ws micro-school - web_2.jpg" />
-    <Content Include="_default_upload_bucket\ws online-04 %281%29.jpg" />
-    <Content Include="_default_upload_bucket\z3551222776334_f5e0f09c40c1e9b91c3f8f1549711aa3.jpg" />
-    <Content Include="_default_upload_bucket\z3769144137940_ae5f3266ba8a76efe9952c7dbf004470.jpg" />
-    <Content Include="_default_upload_bucket\z3976508625664_6207a3e8005872e19981c3bfb4f6c9a1.jpg" />
-    <Content Include="_default_upload_bucket\z3979091068497_975cb2fe05b8f83911b7b56d3cd74593.jpg" />
-    <Content Include="_default_upload_bucket\z3994511729429_fff264080f41f7b7109e77f606ebc90f.jpg" />
-    <Content Include="_default_upload_bucket\z4031334168631_9b2ccf1bc1f74a31d2d43356c1839b6a.jpg" />
-    <Content Include="_default_upload_bucket\z4482705559737_b750702f64cdeca9f5433e6e48548c40.jpg" />
+    <Content Include="Assets\Admin\css\sweetalert.css" />
+    <Content Include="Assets\Home\Scripts\Toc\table-of-contents.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Banners\Create.cshtml" />
@@ -346,7 +285,6 @@
     <Content Include="Areas\Admin\Views\Banners\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Banners\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Banners\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\BackUpDataToJson.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\_sitemap.cshtml" />
     <Content Include="Areas\Admin\Views\Menus\Create.cshtml" />
@@ -2539,7 +2477,6 @@
     <Content Include="Assets\Login\vendor\select2\select2.js" />
     <Content Include="Assets\Login\vendor\select2\select2.min.css" />
     <Content Include="Assets\Login\vendor\select2\select2.min.js" />
-    <Content Include="index.html" />
     <Content Include="Assets\Admin\plugins\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\Admin\plugins\ckeditor\build-config.js" />
     <Content Include="Assets\Admin\plugins\ckeditor\ckeditor.js" />
@@ -2968,11 +2905,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Assets\Admin\fonts\fontawesome-webfont.eot" />
     <Content Include="Assets\Admin\fonts\fontawesome-webfont.ttf" />
@@ -3013,7 +2945,6 @@
     <Content Include="Areas\Admin\Views\Shared\_LayoutAccount.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAuthy.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutNone.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\_sidebar.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_sidebarAdmin.cshtml" />
     <Content Include="Assets\Admin\plugins\ckeditor\CHANGES.md" />
     <Content Include="Assets\Admin\plugins\ckeditor\LICENSE.md" />
@@ -3032,6 +2963,8 @@
     <Content Include="Assets\Admin\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Assets\Admin\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Assets\Admin\plugins\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <None Include="Assets\Home\Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Assets\Home\Scripts\jquery-3.4.1.js" />
     <Content Include="Assets\Home\Scripts\jquery-3.4.1.min.js" />
@@ -3107,16 +3040,26 @@
     <Content Include="Views\Menus\_MobileMenu.cshtml" />
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\Blogs\Category.cshtml" />
-    <Content Include="Views\Blogs\Index.cshtml" />
     <Content Include="Views\Blogs\ShowPost.cshtml" />
     <Content Include="Views\Blogs\_LastNews.cshtml" />
     <Content Include="Views\Blogs\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_Alerts.cshtml" />
+    <Content Include="Views\Home\_SliderShow.cshtml" />
+    <Content Include="Views\Home\_SpecialPage.cshtml" />
+    <Content Include="Views\Home\_ListPostIndex.cshtml" />
+    <Content Include="Views\Home\_AlbumImage.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Home\_ContactHomePartial.cshtml" />
+    <Content Include="Views\Shared\_ContactScrollPartial.cshtml" />
+    <Content Include="Views\Home\_GGMapPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Models\Dao\" />
+    <Folder Include="Assets\Home\fonts\" />
     <Folder Include="Static\" />
   </ItemGroup>
   <ItemGroup>

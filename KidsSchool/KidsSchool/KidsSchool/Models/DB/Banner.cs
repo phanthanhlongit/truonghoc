@@ -17,8 +17,7 @@ namespace KidsSchool.Models.DB
         [Column(TypeName = "ntext")]
         public string Description { get; set; }
 
-        [Column(TypeName = "ntext")]
-        public string Content { get; set; }
+        public string Images { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -35,6 +34,7 @@ namespace KidsSchool.Models.DB
         public DateTime? DateUpdate { get; set; }
 
         public DateTime? DateCreate { get; set; }
+        public string Url { get; set; }
 
         public virtual BannerPosition BannerPosition { get; set; }
 

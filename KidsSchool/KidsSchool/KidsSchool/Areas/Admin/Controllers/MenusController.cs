@@ -8,6 +8,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using KidsSchool.Models.Dao;
 
 namespace KidsSchool.Areas.Admin.Controllers
 {
@@ -59,6 +60,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.Menus.Add(menu);
                 db.SaveChanges();
                 Success("Tạo thành công Menu: " + menu.Text, true);
+                DataPuplic.GetInstance().GetMenu(true, db);
                 return RedirectToAction("Index");
             }
             ViewBag.ParentId = new SelectList(db.Menus.Where(x => x.ParentId == null), "Id", "Text", menu.ParentId);
@@ -95,6 +97,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.Entry(menu).State = EntityState.Modified;
                 db.SaveChanges();
                 Success("Sửa thành công Menu: " + menu.Text, true);
+                DataPuplic.GetInstance().GetMenu(true, db);
                 return RedirectToAction("Index");
             }
             ViewBag.ParentId = new SelectList(db.Menus.Where(x => x.ParentId == null), "Id", "Text", menu.ParentId);
@@ -125,6 +128,7 @@ namespace KidsSchool.Areas.Admin.Controllers
             Menu menu = db.Menus.Find(id);
             db.Menus.Remove(menu);
             db.SaveChanges();
+            DataPuplic.GetInstance().GetMenu(true);
             return RedirectToAction("Index");
         }
 
@@ -150,6 +154,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                         {
                             db.Menus.Remove(pro);
                             db.SaveChanges();
+                            DataPuplic.GetInstance().GetMenu(true);
                             info = new
                             {
                                 success = true,

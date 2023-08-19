@@ -1,8 +1,7 @@
-﻿@model KidsSchool.Models.Entity.Page
-@using KidsSchool.Models.Dao;
+﻿@model KidsSchool.Models.DB.Page
 @{
     ViewBag.Title = Model.title;
-    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section HeaderMetas
 {
@@ -26,99 +25,201 @@
     <meta name="twitter:title" content="@Html.Raw(Model.MetaTitle)" />
     <meta name="twitter:description" content="@Html.Raw(Model.MetaDescription)" />
 }
-
 <style>
     h1 {
         font-size: 23px;
-        color: #1a80be !important;
     }
 
     h2 {
         font-size: 19px;
-        color: #1a80be !important;
     }
 
     h3 {
         font-size: 15px;
-        color: #1a80be !important;
     }
 
     h2, h3 {
         text-transform: initial;
     }
 
-    .send-contact .input-group .form-control {
-        height: 60px;
-        background: #fff;
-    }
-
-    .send-contact .input-group-append .btn {
-        z-index: 100;
-        height: 60px;
-        width: 60px;
-        padding: 0;
-        background: #fff;
-        border: #1a80be solid 1px;
-        color: #07649c;
-    }
-
-    .container-contact {
-        background: #1a80be;
+    #toc_container {
+        background: #f9f9f9 none repeat scroll 0 0;
+        border: 1px solid #aaa;
+        display: table;
+        font-size: 95%;
+        margin-bottom: 1em;
         padding: 20px;
+        width: auto;
     }
+
+    .toc_title {
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .detail a {
+        color: red;
+    }
+
+        .detail a:hover {
+            color: blue;
+        }
 </style>
-<!-- Page content-->
-<div class="container" style="padding-top:50px;">
-    <ul class="breadcrumb">
-        <li>
-            <a href="/">Trang chủ</a> /
-        </li>
-        <li>
-            <a>  @Model.title.LimitLength(150, "...")</a>
-        </li>
-    </ul>
-    <div class="row">
-        <!-- Blog entries-->
-        <div class="col-lg-12">
-            <!-- Nested row for non-featured blog posts-->
-            <div class="row">
-                <h1 class="uppercase col-md-12">
-                    @Model.title
-                </h1>
-                <div class="clear"></div>
-             
-                <br />
-                <div class="detail col-md-12" data-content>
-                    @Html.Raw(Model.content)
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-12">
-                <div class="send-contact">
-                    <form action="javascript:SubmitSentContact('none','none','txtPhone','none','none', 1)">
-                        <div class="input-group">
-                            <input type="text" name="" id="txtPhone" placeholder="Số điện thoại của bạn" class="form-control" required>
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-primary rounded-circle">
-                                    <i class="fas fa-paper-plane"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+
+@if (Model.IsSpecial)
+{
+    var listContent = Model.content.ConvertPageIsSpecial();
+    var imgOnlyData = listContent.FirstOrDefault(data =>
+        !string.IsNullOrEmpty(data.Images) &&
+        data.H1.Count == 0 &&
+        data.H2.Count == 0 &&
+        data.H3.Count == 0 &&
+        data.H4.Count == 0 &&
+        data.H5.Count == 0 &&
+        data.OtherTags.Count == 0
+    );
+    <main class="page-main page-triet-ly">
+        @if (imgOnlyData != null)
+        {
+            <div class="md-banner">
+                <div class="container-90">
+                    <img title="" class="md-desktop wow zoomIn" alt="@Model.title" src="@imgOnlyData.Images" style="visibility: visible; animation-name: zoomIn;">
                 </div>
             </div>
-            <div class="col-lg-8 col-md-12" style="color: #fff; font-size: 13px; padding: 10px 0; ">
-                “ Hãy để lại cho VCOS số điện thoại của bạn. Đội ngũ chúng tôi sẽ liên hệ BÁO GIÁ tốt nhất cho bạn ngay! ”
+        }
+        <div class="meta-group clearfix">
+            <div class="container-70">
+
+                <div class="bls-title">
+                    <h1 title="@Model.title">@Model.title</h1>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+        <div class="blk-triet-ly md-relative">
+            <div class="container-70">
+                @{
+                    if (imgOnlyData != null)
+                    {
+                        listContent.Remove(imgOnlyData);
+                    }
+
+                    foreach (var info in listContent)
+                    {
+                        if (!string.IsNullOrEmpty(info.Images))
+                        {
+                            if (info.Stt % 2 == 0)
+                            {
+                                <div class="blk blk-1">
+                                    <div class="thumb wow fadeInRight" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInRight;">
+                                        <img src="@info.Images" alt="">
+                                    </div>
+                                    <div class="content wow fadeInLeft" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                        <div class="inner-content">
+                                            @foreach (var h1Text in info.H1)
+                                            {
+                                                <h1 class="font-size-30 color-green">@Html.Raw(h1Text)</h1>
+                                            }
+                                            @foreach (var h2Text in info.H2)
+                                            {
+                                                <h2 class="font-size-30 color-green">@Html.Raw(@h2Text)</h2>
+                                            }
+                                            @foreach (var h3Text in info.H3)
+                                            {
+                                                <h3 class="font-size-30 color-green">@Html.Raw(h3Text)</h3>
+                                            }
+                                            @foreach (var h4Text in info.H4)
+                                            {
+                                                <h4 class="font-size-30 color-green">@Html.Raw(h4Text)</h4>
+                                            }
+                                            @foreach (var h5Text in info.H5)
+                                            {
+                                                <h5 class="font-size-30 color-green">@Html.Raw(h5Text)</h5>
+                                            }
+                                            <ul class="md-icon-star">
+                                                @foreach (var otherTagText in info.OtherTags)
+                                                {
+                                                    <li>@Html.Raw(otherTagText)</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="blk blk-2 wow fadeInLeft" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInLeft;">
+                                    <div class="content">
+                                        <div class="inner-content">
+                                            @foreach (var h1Text in info.H1)
+                                            {
+                                                <h1 class="font-size-30 color-green">@Html.Raw(h1Text)</h1>
+                                            }
+                                            @foreach (var h2Text in info.H2)
+                                            {
+                                                <h2 class="font-size-30 color-green">@Html.Raw(@h2Text)</h2>
+                                            }
+                                            @foreach (var h3Text in info.H3)
+                                            {
+                                                <h3 class="font-size-30 color-green">@Html.Raw(h3Text)</h3>
+                                            }
+                                            @foreach (var h4Text in info.H4)
+                                            {
+                                                <h4 class="font-size-30 color-green">@Html.Raw(h4Text)</h4>
+                                            }
+                                            @foreach (var h5Text in info.H5)
+                                            {
+                                                <h5 class="font-size-30 color-green">@Html.Raw(h5Text)</h5>
+                                            }
+                                            <ul class="md-icon-star">
+                                                @foreach (var otherTagText in info.OtherTags)
+                                                {
+                                                    <li>@Html.Raw(otherTagText)</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="thumb">
+                                        @if (!string.IsNullOrEmpty(info.Images))
+                                        {
+                                            <img class="md-desktop" src="@info.Images" alt="">
+                                            <img class="md-mobile" src="@info.Images" alt="">
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </main>
+}
+else
+{
+    <main class="page-main page-about">
+        <div class="md-banner">
+            <div class="container-90">
+                <img title="" class="md-desktop wow zoomIn" alt="" src="@Model.Image" style="visibility: visible; animation-name: zoomIn;">
+            </div>
+        </div>
+        <div class="meta-group clearfix">
+            <div class="container-90">
+                <div class="bls-title">
+                    <h1 title="@Model.title">@Model.title</h1>
+                </div>
+            </div>
+        </div>
+        <div class="blk-about-us md-relative">
+            <div class="container-70 wysiwyg">
+                <div class="title_page">
+                    <div class="detail col-md-12" data-content>
+                        @Html.Raw(Model.content)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+}
 @section scripts{
     @(string.IsNullOrEmpty(Model.Script) ? Model.Script : "")
 }

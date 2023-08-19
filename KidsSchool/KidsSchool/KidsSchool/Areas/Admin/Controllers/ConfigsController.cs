@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using KidsSchool.Models.Dao;
 
 namespace KidsSchool.Areas.Admin.Controllers
 {
@@ -16,7 +17,8 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: Admin/Configs/Edit/5
         public ActionResult index()
         {
-            var config = db.Configs.Find(1);
+            var config = DataPuplic.GetInstance().GetConfig(false);
+            ViewBag.CatId = new SelectList(db.Categories, "Id", "Name");
             if (config == null)
             {
                 return HttpNotFound();
@@ -35,8 +37,10 @@ namespace KidsSchool.Areas.Admin.Controllers
             {
                 db.Entry(config).State = EntityState.Modified;
                 db.SaveChanges();
+                DataPuplic.GetInstance().GetConfig(true, db);
                 Success("Sửa thành công thông cấu hình web", true);
             }
+            ViewBag.CatId = new SelectList(db.Categories, "Id", "Name");
             return View(config);
         }
 

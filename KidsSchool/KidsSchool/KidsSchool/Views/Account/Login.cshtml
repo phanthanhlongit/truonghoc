@@ -3,12 +3,13 @@
 @{
     ViewBag.Title = "Log in";
 }
-
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <div class="row">
-        <div class="col-md-8">
-            <section id="loginForm">
+<main class="page-main page-dangky">
+    <div class="content clearfix md-relative">
+        <!-- <div class="fb-messenger">
+            <img class="icon-fb-messenger" src="/static/images/ico-fb-mesenger.png" alt="">
+        </div> -->
+        <div id="register_form" class="container-70">
+            <div class="md-right wow fadeInLeft" style="visibility: visible; animation-name: fadeInLeft;">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
                 {
                     @Html.AntiForgeryToken()
@@ -39,27 +40,19 @@
                     </div>
                     <div class="row">
                         <div class="offset-md-2 col-md-10">
-                            <input type="submit" value="Log in" class="btn btn-outline-dark" />
+                            <input type="submit" value="Log in"  />
                         </div>
                     </div>
-                    <p>
-                        @Html.ActionLink("Register as a new user", "Register")
-                    </p>
-                    @* Enable this once you have account confirmation enabled for password reset functionality
-                        <p>
-                            @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                        </p>*@
                 }
-            </section>
-        </div>
-        <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
+               
+            </div>
+            <div class="md-left wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;">
+                <img src="https://cdn-icons-png.flaticon.com/512/295/295128.png" alt="" class="md-desktop">
+                <img src="https://cdn-icons-png.flaticon.com/512/295/295128.png" alt="" class="md-mobile">
+            </div>
         </div>
     </div>
 </main>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

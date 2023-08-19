@@ -1,0 +1,10 @@
+﻿@using KidsSchool.Models.Dao;
+@{
+    var getconfig = DataPuplic.GetInstance().GetConfig(false);
+    if (getconfig != null)
+    {
+        <div class="section-6">
+            <iframe src="@getconfig.UrlMap" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    }
+}

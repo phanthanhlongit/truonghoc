@@ -117,3 +117,5 @@ C:\Git\truonghoc\KidsSchool\KidsSchool\KidsSchool\obj\Debug\KidsSchool.csproj.Co
 C:\Git\truonghoc\KidsSchool\KidsSchool\KidsSchool\obj\Debug\KidsSchool.csproj.CopyComplete
 C:\Git\truonghoc\KidsSchool\KidsSchool\KidsSchool\obj\Debug\KidsSchool.dll
 C:\Git\truonghoc\KidsSchool\KidsSchool\KidsSchool\obj\Debug\KidsSchool.pdb
+C:\Git\truonghoc\KidsSchool\KidsSchool\KidsSchool\bin\HtmlAgilityPack.dll
+C:\Git\truonghoc\KidsSchool\KidsSchool\KidsSchool\bin\HtmlAgilityPack.pdb

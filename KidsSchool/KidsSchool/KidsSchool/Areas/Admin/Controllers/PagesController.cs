@@ -6,6 +6,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using KidsSchool.Models.Dao;
+using System.Web.Services.Description;
 
 namespace KidsSchool.Areas.Admin.Controllers
 {
@@ -16,7 +18,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: Admin/Pages
         public ActionResult Index()
         {
-            return View(db.Pages.ToList());
+            return View(DataPuplic.GetInstance().GetPage(false));
         }
         
         // GET: Admin/Pages/Details/5
@@ -65,11 +67,14 @@ namespace KidsSchool.Areas.Admin.Controllers
             ValidatePage(page);
             if (ModelState.IsValid)
             {
-                if(string.IsNullOrEmpty(page.slug))
+                if (string.IsNullOrEmpty(page.slug))
                 {
-                    page.slug = page.title.ToAscii();
+                    page.slug = page.title.ToUniqueUrl(db);
                 }
-                page.slug = page.slug.ToAscii();
+                else
+                {
+                    page.slug = page.slug.ToUniqueUrl(db);
+                }
                 page.DateUpdate = page.DateCreate = DateTime.Now;
                 page.Type = 1;
                 db.Pages.Add(page);
@@ -88,6 +93,7 @@ namespace KidsSchool.Areas.Admin.Controllers
 
                 db.SaveChanges();
                 Success("Thêm thành công trang: " + page.title, true);
+                DataPuplic.GetInstance().GetPage(true, db);
                 return RedirectToAction("Index");
             }
 
@@ -119,17 +125,25 @@ namespace KidsSchool.Areas.Admin.Controllers
             ValidatePage(page);
             if (ModelState.IsValid)
             {
-                if (page.slug == null)
+                var oldEntity = DataPuplic.GetInstance().GetPage(false).FirstOrDefault(x => x.id == page.id);
+                if (oldEntity != null)
                 {
-                    page.slug = page.title.ToAscii();
+                    if (oldEntity.title != page.title || string.IsNullOrEmpty(page.slug))
+                    {
+                        page.slug = page.title.ToUniqueUrl(db);
+                    }
+                    else if (oldEntity.slug != page.slug)
+                    {
+                        page.slug = page.slug.ToUniqueUrl(db);
+                    }
                 }
-                page.slug = page.slug.ToAscii();
+
                 page.DateUpdate = DateTime.Now;
                 db.Entry(page).State = EntityState.Modified;
                 #region seoUrl
                 if (page.Type == 1)
                 {
-                    var urlRecord = db.SeoUrlRecords.Where(u => u.objectId == page.id.ToString() && u.controller == "Pages").ToList();
+                    var urlRecord = db.SeoUrlRecords.Where(u => u.objectId == page.id.ToString() && (u.controller == "Pages" || u.controller == "Home")).ToList();
                     if (urlRecord.Count == 0)
                     {
                         var seoUrl = new SeoUrlRecord
@@ -152,6 +166,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 #endregion
                 db.SaveChanges();
                 Success("Thay đổi thông tin trang thành công: " + page.title, true);
+                DataPuplic.GetInstance().GetPage(true, db);
                 return RedirectToAction("Index");
             }
             return View(page);
@@ -180,6 +195,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                             pro.DateUpdate = DateTime.Now;
                             db.Pages.Remove(pro);
                             db.SaveChanges();
+                            DataPuplic.GetInstance().GetPage(true);
                             info = new
                             {
                                 success = true,

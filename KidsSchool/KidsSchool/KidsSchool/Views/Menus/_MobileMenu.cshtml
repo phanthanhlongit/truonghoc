@@ -1,9 +1,9 @@
-﻿<div class="main-menu">
+﻿@using KidsSchool.Models.Dao;
+<div class="main-menu">
     <ul class="ul-main">
         @foreach (var item in Model)
         {
-            var getlist = ViewBag.MenuChil as IEnumerable<KidsSchool.Models.DB.Menu>;
-            var MenuChild = getlist.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
+            var MenuChild = DataPuplic.menu.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
             if (MenuChild.Count > 0)
             {
                 <li class="has-sub-menu-1">
@@ -26,8 +26,8 @@
             }
         }
         <li class="">
-            <a class="register" href="/dang-ky">ĐĂNG KÝ </a>
+            <a class="register" href="#">ĐĂNG KÝ </a>
         </li>
     </ul>
-    <div class="clearfix"></div> <a class="register-mobile" href="/dang-ky">ĐĂNG KÝ</a>
+    <div class="clearfix"></div> <a class="register-mobile" href="#">ĐĂNG KÝ</a>
 </div>

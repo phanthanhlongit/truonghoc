@@ -1,4 +1,5 @@
 ﻿using KidsSchool.Controllers;
+using KidsSchool.Models.Dao;
 using KidsSchool.Models.DB;
 using System;
 using System.Data.Entity;
@@ -57,6 +58,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.Banners.Add(banner);
                 db.SaveChanges();
                 Success("Thêm thành công : " + banner.Name, true);
+                DataPuplic.GetInstance().GetBanner(true, db);
                 return RedirectToAction("Index");
             }
 
@@ -97,6 +99,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.Entry(banner).State = EntityState.Modified;
                 db.SaveChanges();
                 Success("Sửa thành công : " + banner.Name, true);
+                DataPuplic.GetInstance().GetBanner(true, db);
                 return RedirectToAction("Index");
             }
             ViewBag.BannerPositionId = new SelectList(db.BannerPositions, "BannerPositionId", "Name", banner.BannerPositionId);

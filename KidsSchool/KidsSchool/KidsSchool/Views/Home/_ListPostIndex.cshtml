@@ -1,0 +1,31 @@
+﻿@using KidsSchool.Models.Dao;
+@{
+    var cate = DataPuplic.GetInstance().GetCate(false).Where(x=>x.ShowIndex).ToList();
+    if (cate != null && cate.Count >0)
+    {
+        <div class="truong-ngoai-khoa mrg-section">
+            <div class="container-70">
+                <h3 class="md-title"></h3>
+                <div class="md-slider-center md-slider-center-1 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="owl-carousel owl-theme">
+                        @foreach (var info in cate)
+                        {
+                            <div class="item item-1">
+                                <div class="inner-item">
+                                    <div class="icon icon-1"><img alt="" title="" src="@info.Icon"></div>
+                                    <div class="content">
+                                        <h4 class="font-size-35">@info.Name</h4>
+                                        <div class="info">
+                                            <p>@Html.Raw(info.Description.Remove_Html_Tags().LimitLength(120, "..."))</p>
+                                        </div>
+                                        <div class="bottom"><a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = info.Slug })" class="md-more">Chi tiết</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

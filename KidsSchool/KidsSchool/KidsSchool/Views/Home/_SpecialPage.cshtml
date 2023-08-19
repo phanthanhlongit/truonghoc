@@ -1,0 +1,31 @@
+﻿@using KidsSchool.Models.Dao;
+@{
+    var IsSpecialPage = DataPuplic.GetInstance().GetPage(false).FirstOrDefault(x => x.IsShowHome);
+    if (IsSpecialPage != null)
+    {
+        <div class="home-triet-ly mrg-section">
+            <div class="container-70">
+                @if (IsSpecialPage.IsImgLeft)
+                {
+                    <div class="thumb-nail wow fadeInRight" data-wow-delay="0.2s"> <img alt="" title="" src="@IsSpecialPage.Image"> </div>
+                    <div class="content clearfix wow fadeInLeft" data-wow-delay="0.2s">
+                        <h3 class="md-title">@IsSpecialPage.title</h3>
+                        <div class="info">
+                            <p>@Html.Raw(IsSpecialPage.content.Remove_Html_Tags().LimitLength(400, "..."))</p>
+                        </div> <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = IsSpecialPage.slug })" class="read-more">Xem thêm</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="content clearfix wow fadeInRight" data-wow-delay="0.2s">
+                        <h3 class="md-title">@IsSpecialPage.title</h3>
+                        <div class="info">
+                            <p>@Html.Raw(IsSpecialPage.content.Remove_Html_Tags().LimitLength(400, "..."))</p>
+                        </div> <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = IsSpecialPage.slug })" class="read-more">Xem thêm</a>
+                    </div>
+                    <div class="thumb-nail wow fadeInLeft" data-wow-delay="0.2s"> <img alt="" title="" src="@IsSpecialPage.Image"> </div>
+                }
+            </div>
+        </div>
+    }
+}
