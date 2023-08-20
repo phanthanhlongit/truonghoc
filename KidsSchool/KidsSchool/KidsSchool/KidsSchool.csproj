@@ -245,6 +245,7 @@
     <Compile Include="Models\Commons\Libs\XMail.cs" />
     <Compile Include="Models\Commons\Libs\XString.cs" />
     <Compile Include="Models\Dao\DataPuplic.cs" />
+    <Compile Include="Models\Dao\MenuModels.cs" />
     <Compile Include="Models\DB\AspNetRole.cs" />
     <Compile Include="Models\DB\AspNetUser.cs" />
     <Compile Include="Models\DB\AspNetUserClaim.cs" />
@@ -268,6 +269,7 @@
     <Compile Include="Models\DB\Page.cs" />
     <Compile Include="Models\DB\Post.cs" />
     <Compile Include="Models\DB\Province.cs" />
+    <Compile Include="Models\DB\RecursiveMenuView.cs" />
     <Compile Include="Models\DB\SeoUrlRecord.cs" />
     <Compile Include="Models\DB\Slider.cs" />
     <Compile Include="Models\DB\Testimonial.cs" />
@@ -2965,6 +2967,7 @@
     <Content Include="Assets\Admin\plugins\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
     <None Include="Assets\Home\Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Assets\Home\Scripts\jquery-3.4.1.js" />
     <Content Include="Assets\Home\Scripts\jquery-3.4.1.min.js" />
@@ -3089,6 +3092,9 @@
     <Content Include="Assets\Home\Scripts\bootstrap.bundle.js.map" />
     <Content Include="Assets\Home\Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Assets\Home\Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

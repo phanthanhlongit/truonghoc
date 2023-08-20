@@ -20,9 +20,8 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: Admin/Menus
         public ActionResult Index()
         {
-            var menus = db.Menus.Where(x=>x.ParentId ==null).OrderBy(x => x.OrderBy).Include(m => m.MenuLocation);
-            ViewBag.MenuChillDen = db.Menus.Where(x => x.ParentId != null).OrderBy(x => x.OrderBy).Include(m => m.Menu1).Include(m => m.MenuLocation);
-            return View(menus.ToList());
+                var menuViews = db.RecursiveMenuViews.OrderBy(x=>x.Path).ToList();
+               return View(menuViews.ToList());
         }
 
         // GET: Admin/Menus/Details/5
@@ -45,7 +44,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         {
             ViewBag.ListMenu = new SelectList(db.SeoUrlRecords.Where(x => x.objectId != null), "url", "url");
             ViewBag.LocationId = new SelectList(db.MenuLocations, "Id", "Name");
-            ViewBag.ParentId = new SelectList(db.Menus.Where(x=>x.ParentId==null), "Id", "Text");
+            ViewBag.ParentId = new SelectList(db.RecursiveMenuViews.Where(x=>x.ParentId==null), "Id", "Path");
             return View();
         }
 
@@ -64,7 +63,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 DataPuplic.GetInstance().GetMenu(true, db);
                 return RedirectToAction("Index");
             }
-            ViewBag.ParentId = new SelectList(db.Menus.Where(x => x.ParentId == null), "Id", "Text", menu.ParentId);
+            ViewBag.ParentId = new SelectList(db.RecursiveMenuViews.Where(x => x.ParentId == null), "Id", "Path", menu.ParentId);
             ViewBag.LocationId = new SelectList(db.MenuLocations, "Id", "Name", menu.LocationId);
             ViewBag.ListMenu = new SelectList(db.SeoUrlRecords.Where(x => x.objectId != null), "url", "url");
             return View(menu);
@@ -84,7 +83,7 @@ namespace KidsSchool.Areas.Admin.Controllers
             }
             ViewBag.ListMenu = new SelectList(db.SeoUrlRecords.Where(x => x.objectId != null), "url", "url");
             ViewBag.LocationId = new SelectList(db.MenuLocations, "Id", "Name", menu.LocationId);
-            ViewBag.ParentId = new SelectList(db.Menus.Where(x => x.ParentId == null), "Id", "Text", menu.ParentId);
+            ViewBag.ParentId = new SelectList(db.RecursiveMenuViews.Where(x => x.ParentId == null), "Id", "Path", menu.ParentId);
             return View(menu);
         }
 
@@ -104,7 +103,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ListMenu = new SelectList(db.SeoUrlRecords.Where(x => x.objectId != null), "url", "url");
-            ViewBag.ParentId = new SelectList(db.Menus.Where(x => x.ParentId == null), "Id", "Text", menu.ParentId);
+            ViewBag.ParentId = new SelectList(db.RecursiveMenuViews.Where(x => x.ParentId == null), "Id", "Path", menu.ParentId);
             ViewBag.LocationId = new SelectList(db.MenuLocations, "Id", "Name", menu.LocationId);
             return View(menu);
         }

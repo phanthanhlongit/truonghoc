@@ -78,7 +78,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Phone,CusName,Address,GroupId,Upd_Date,IsDelete")] ContactGHelp contactGHelp)
+        public ActionResult Edit(ContactGHelp contactGHelp)
         {
             if (ModelState.IsValid)
             {

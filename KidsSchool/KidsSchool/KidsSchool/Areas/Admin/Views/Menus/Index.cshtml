@@ -1,4 +1,4 @@
-﻿@model IEnumerable<KidsSchool.Models.DB.Menu>
+﻿-@model IEnumerable<KidsSchool.Models.DB.RecursiveMenuView>
 
 @{
     ViewBag.Title = "Quản lý menu";
@@ -27,18 +27,17 @@
                 <table id="sampleTable" class="table table-hover table-bordered">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>
-                                @Html.DisplayNameFor(model => model.MenuLocation.Name)
+                                @Html.DisplayNameFor(model => model.Path)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Text)
+                                Tên menu
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Url)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.OrderBy)
+                                @Html.DisplayNameFor(model => model.Level)
                             </th>
                             <th></th>
                         </tr>
@@ -47,11 +46,9 @@
                         @foreach (var item in Model)
                         {
                         <tr id="@("menu_"+item.Id)">
+                           
                             <td>
-                                @("ORDER"+ item.OrderBy)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MenuLocation.Name)
+                                @Html.Raw(item.Path.Replace(">","</BR> >"))
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Text)
@@ -60,10 +57,10 @@
                                 @Html.DisplayFor(modelItem => item.Url)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.OrderBy)
+                                @Html.DisplayFor(modelItem => item.Level)
                             </td>
                             <td>
-                                <a class="btn btn-primary btn-sm view" target="_blank" href="@item.Url">Xem</a>
+                                <a class="btn btn-primary btn-sm view" target="_blank" href="/@item.Url">Xem</a>
 
                                 <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="deletePage('@("menu_"+item.Id)')">
@@ -74,41 +71,6 @@
                                 </a>
                             </td>
                         </tr>
-                            var getlist = ViewBag.MenuChillDen as IEnumerable<KidsSchool.Models.DB.Menu>;
-                            var MenuChild = getlist.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
-                            if (MenuChild.Count > 0)
-                            {
-                                foreach (var item2 in MenuChild)
-                                {
-                                <tr id="@("menu_"+item2.Id)">
-                                    <td>
-                                        @("ORDER"+item.Id + item2.OrderBy)
-                                    </td>
-                                     <td>
-                                         @Html.DisplayFor(modelItem => item.MenuLocation.Name)
-                                     </td>
-                                    <td>
-                                        ---->@Html.DisplayFor(modelItem => item2.Text)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item2.Url)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item2.OrderBy)
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-primary btn-sm view" target="_blank" href="@item2.Url">Xem</a>
-                                        <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                                onclick="deletePage('@("menu_"+item2.Id)')">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                        <a href="/Admin/Menus/Edit/@item2.Id" class="btn btn-primary btn-sm edit">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                }
-                            }
                         }
                     </tbody>
                 </table>
@@ -134,7 +96,7 @@
 }
 @section Scripts {
     <script type="text/javascript">
-        $('#sampleTable').DataTable({ "order": [[1, 'asc']]});
+        $('#sampleTable').DataTable();
 
         function deletePage(id) {
             var menuid = id.split("_")[1];

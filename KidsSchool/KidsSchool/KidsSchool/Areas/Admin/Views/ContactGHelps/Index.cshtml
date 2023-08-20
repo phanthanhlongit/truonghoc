@@ -21,92 +21,70 @@
         <div class="tile">
             <h3 class="tile-title">@ViewBag.Title</h3>
             <div class="tile-body">
-                <table class="table">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.ContactGHelpGroup.Name)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Phone)
-                        </th>
-                        <th>
-                           Tên phụ huynh
-                        </th>
-                        <th>
-                            Tên bé
-                        </th>
-                        <th>
-                            Tuổi bé
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Mail)
-                        </th>
-                        <th>
-                            Địa chỉ
-                        </th>
-                        <th>
-                            Nội dung
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Upd_Date)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IsDelete)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.IsRead)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DateCreate)
-                        </th>
-                        <th></th>
-                    </tr>
-
-                    @foreach (var item in Model)
-                    {
+                <table id="sampleTable" class="table table-striped table-bordered dt-responsive nowrap">
+                    <thead>
                         <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ContactGHelpGroup.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Phone)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CusName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ChilName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ChilAge)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Mail)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Content)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Upd_Date)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IsDelete)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.IsRead)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DateCreate)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) 
-                            </td>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ContactGHelpGroup.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Phone)
+                            </th>
+                            <th>
+                                Tên phụ huynh
+                            </th>
+                            <th>
+                                Tên bé
+                            </th>
+                            <th>
+                                Tuổi bé
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Mail)
+                            </th>
+                            <th>
+                                Nội dung
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Upd_Date)
+                            </th>
+                            <th></th>
                         </tr>
-                    }
-
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContactGHelpGroup.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CusName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ChilName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ChilAge)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Mail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Upd_Date)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -120,8 +98,6 @@
     <script src="~/Assets/Admin/js/popper.min.js"></script>
     <!--===============================================================================================-->
     <script src="~/Assets/Admin/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/Assets/Admin/js/plugins/sweetalert.min.js"></script>
     <!-- Data table plugin-->
     <script type="text/javascript" src="~/Assets/Admin/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="~/Assets/Admin/js/plugins/dataTables.bootstrap.min.js"></script>
@@ -130,11 +106,6 @@
 
 @section Scripts {
     <script>
-        $(document).ready(function () {
-            // data-tables
-            $('#dataTable').DataTable({
-                "order": [[4, "desc"]]
-            });
-        });
+        $('#sampleTable').DataTable();
     </script>
 }
