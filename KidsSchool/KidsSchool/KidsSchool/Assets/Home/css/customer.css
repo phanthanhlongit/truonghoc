@@ -2,11 +2,11 @@
     width: 300px;
 }
 @media screen and (min-width: 1024px){
-	
-	.main-menu >ul li {
-	   
-    	width: 300px;
-	}
+
+    .main-menu > ul li {
+        height: 53px;
+        width: 300px;
+    }
 	.main-menu ul li ul li {
 	   
     	width: 300px;
