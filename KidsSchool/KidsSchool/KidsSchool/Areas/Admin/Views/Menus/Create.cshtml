@@ -5,6 +5,32 @@
     Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
 }
 
+<script src="~/Assets/Admin/plugins/ckfinder/ckfinder.js"></script>
+<style>
+    select[multiple], select[size] {
+        height: 300px;
+    }
+
+    .multiselect-container {
+        overflow: auto;
+        height: 300px;
+    }
+
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+    }
+
+        .upload-btn-wrapper input[type=text], .upload-btn-wrapper input[type=button] {
+            height: 100%;
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+</style>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -26,6 +52,16 @@
                 <div class="tile-body">
 
                     <div class="row">
+                        <div class="form-group col-md-12">
+                            <center>
+                                <div class="upload-btn-wrapper">
+                                    <img id="myImgIcon" src="" alt="your image" style="width:100%; border: 1px solid #ffd43b;">
+                                    <br />
+                                    @Html.EditorFor(model => model.Icon, new { htmlAttributes = new { @class = "form-control" } })
+                                    <input type="button" value="Browse Server" onclick="BrowseServerIcon();" />
+                                </div>
+                            </center>
+                        </div>
                         <div class="form-group col-md-3">
                             @Html.LabelFor(model => model.LocationId, "LocationId", htmlAttributes: new { @class = "control-label col-md-2" })
 
@@ -47,23 +83,6 @@
                             @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
 
                         </div>
-
-                        <div class="form-group col-md-3">
-                            @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                            @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
-
-                        </div>
-
-                        <div class="form-group col-md-3">
-                            @Html.LabelFor(model => model.Target, htmlAttributes: new { @class = "control-label col-md-2" })
-
-                            @Html.EditorFor(model => model.Target, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Target, "", new { @class = "text-danger" })
-
-                        </div>
-
                         <div class="form-group col-md-3">
                             @Html.LabelFor(model => model.OrderBy, htmlAttributes: new { @class = "control-label col-md-2" })
 
@@ -71,6 +90,41 @@
                             @Html.ValidationMessageFor(model => model.OrderBy, "", new { @class = "text-danger" })
 
                         </div>
+
+                        <div class="form-group col-md-3">
+                            <label>
+                                <input type="radio" name="selection" value="dropdown" checked> URL theo trang
+                            </label>
+                            <label>
+                                <input type="radio" name="selection" value="textbox"> Tự điền URL
+                            </label>
+                            <br />
+
+                            <div id="dropdownDiv">
+                                @Html.DropDownList("ListMenu", (SelectList)ViewBag.ListMenu, "Choose a url...")
+                            </div>
+
+                            <div id="textboxDiv" style="display:none;">
+                                @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                @Html.EditorFor(model => model.Url, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group col-md-3" style="display:none">
+                            @Html.LabelFor(model => model.Target, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                            @Html.EditorFor(model => model.Target, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Target, "", new { @class = "text-danger" })
+
+                        </div>
+
+
 
                         <div class="form-group col-md-12">
                             <div class="col-md-offset-2 col-md-10">
@@ -97,6 +151,36 @@
     <script type="text/javascript" src="~/Assets/Admin/js/plugins/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="~/Assets/Admin/js/plugins/dataTables.bootstrap.min.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            $("input[name='selection']").change(function () {
+                if ($(this).val() === "dropdown") {
+                    $("#dropdownDiv").show();
+                    $("#textboxDiv").hide();
+                } else {
+                    $("#dropdownDiv").hide();
+                    $("#textboxDiv").show();
+                }
+            });
+
+            $("#ListMenu").change(function () {
+                var selectedValue = $(this).val();
+                $("#Url").val(selectedValue);
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        function BrowseServerIcon() {
+            var finder = new CKFinder();
+            finder.basePath = '../';
+            finder.selectActionFunction = SetFileFieldIcon;
+            finder.popup();
+        }
+        function SetFileFieldIcon(fileUrl) {
+            $('#myImgIcon').attr('src', fileUrl);
+            document.getElementById('Icon').value = fileUrl;
+        }
+    </script>
 }
 
 @section Scripts {

@@ -24,6 +24,8 @@ namespace KidsSchool.Models.DB
         [StringLength(250)]
         public string Url { get; set; }
 
+        public string Icon { get; set; }
+
         public int Target { get; set; }
 
         public int? OrderBy { get; set; }

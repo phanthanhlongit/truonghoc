@@ -3037,7 +3037,7 @@
     <Content Include="Views\Error\http404.cshtml" />
     <Content Include="Views\Error\http405.cshtml" />
     <Content Include="Views\Menus\_MainMenu.cshtml" />
-    <Content Include="Views\Menus\_MobileMenu.cshtml" />
+    <Content Include="Views\Menus\_MainMenu.Mobile.cshtml" />
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\Blogs\Category.cshtml" />
     <Content Include="Views\Blogs\ShowPost.cshtml" />
@@ -3055,6 +3055,7 @@
     <Content Include="Views\Home\_ContactHomePartial.cshtml" />
     <Content Include="Views\Shared\_ContactScrollPartial.cshtml" />
     <Content Include="Views\Home\_GGMapPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

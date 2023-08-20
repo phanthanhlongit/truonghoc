@@ -28,7 +28,7 @@
     @RenderSection("headerScript", false)
 </head>
 <body class="body-template1">
-    @Html.Action("Header", "Home")
+    @Html.Action("_MainMenu", "Menus")
     @{ Html.RenderPartial("_Alerts"); }
     @RenderBody()
     @Html.Action("Footer", "Home")
@@ -135,7 +135,7 @@
 
     <script>
         function SubmitSentContact(idname, chilname, chilage, idmail, idphone, idaddress, idselect, idquestion, type) {
-            
+
             var coldata = {};
             coldata.name = idname == "none" ? "none" : document.getElementById(idname).value;
             coldata.chilname = chilname == "none" ? "none" : document.getElementById(chilname).value;

@@ -433,10 +433,10 @@ a[data-click-download-book]{
     box-shadow: none;
     border: none;
 }
-.main-menu >ul>li>a, .menu-text-nowrap {
+.main-menu > ul > li > a, .menu-text-nowrap {
     text-transform: capitalize;
     font-size: 14px;
-    color: #fff;
+    color: #828924;
 }
 .main-menu ul li .sub-menu-1 .sub-menu-2 ul li a:before{
     display: none;

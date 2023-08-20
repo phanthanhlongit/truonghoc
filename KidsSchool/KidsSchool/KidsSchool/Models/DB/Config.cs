@@ -9,6 +9,7 @@ namespace KidsSchool.Models.DB
     [Table("Config")]
     public partial class Config
     {
+        public string Icon { get; set; }
         public int id { get; set; }
 
         public string Phone { get; set; }

@@ -1,33 +1,57 @@
 ﻿@using KidsSchool.Models.Dao;
-<div class="main-menu">
-    <ul class="ul-main">
-        @foreach (var item in Model)
-        {
-            var MenuChild = DataPuplic.menu.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
-            if (MenuChild.Count > 0)
-            {
-                <li class="has-sub-menu-1">
-                    <a href="javascript:void(0)">
-                        <span class=" main">@item.Text.ToUpper()</span>
-                    </a>
-                    <div class="sub-menu-1">
-                        <ul>
-                            @foreach (var item2 in MenuChild)
-                            {
-                                <a href="@item2.Url" @Html.Display(item2.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item2.Text">@item2.Text.ToUpper()</a>
-                            }
-                        </ul>
-                    </div>
-                </li>
-            }
-            else
-            {
-                <li><a href="@item.Url" @Html.Display(item.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item.Text">@item.Text.ToUpper()</a></li>
-            }
+<header class="page-header">
+    <div class="container-header">
+        @{var config = DataPuplic.GetInstance().GetConfig(false);
         }
-        @*<li class="">
-            <a class="register" href="#">ĐĂNG KÝ </a>
-        </li>*@
-    </ul>
-    @*<div class="clearfix"></div> <a class="register-mobile" href="#">ĐĂNG KÝ</a>*@
-</div>
+        <div class="logo">
+            <a href="/"><img src="@config.Icon" style="max-height:85px" alt=""> </a>
+        </div>
+        <div class="box-shadow-mb"></div>
+        <div class="toggle-icon">
+            <div class="inner-toggle-icon"> <span></span> <span></span> <span></span> </div>
+        </div>
+        <div class="main-menu">
+            <ul class="ul-main">
+                @foreach (var item in Model)
+                {
+                    var MenuChild = DataPuplic.GetInstance().GetMenu(false).Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
+                    if (MenuChild.Count > 0)
+                    {
+                        <li class="has-sub-menu-1">
+                            @if (!string.IsNullOrEmpty(item.Icon))
+                            {
+                                <img src="@item.Icon" alt="" class="jet-menu-icon" style="width: 50px;">
+                            }
+                            <a href="javascript:void(0)">
+                                <span class=" main">@item.Text.ToUpper()</span>
+                            </a>
+                            <div class="sub-menu-1">
+                                <ul>
+                                    @foreach (var item2 in MenuChild)
+                                    {
+                                        <a href="@item2.Url" @Html.Display(item2.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item2.Text">@item2.Text.ToUpper()</a>
+                                    }
+                                </ul>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            @if (!string.IsNullOrEmpty(item.Icon))
+                            {
+                                <img src="@item.Icon" alt="" class="jet-menu-icon" style="width: 50px;">
+                            }
+                            <a href="@item.Url" @Html.Display(item.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item.Text">@item.Text.ToUpper()</a>
+                        </li>
+                    }
+                }
+                @*<li class="">
+                        <a class="register" href="#">ĐĂNG KÝ </a>
+                    </li>*@
+            </ul>
+            @*<div class="clearfix"></div> <a class="register-mobile" href="#">ĐĂNG KÝ</a>*@
+        </div>
+    </div>
+</header>
+

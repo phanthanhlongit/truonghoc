@@ -43,6 +43,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: Admin/Menus/Create
         public ActionResult Create()
         {
+            ViewBag.ListMenu = new SelectList(db.SeoUrlRecords.Where(x => x.objectId != null), "url", "url");
             ViewBag.LocationId = new SelectList(db.MenuLocations, "Id", "Name");
             ViewBag.ParentId = new SelectList(db.Menus.Where(x=>x.ParentId==null), "Id", "Text");
             return View();
@@ -65,6 +66,7 @@ namespace KidsSchool.Areas.Admin.Controllers
             }
             ViewBag.ParentId = new SelectList(db.Menus.Where(x => x.ParentId == null), "Id", "Text", menu.ParentId);
             ViewBag.LocationId = new SelectList(db.MenuLocations, "Id", "Name", menu.LocationId);
+            ViewBag.ListMenu = new SelectList(db.SeoUrlRecords.Where(x => x.objectId != null), "url", "url");
             return View(menu);
         }
 
@@ -80,6 +82,7 @@ namespace KidsSchool.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ListMenu = new SelectList(db.SeoUrlRecords.Where(x => x.objectId != null), "url", "url");
             ViewBag.LocationId = new SelectList(db.MenuLocations, "Id", "Name", menu.LocationId);
             ViewBag.ParentId = new SelectList(db.Menus.Where(x => x.ParentId == null), "Id", "Text", menu.ParentId);
             return View(menu);
@@ -100,6 +103,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 DataPuplic.GetInstance().GetMenu(true, db);
                 return RedirectToAction("Index");
             }
+            ViewBag.ListMenu = new SelectList(db.SeoUrlRecords.Where(x => x.objectId != null), "url", "url");
             ViewBag.ParentId = new SelectList(db.Menus.Where(x => x.ParentId == null), "Id", "Text", menu.ParentId);
             ViewBag.LocationId = new SelectList(db.MenuLocations, "Id", "Name", menu.LocationId);
             return View(menu);
