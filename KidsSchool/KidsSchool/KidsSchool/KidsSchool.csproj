@@ -245,7 +245,6 @@
     <Compile Include="Models\Commons\Libs\XMail.cs" />
     <Compile Include="Models\Commons\Libs\XString.cs" />
     <Compile Include="Models\Dao\DataPuplic.cs" />
-    <Compile Include="Models\Dao\MenuModels.cs" />
     <Compile Include="Models\DB\AspNetRole.cs" />
     <Compile Include="Models\DB\AspNetUser.cs" />
     <Compile Include="Models\DB\AspNetUserClaim.cs" />
