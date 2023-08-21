@@ -54,16 +54,7 @@
       <HintPath>..\packages\HtmlAgilityPack.Net45.2.0.20\lib\net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\ImageResizer.dll</HintPath>
-    </Reference>
-    <Reference Include="ImageResizer.Plugins.DiskCache, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\ImageResizer.Plugins.DiskCache.dll</HintPath>
-    </Reference>
-    <Reference Include="ImageResizer.Plugins.PrettyGifs, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Lib\ImageResizer.Plugins.PrettyGifs.dll</HintPath>
+      <HintPath>..\packages\ImageResizer.4.2.8\lib\net45\ImageResizer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="PagedList">

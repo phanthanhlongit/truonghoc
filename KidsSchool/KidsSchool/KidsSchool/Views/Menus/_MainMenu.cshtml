@@ -4,7 +4,7 @@
         @{var config = DataPuplic.GetInstance().GetConfig(false);
         }
         <div class="logo">
-            <a href="/"><img src="@config.Icon" style="max-height:85px" alt=""> </a>
+            <a href="/"><img src="@config.Icon?w=50&h=50&mode=pad" style="max-height:85px" alt=""> </a>
         </div>
         <div class="box-shadow-mb"></div>
         <div class="toggle-icon">
@@ -20,7 +20,7 @@
                         <li class="has-sub-menu-1">
                             @if (!string.IsNullOrEmpty(item.Icon))
                             {
-                                <img src="@item.Icon" alt="" class="jet-menu-icon" style="width: 50px;">
+                                <img src="@item.Icon?w=50&h=50&mode=pad" alt="" class="jet-menu-icon" style="width: 50px;">
                             }
                             <a href="javascript:void(0)">
                                 <span class=" main">@item.Text.ToUpper()</span>
@@ -40,7 +40,7 @@
                         <li>
                             @if (!string.IsNullOrEmpty(item.Icon))
                             {
-                                <img src="@item.Icon" alt="" class="jet-menu-icon" style="width: 50px;">
+                                <img src="@item.Icon?w=50&h=50&mode=pad" alt="" class="jet-menu-icon" style="width: 50px;">
                             }
                             <a href="@item.Url" @Html.Display(item.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item.Text">@item.Text.ToUpper()</a>
                         </li>

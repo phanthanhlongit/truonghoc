@@ -2,7 +2,6 @@
     width: 300px;
 }
 @media screen and (min-width: 1024px){
-
     .main-menu > ul li {
         height: 53px;
         width: 300px;
@@ -74,7 +73,7 @@ font-family: 'SVN-GothamRoundedMediumItalic'; }
 }
 
 .md-news .md-col .thumb img {
-    max-height: 200px;
+    max-height: 250px;
     overflow: hidden;
 }
 .md-news .md-col .info h3{
@@ -682,7 +681,7 @@ p {
     max-width: 100%;
 }
 .md-news .md-col .thumb img{
-    height: 200px;
+    height: 250px;
 }
 @media screen and (min-width: 768.1px){
     .blk-home-news .slider-news .owl-theme .owl-nav.disabled + .owl-dots {
