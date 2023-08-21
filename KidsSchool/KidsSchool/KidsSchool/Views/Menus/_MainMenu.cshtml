@@ -4,7 +4,14 @@
         @{var config = DataPuplic.GetInstance().GetConfig(false);
         }
         <div class="logo">
-            <a href="/"><img src="@config.Icon?w=50&h=50&mode=pad" style="max-height:85px" alt=""> </a>
+            <a href="/">
+                <img src="@config.Icon?w=50&h=50&mode=pad" style="max-height:85px; float:left" alt="">
+                <div class="text-container">
+                    <span class="logo-text">Tên Của Bạn</span>
+                    <span class="additional-text">Chữ Thêm</span>
+                </div>
+            </a>
+           
         </div>
         <div class="box-shadow-mb"></div>
         <div class="toggle-icon">
@@ -55,3 +62,27 @@
     </div>
 </header>
 
+<style>
+    .logo-with-text {
+        display: flex;
+        align-items: center;
+    }
+
+    .text-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Căn giữa theo chiều ngang */
+        justify-content: center; /* Căn giữa theo chiều dọc */
+        margin-left: 10px; /* Khoảng cách giữa logo và chữ */
+    }
+
+    .logo-text {
+        margin: 19px 0 0 0;
+        font-size:14px;
+        color:red;
+    }
+
+    .additional-text {
+        font-size: 10px;
+    }
+</style>
