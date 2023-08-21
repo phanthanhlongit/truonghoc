@@ -4232,8 +4232,8 @@ p.error {
     }
 
     .md-slider-center .item .content .md-more {
-        border: 2px solid #F7884C;
-        background: #EA351A;
+        border: 2px solid #21ba45;
+        background: #2185d0;
         padding: 3% 7%;
         border-radius: 20px;
         font-family: 'SVN-GothamRoundedBold';
@@ -4255,8 +4255,8 @@ p.error {
         }
 
     .md-slider-center .item.item-1 .icon {
-        width: 43.4%;
-        margin: 0 auto 12% auto;
+        width: 70.4%;
+        margin: 0 auto 7% auto;
     }
 
     .md-slider-center .item.item-2 .icon {
@@ -4825,7 +4825,7 @@ p.error {
         .home-register .content form input {
             height: 54px;
             width: 100%;
-            border: 2px solid #F7A376;
+            border: 2px solid #2185d0;
             font-size: -webkit-calc(7px + 0.6vw);
             font-size: calc(7px + 0.6vw);
             padding: 0px 20px;

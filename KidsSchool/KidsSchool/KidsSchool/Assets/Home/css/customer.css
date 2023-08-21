@@ -18,8 +18,7 @@
 .home-register .content form textarea {
     height: 84px;
     width: 100%;
-    border: 2px solid #F7A376;
-    
+    border: 2px solid #2185d0;
     font-size: calc(7px + 0.6vw);
     padding: 12px 20px;
     border-radius: 30px;
@@ -720,17 +719,17 @@ p {
     margin-top: 8px;
 }
 .home-register .md-row select {
-    font-family: 'SVN-GothamRoundedItalic'; 
+    font-family: 'SVN-GothamRoundedItalic';
     width: 100% !important;
-    border: 2px solid #E88F57;
+    border: 2px solid #2185d0;
     height: 50px;
     border-radius: 60px;
     padding: 0px 20px;
     color: #707070;
 }
 .home-register input[type=button] {
-    border: 2px solid #F7884C;
-    background: #EA351A;
+    border: 2px solid #2185d0;
+    background: #2185d0;
     padding: 15px 30px;
     border-radius: 60px;
     display: table;
