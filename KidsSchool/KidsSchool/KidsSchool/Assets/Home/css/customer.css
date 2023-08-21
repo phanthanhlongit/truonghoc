@@ -164,14 +164,14 @@ li.has-sub-menu-2:hover .sub-menu-2{
     }
 }
 */
-.side-tool__sign-up:hover {
+/*.side-tool__sign-up:hover {
     -webkit-transition: .5s ease-in-out;
     -o-transition: .5s ease-in-out;
     transition: .5s ease-in-out;
     -webkit-transform: translateX(-320px);
     -ms-transform: translateX(-320px);
     transform: translateX(-320px)
-}
+}*/
 
 /*@media (max-width:767px) {
     .side-tool__sign-up:hover {

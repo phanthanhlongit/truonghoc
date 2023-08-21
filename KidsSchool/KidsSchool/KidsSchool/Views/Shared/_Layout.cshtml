@@ -33,6 +33,7 @@
     @RenderBody()
     @Html.Action("Footer", "Home")
     @Html.Partial("_ContactScrollPartial")
+    @Html.Partial("_DialogPartial")
     <script src="/Assets/Home/vendor/bootstrap/popper.min.js"></script>
     <script src="/Assets/Home/vendor/bootstrap/bootstrap.min.js"></script>
     <script src="/Assets/Home/vendor/owlcarousel/owl.carousel.min.js"></script>
@@ -43,97 +44,8 @@
     <script src="/Assets/Home/vendor/wow/wow.min.js"></script>
     <script src="/Assets/Home/scripts/an.js"></script>
     @RenderSection("scripts", required: false)
-    <script type="application/javascript">
-        $('.owl-carouselsss').owlCarousel({
-            loop:false,
-            dots: false,
-            margin:10,
-            responsiveClass:true,
-            responsive:{
-                0:{
-                    items:1,
-                    nav:true
-                },
-                600:{
-                    items:2,
-                    nav:true
-                },
-                1000:{
-                    items:3,
-                    nav:true,
-                    loop:false
-                }
-            }
-        })
-
-
-        var IndexVuejs = new Vue({
-            el: '#register_forms',
-            delimiters: ['{[{', '}]}'],
-            data: {
-                form: {
-                    fullname: '',
-                    fullname_baby: '',
-                    email: '',
-                    phone: '',
-                    question:'',
-                    center: ''
-                },
-                submit: false,
-                res: {
-                    message: '',
-                    status: ''
-                }
-
-            },
-            methods: {
-                onSubmit(){
-                    var sef = this;
-                    sef.submit = true;
-                    sef.res.message = '';
-                    $.ajax({
-                        url: "/tong-dai-tomato/register",
-                        type: "POST",
-                        dataType: "json",
-                        headers: {
-                        },
-                        data: sef.form,
-                        success: function(result) {
-                            sef.res.message = result.message;
-                            sef.submit = false;
-
-                            if (result.status){
-                                sef.form.fullname = '';
-                                sef.form.fullname_baby = '';
-                                sef.form.email = '';
-                                sef.form.phone = '';
-                                sef.form.question = '';
-                                sef.form.center = '';
-
-                                gtag('event', 'consultation-success', {
-                                  'event_category' : 'general',
-                                  'event_label' : 'consultation'
-                                });
-                                dataLayer.push({'event': 'gtm_form_submit_success'});
-                            }
-                            $('#exampleModal2').modal('show');
-
-                        },
-                        error: function(xhr, textStatus, errorThrown ) {
-                            sef.submit = false;
-                        }
-                    })
-                },
-            }
-        })
-
-
-        $('a[data-click-download-book]').click(function(){
-            $("#modal-get-info").fancybox().trigger('click');
-        })
-    </script>
-
     <script>
+
         function SubmitSentContact(idname, chilname, chilage, idmail, idphone, idaddress, idselect, idquestion, type) {
 
             var coldata = {};

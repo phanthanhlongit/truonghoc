@@ -2957,7 +2957,6 @@
     <Content Include="Assets\Admin\plugins\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Areas\Admin\Views\Categories\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
     <None Include="Assets\Home\Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Assets\Home\Scripts\jquery-3.4.1.js" />
     <Content Include="Assets\Home\Scripts\jquery-3.4.1.min.js" />
@@ -3048,7 +3047,6 @@
     <Content Include="Views\Home\_ContactHomePartial.cshtml" />
     <Content Include="Views\Shared\_ContactScrollPartial.cshtml" />
     <Content Include="Views\Home\_GGMapPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

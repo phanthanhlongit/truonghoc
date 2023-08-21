@@ -120,23 +120,46 @@ function back_to_top(){
 back_to_top();
 
 // slider 
-$('.blk-banner-slider  .owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:false,
-    dots:true,
-    responsive:{
-        0:{
-            items:1
+var bannerOwl = $('#bannerCarousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: false,
+    dots: true,
+    responsive: {
+        0: {
+            items: 1
         },
-        600:{
-            items:1
+        600: {
+            items: 1
         },
-        1000:{
-            items:1
+        1000: {
+            items: 1
+        }
+    },
+    autoplay: true,
+    autoplayTimeout: 5000 // Thời gian chuyển đổi ảnh (5 giây)
+});
+
+// Khởi tạo carousel cho Slider News
+var newsOwl = $('#newsCarousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: false,
+    dots: true,
+    nav: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 2
+        },
+        1000: {
+            items: 3
         }
     }
-})
+});
+
 
 $('.home-gellary-slider .owl-carousel').owlCarousel({
     loop:true,
@@ -160,7 +183,7 @@ $('.slider-news .owl-carousel').owlCarousel({
     loop:true,
     margin:10,
     nav:false,
-    dots:true,
+    dots: true,
     responsive:{
         0:{
             items:1
