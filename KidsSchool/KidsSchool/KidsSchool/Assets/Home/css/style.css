@@ -545,8 +545,8 @@ input[type="submit"] {
 
 @media screen and (max-width: 1023.8px) {
     .page-header .logo a img {
-        width: 100%;
-        max-height: 50px;
+        width: 70px;
+        max-height: 70px;
     }
 
     .toggle-icon {
@@ -1040,8 +1040,8 @@ input[type="submit"] {
 
 @media screen and (max-width: 768px) {
     .page-header .logo a img {
-        width: 100%;
-        max-height: 50px;
+        width: 70px;
+        max-height: 70px;
     }
 
     .page-header {
@@ -1563,7 +1563,7 @@ input[type="submit"] {
     font-family: 'SVN-GothamRoundedBold';
     font-size: -webkit-calc(1.2vw + 9px);
     font-size: calc(1.2vw + 9px);
-    color: #74B537;
+    color: #2185d0;
     text-transform: uppercase;
     margin: 0px 0px 2.7%;
     display: table;
@@ -4098,7 +4098,7 @@ p.error {
 
 .read-more {
     margin-top: 15px;
-    color: #74B537;
+    color: #2185d0;
     float: right;
     display: inline-block;
     position: relative;
@@ -4255,7 +4255,7 @@ p.error {
     .md-slider-center .item .content h4 {
         font-family: 'SVN-GothamRoundedBold';
         margin: 0px 0px 6%;
-        color: #74B537;
+        color: #2185d0;
         line-height: 1.2em;
     }
 
@@ -4379,6 +4379,9 @@ p.error {
             padding-top: 20%;
             border: none;
         }
+    .slogan, .text-container {
+        display: none !important;
+    }
 }
 
 .md-slider-center-2 {
@@ -4603,7 +4606,7 @@ p.error {
     padding-bottom: 130px;
     text-align: center;
     padding-top: 100px;
-    background: #ffffff94;
+    background: #1b1c1d52;
 }
 
 @media screen and (max-width: 768px) {
