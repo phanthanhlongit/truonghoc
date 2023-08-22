@@ -269,6 +269,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Content Include="Assets\Admin\css\sweetalert.css" />
+    <Content Include="Assets\Home\css\menu.css" />
+    <Content Include="Assets\Home\css\dialog.css" />
     <Content Include="Assets\Home\Scripts\Toc\table-of-contents.js" />
   </ItemGroup>
   <ItemGroup>
@@ -3047,6 +3049,7 @@
     <Content Include="Views\Home\_ContactHomePartial.cshtml" />
     <Content Include="Views\Shared\_ContactScrollPartial.cshtml" />
     <Content Include="Views\Home\_GGMapPartial.cshtml" />
+    <Content Include="Views\Menus\_MainMenu-Center.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

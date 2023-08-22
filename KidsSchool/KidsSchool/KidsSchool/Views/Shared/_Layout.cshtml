@@ -21,6 +21,7 @@
     <link href="/Assets/Home/css/style.css" media="screen" rel="stylesheet" type="text/css">
     <link href="/Assets/Home/css/customer.css" media="screen" rel="stylesheet" type="text/css">
     <link href="~/Assets/Admin/css/sweetalert.css" rel="stylesheet" />
+    <link href="~/Assets/Home/css/dialog.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha256-JirYRqbf+qzfqVtEE4GETyHlAbiCpC005yBTa4rj6xg=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/Assets/Home/vendor/jquery/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="/Assets/Home/vendor/jquery/vue.js"></script>
@@ -81,6 +82,36 @@
                 }
             });
         }
+
+        function setLastAccessTime() {
+            var currentTime = new Date();
+            var formattedTime = currentTime.getTime(); // Sử dụng getTime() để lấy thời gian dưới dạng milliseconds
+            localStorage.setItem("lastAccessTime", formattedTime);
+        }
+
+        function getLastAccessTime() {
+            return localStorage.getItem("lastAccessTime");
+        }
+
+        $(document).ready(function () {
+            if ($("#myDialog").length > 0) {
+                // Lấy thông tin thời gian truy cập gần nhất
+                var lastAccessTime = getLastAccessTime();
+
+                // Lấy thời gian hiện tại
+                var currentTime = new Date().getTime();
+
+                // Kiểm tra nếu chưa có thông tin thời gian truy cập hoặc đã qua ít nhất 15 phút kể từ lần trước
+                if (!lastAccessTime || currentTime - lastAccessTime >= 15 * 60 * 1000) {
+                    // Mở dialog
+                    $("#myDialog").modal("show");
+
+                    // Lưu thời gian truy cập gần nhất
+                    setLastAccessTime();
+                }
+            }
+        });
+
     </script>
 </body>
 </html>

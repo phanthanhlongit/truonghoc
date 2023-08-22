@@ -1,0 +1,145 @@
+﻿@using KidsSchool.Models.Dao;
+@{var config = DataPuplic.GetInstance().GetConfig(false);
+}
+<header class="page-header">
+    <div class="nav">
+        <div class="container content-nav">
+            <div class="menu-left">
+                <ul>
+                    <li><a id="hello" href="#">Home</a></li>
+                    <li><a id="hello" href="#">Home</a></li>
+                    <li><a id="hello" href="#">Home</a></li>
+                    <li class="has-sub-menu">
+                        <a id="portfolio" href="#">Portfolio</a>
+                        <ul class="sub-menu">
+                            <li><a href="#">Item 1</a></li>
+                            <li><a href="#">Item 2</a></li>
+                            <!-- Thêm các mục menu con khác -->
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="menu-center">
+                <div class="logoMid"></div>
+            </div>
+            <div class="menu-right">
+                <ul>
+                    <li><a id="portfolio" href="#">Portfolio</a></li>
+                    <li><a id="contact" href="#">Contact</a></li>
+                    <li><a id="hello" href="#">Home</a></li>
+                    <li><a id="hello" href="#">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<style>
+    .content-nav {
+        /* ... */
+        display: flex; /* Sử dụng Flexbox cho layout */
+        align-items: center; /* Canh giữa theo chiều dọc */
+        justify-content: space-between; /* Chia đều không gian giữa các phần */
+        /* ... */
+    }
+
+    .menu-left, .menu-right, .menu-center {
+        height: 100px;
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-center {
+        flex-grow: 1; /* Để menu-center mở rộng và chia đều không gian */
+    }
+
+    /* Các phần CSS khác giữ nguyên */
+</style>
+
+<style>
+    .content-nav {
+      /*  padding: 0.5% 1.5%;
+        width: 80%;
+        display: table;
+        margin: 0 auto;
+        -webkit-box-shadow: 0.5px 0px 2px 1px #E0DFDF;
+        box-shadow: 0.5px 0px 2px 1px #E0DFDF;
+        border-radius: 60px;
+        min-width: 1000px;*/
+    }
+
+    .nav {
+        height: 100px;
+        background: #fff url(navigation_bg.png);
+        width: 100%;
+        margin: 0 auto;
+
+    }
+
+    .container {
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .menu-left, .menu-right {
+        width: 300px;
+        height: 64px;
+        position: absolute;
+        top: 0;
+    }
+
+    .menu-left {
+        height: 100px;
+        float: left; /* Đổi float từ right sang left */
+        width: 44%; /* Đổi width từ 40% sang 60% */
+    }
+
+    .menu-right {
+        height: 100px;
+        width:44%;
+        right: 0; /* Đổi right từ 200px sang 0 */
+    }
+
+    .nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        height: 64px;
+        line-height: 64px;
+    }
+
+    .nav ul li {
+        float: left;
+        font-family: 'FuturaStdBoldCondensed';
+        font-size: 20px;
+        text-shadow: 1px 1px 1px black;
+        text-transform: uppercase;
+        margin: 0 20px;
+    }
+
+    .menu-right ul li {
+        float: right;
+    }
+
+    .logoMid {
+        margin: 0 auto;
+        width: 140px;
+        height: 128px;
+        background: url(@config.Icon) center center rgba(0,0,0, 0.4);
+        border-radius: 0 0 20px 20px;
+    }
+
+    /* Thêm các thuộc tính cho mục menu con */
+    .sub-menu {
+        display: none; /* Ẩn menu con ban đầu */
+        position: absolute;
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+        z-index: 1000;
+    }
+
+    /* Hiển thị menu con khi hover vào mục menu chính */
+    .has-sub-menu:hover .sub-menu {
+        display: block;
+    }
+</style>

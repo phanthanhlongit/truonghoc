@@ -1,0 +1,54 @@
+﻿/* Điều chỉnh màu nền và màu chữ cho modal-header */
+.modal-header {
+    background-color: #007bff; /* Màu xanh dương chủ đạo */
+    color: white;
+    border-bottom: none;
+}
+
+/* Điều chỉnh màu nền cho modal-content */
+.modal-content {
+    background-color: #f0f0f0; /* Màu nền xám nhạt */
+}
+
+/* Điều chỉnh màu nền cho modal-body */
+.modal-body {
+    background-color: #ffffff; /* Màu nền trắng */
+}
+
+/* Điều chỉnh màu nền cho các nút và text trong modal-header */
+.modal-header .close,
+.modal-header .close:focus,
+.modal-header .close:hover {
+    color: white;
+}
+
+/* Điều chỉnh màu chữ cho các nút trong modal-footer (nếu có) */
+.modal-footer .btn {
+    color: #007bff;
+}
+
+/* Điều chỉnh màu nền cho các nút trong modal-footer (nếu có) */
+.modal-footer .btn-primary {
+    background-color: #ffffff; /* Màu nền trắng cho nút chính */
+    border-color: #007bff; /* Màu viền xanh dương */
+}
+
+    /* Điều chỉnh màu chữ khi hover qua nút trong modal-footer (nếu có) */
+    .modal-footer .btn-primary:hover {
+        color: #ffffff;
+    }
+
+/* Điều chỉnh viền xung quanh và góc bo tròn cho trường input và textarea */
+.modal-body .form-group input.form-control,
+.modal-body .form-group textarea.form-control {
+    border: 2px solid #007bff; /* Màu viền xanh dương */
+    border-radius: 10px; /* Góc bo tròn */
+    padding: 8px; /* Khoảng cách đến viền */
+}
+
+/* Điều chỉnh màu nền và màu chữ cho nút gửi thông tin */
+.modal-body .btn-primary {
+    background-color: #007bff; /* Màu nền xanh dương */
+    border-color: #007bff;
+    color: #fff; /* Màu chữ trắng */
+}

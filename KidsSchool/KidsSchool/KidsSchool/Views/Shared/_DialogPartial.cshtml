@@ -1,60 +1,61 @@
-﻿
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-            <div class="modal-body text-center">
-
-                <img width="200" class="mb-2" src="/Assets/Home/images/logo.png" alt="">
-
-                <p>{[{res.message}]}</p>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thoát</button>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="exampleModalContact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-center" style=" text-align: center; font-size: 20px; color: #1521c5; width: 100%; " id="exampleModalLabel">
-                ĐĂNG KÝ THÔNG TIN LIÊN HỆ</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="javascript:SubmitSentContact('txtNamedialog','txtchildNamedialog','txtchildAgedialog','txtmaildialog','txtphonedialog','none','none','txtquestiondialog', 1)">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txtNamedialog" placeholder="Họ tên phụ huynh *" required>
+﻿@model IEnumerable<KidsSchool.Models.DB.Banner>
+@using KidsSchool.Models.Dao;
+@{
+    var banner = DataPuplic.GetInstance().GetBanner(false).FirstOrDefault(x => x.Active && x.BannerPositionId == 2);
+    if (banner != null)
+    {
+        <div class="modal" tabindex="-1" role="dialog" id="myDialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">Chào mừng bạn đến với chúng tôi!</h5>
+                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txtchildNamedialog" placeholder="Họ tên bé *" required>
+                    <div class="modal-body">
+                        <img alt="@banner.Name" style="width:100%;" title="@banner.Name" src="@banner.Images" />
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txtchildAgedialog" placeholder="Tuổi của bé *" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txtmaildialog" placeholder="Email *" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="txtphonedialog" placeholder="Số điện thoại *" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea type="text" class="form-control" id="txtquestiondialog" cols="30" rows="3" placeholder="Câu hỏi…"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" onclick="SubmitSentContact('txtNamedialog','txtchildNamedialog','txtchildAgedialog','txtmaildialog','txtphonedialog','none','none','txtquestiondialog', 1)" class="btn btn-primary">Gửi thông tin</button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+        }
+    }
 
+
+
+        <div class="modal" tabindex="-1" role="dialog" id="exampleModalContact">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Liên hệ với chúng tôi theo mẫu sau!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="javascript:SubmitSentContact('txtNamedialog','txtchildNamedialog','txtchildAgedialog','txtmaildialog','txtphonedialog','none','none','txtquestiondialog', 1)">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="txtNamedialog" placeholder="Họ tên phụ huynh *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="txtchildNamedialog" placeholder="Họ tên bé *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="txtchildAgedialog" placeholder="Tuổi của bé *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="txtmaildialog" placeholder="Email *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="txtphonedialog" placeholder="Số điện thoại *" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea type="text" class="form-control" id="txtquestiondialog" cols="30" rows="3" placeholder="Câu hỏi…"></textarea>
+                            </div>
+                            <button type="button" onclick="SubmitSentContact('txtNamedialog','txtchildNamedialog','txtchildAgedialog','txtmaildialog','txtphonedialog','none','none','txtquestiondialog', 1)" class="btn btn-primary">Gửi thông tin</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
