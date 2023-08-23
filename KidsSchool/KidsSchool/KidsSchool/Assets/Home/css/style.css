@@ -638,7 +638,7 @@ input[type="submit"] {
         .page-header .logo {
             z-index: 10;
             position: absolute;
-            left: 50%;
+            left: 125px;
             top: 50%;
             -webkit-transform: translate(-50%, -50%);
             -ms-transform: translate(-50%, -50%);
@@ -656,7 +656,7 @@ input[type="submit"] {
                 }
 
         .page-header .main-menu {
-            background: #335091;
+            background: #2185d0;
             position: fixed;
             top: 0px;
             left: -100%;
@@ -697,6 +697,7 @@ input[type="submit"] {
                     position: relative;
                     padding: 15px 10px;
                     display: inline-block;
+                    color: #e0ef1b;
                 }
 
                     .page-header .main-menu ul li a br {
@@ -1582,8 +1583,8 @@ body {
 
 .body-template1 {
     background: url(../images/bg-body.jpg) repeat;
-    -webkit-background-size: 100% auto;
-    background-size: 100% auto;
+    -webkit-background-size: auto;
+    background-size: auto;
 }
 
 
@@ -4606,7 +4607,7 @@ p.error {
     padding-bottom: 130px;
     text-align: center;
     padding-top: 100px;
-    background: #1b1c1d52;
+    /*background: #1b1c1d52;*/
 }
 
 @media screen and (max-width: 768px) {

@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<KidsSchool.Models.DB.Banner>
 @using KidsSchool.Models.Dao;
 @{
-    var banner = DataPuplic.GetInstance().GetBanner(false).FirstOrDefault(x => x.Active && x.BannerPositionId == 2);
+    var banner = DataPuplic.GetInstance().GetBanner(false).FirstOrDefault(x => x.Active && x.BannerTypeId == 2);
     if (banner != null)
     {
         <div class="modal" tabindex="-1" role="dialog" id="myDialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
-                        <h5 class="modal-title">Chào mừng bạn đến với chúng tôi!</h5>
+                        <h5 class="modal-title">KOJIN</h5>
                         <button type="button" class="close text-white" data-dismiss="modal" aria-label="Đóng">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -28,7 +28,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Liên hệ với chúng tôi theo mẫu sau!</h5>
+                        <h5 class="modal-title">Liên hệ</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
                             <span aria-hidden="true">&times;</span>
                         </button>
