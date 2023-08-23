@@ -1,7 +1,8 @@
 ﻿@using KidsSchool.Models.Dao;
-@{
-    var cate = DataPuplic.GetInstance().GetCate(false).Where(x=>x.ShowIndex).ToList();
-    if (cate != null && cate.Count >0)
+@try
+{
+    var cate = DataPuplic.GetInstance().GetCate(false).Where(x => x.ShowIndex).ToList();
+    if (cate != null && cate.Count > 0)
     {
         <div class="truong-ngoai-khoa mrg-section">
             <div class="container-70">
@@ -29,3 +30,4 @@
         </div>
     }
 }
+ catch { }

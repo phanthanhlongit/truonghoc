@@ -66,7 +66,7 @@
         }
 </style>
 
-@if (Model.IsSpecial)
+@if (Model.IsSpecial && Model.content.Contains("img"))
 {
     var listContent = Model.content.ConvertPageIsSpecial();
     var imgOnlyData = listContent.FirstOrDefault(data =>

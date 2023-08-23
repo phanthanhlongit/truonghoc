@@ -1,42 +1,45 @@
 ﻿@using KidsSchool.Models.Dao;
-<header class="page-header">
-    <div class="container-header">
-        @{var config = DataPuplic.GetInstance().GetConfig(false);
-        }
-        <div class="logo">
-            <a href="/"><img src="@config.Icon" alt=""> </a>
-        </div>
-        <div class="box-shadow-mb"></div>
-        <div class="toggle-icon">
-            <div class="inner-toggle-icon"> <span></span> <span></span> <span></span> </div>
-        </div>
-        <div class="main-menu">
-            <ul class="ul-main">
-                @foreach (var item in Model)
-                {
-                    var MenuChild = DataPuplic.menu.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
-                    if (MenuChild.Count > 0)
+ @try { 
+    <header class="page-header">
+        <div class="container-header">
+            @{var config = DataPuplic.GetInstance().GetConfig(false);
+            }
+            <div class="logo">
+                <a href="/"><img src="@config.Icon" alt=""> </a>
+            </div>
+            <div class="box-shadow-mb"></div>
+            <div class="toggle-icon">
+                <div class="inner-toggle-icon"> <span></span> <span></span> <span></span> </div>
+            </div>
+            <div class="main-menu">
+                <ul class="ul-main">
+                    @foreach (var item in Model)
                     {
-                        <li class="has-sub-menu-1">
-                            <a href="javascript:void(0)">
-                                <span class=" main">@item.Text.ToUpper()</span>
-                            </a>
-                            <div class="sub-menu-1">
-                                <ul>
-                                    @foreach (var item2 in MenuChild)
-                                    {
-                                        <a href="@item2.Url" @Html.Display(item2.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item2.Text">@item2.Text.ToUpper()</a>
-                                    }
-                                </ul>
-                            </div>
-                        </li>
+                        var MenuChild = DataPuplic.menu.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
+                        if (MenuChild.Count > 0)
+                        {
+                            <li class="has-sub-menu-1">
+                                <a href="javascript:void(0)">
+                                    <span class=" main">@item.Text.ToUpper()</span>
+                                </a>
+                                <div class="sub-menu-1">
+                                    <ul>
+                                        @foreach (var item2 in MenuChild)
+                                        {
+                                            <a href="@item2.Url" @Html.Display(item2.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item2.Text">@item2.Text.ToUpper()</a>
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a href="@item.Url" @Html.Display(item.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item.Text">@item.Text.ToUpper()</a></li>
+                        }
                     }
-                    else
-                    {
-                        <li><a href="@item.Url" @Html.Display(item.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item.Text">@item.Text.ToUpper()</a></li>
-                    }
-                }
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
+  }
+  catch { }

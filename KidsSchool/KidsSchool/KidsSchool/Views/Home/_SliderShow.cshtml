@@ -1,9 +1,10 @@
-﻿@model IEnumerable<KidsSchool.Models.DB.Banner>
-@using KidsSchool.Models.Dao;
+﻿@using KidsSchool.Models.Dao;
 @{
-    var banner = DataPuplic.GetInstance().GetBanner(false).Where(x => x.Active && x.BannerPositionId == 1).ToList();
-    if (banner != null && banner.Count > 0)
+    try
     {
+        var banner = DataPuplic.GetInstance().GetBanner(false).Where(x => x.Active && x.BannerPositionId == 1).ToList();
+        if (banner != null && banner.Count > 0)
+        {
         <div class="blk-banner-slider md-slider">
             <div class="ctn-blk-banner">
                 <div class="owl-carousel owl-theme" id="bannerCarousel">
@@ -18,5 +19,7 @@
                 </div>
             </div>
         </div>
+            }
     }
+    catch { }
 }

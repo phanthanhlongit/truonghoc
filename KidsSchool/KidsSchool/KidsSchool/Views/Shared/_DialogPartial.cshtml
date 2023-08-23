@@ -1,9 +1,10 @@
-﻿@model IEnumerable<KidsSchool.Models.DB.Banner>
-@using KidsSchool.Models.Dao;
+﻿@using KidsSchool.Models.Dao;
 @{
-    var banner = DataPuplic.GetInstance().GetBanner(false).FirstOrDefault(x => x.Active && x.BannerTypeId == 2);
-    if (banner != null)
+    try
     {
+        var banner = DataPuplic.GetInstance().GetBanner(false).FirstOrDefault(x => x.Active && x.BannerTypeId == 2);
+        if (banner != null)
+        {
         <div class="modal" tabindex="-1" role="dialog" id="myDialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
@@ -19,8 +20,10 @@
                 </div>
             </div>
         </div>
-        }
+            }
     }
+    catch { }
+ }
 
 
 

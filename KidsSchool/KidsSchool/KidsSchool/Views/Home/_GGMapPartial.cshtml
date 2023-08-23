@@ -1,5 +1,6 @@
 ﻿@using KidsSchool.Models.Dao;
-@{
+@try
+{
     var getconfig = DataPuplic.GetInstance().GetConfig(false);
     if (getconfig != null)
     {
@@ -8,3 +9,4 @@
         </div>
     }
 }
+catch { }
