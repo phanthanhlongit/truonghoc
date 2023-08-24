@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using KidsSchool.Models.Dao;
+using KidsSchool.Models;
+using static System.Data.Entity.Infrastructure.Design.Executor;
 
 namespace KidsSchool.Areas.Admin.Controllers
 {
@@ -20,8 +22,30 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: Admin/Menus
         public ActionResult Index()
         {
-                var menuViews = db.RecursiveMenuViews.OrderBy(x=>x.Path).ToList();
-               return View(menuViews.ToList());
+
+            var obj = new List<RecursiveMenuView>();
+            try
+            {
+                // Lấy dữ liệu từ cache
+                var cachedValue = MemoryCacheManager.Get<List<RecursiveMenuView>>("RecursiveMenuView");
+                if (cachedValue == null)
+                {
+                    obj = db.RecursiveMenuViews.OrderBy(x => x.Path).ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("RecursiveMenuView", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
+                }
+                else
+                {
+                    obj = cachedValue;
+                }
+            }
+            catch
+            {
+            }
+
+            return View(obj.ToList());
         }
 
         // GET: Admin/Menus/Details/5

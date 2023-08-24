@@ -12,14 +12,7 @@ namespace KidsSchool.Models.Dao
 {
     public class DataPuplic: BaseController
     {
-        public static List<Page> page = new List<Page>();
-        public static List<Post> post = new List<Post>();
-        public static List<Menu> menu = new List<Menu>();
-        public static List<Category> Cate = new List<Category>();
-        public static List<Banner> banner = new List<Banner>();
-        public static Config config = new Config();
-
-        private static DataPuplic instance = new DataPuplic();
+        public static DataPuplic instance = new DataPuplic();
         public static DataPuplic GetInstance()
         {
             return instance;
@@ -39,13 +32,18 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Page>();
             try
             {
-                if (page.Count <= 0)
+                var cachedValue = MemoryCacheManager.Get<List<Page>>("GetPage");
+                if (cachedValue==null)
                 {
-                    page = obj = db.Pages.ToList();
+                    obj = db.Pages.ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetPage", obj, DateTimeOffset.Now.AddMinutes(10));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = page;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -59,14 +57,18 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Page>();
             try
             {
-                if (page.Count <= 0 || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<List<Page>>("GetPage");
+                if (cachedValue== null || isUpdate)
                 {
-                    var newpage = db.Pages.ToList();
-                    page = obj = newpage;
+                    obj = db.Pages.ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetPage", obj, DateTimeOffset.Now.AddMinutes(10));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = page;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -79,14 +81,18 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Page>();
             try
             {
-                if (page.Count <= 0 || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<List<Page>>("GetPage");
+                if (cachedValue==null || isUpdate)
                 {
-                    var newpage = db.Pages.ToList();
-                    page = obj = newpage;
+                    obj = db.Pages.ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetPage", obj, DateTimeOffset.Now.AddMinutes(10));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = page;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -99,13 +105,18 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Post>();
             try
             {
-                if (post.Count <= 0 || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<List<Post>>("GetPost");
+                if (cachedValue==null || isUpdate)
                 {
-                    post = obj = db.Posts.Where(x => x.Active == true).ToList();
+                    obj = db.Posts.Where(x => x.Active == true).ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetPost", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = post;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -118,13 +129,18 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Post>();
             try
             {
-                if (post.Count <= 0 || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<List<Post>>("GetPost");
+                if (cachedValue==null || isUpdate)
                 {
-                    post = obj = db.Posts.Where(x => x.Active == true).ToList();
+                    obj = db.Posts.Where(x => x.Active == true).ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetPost", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = post;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -137,13 +153,19 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Category>();
             try
             {
-                if (Cate.Count <= 0 || isUpdate)
+                // Lấy dữ liệu từ cache
+                var cachedValue = MemoryCacheManager.Get<List<Category>>("GetCate");
+                if (cachedValue==null || isUpdate)
                 {
-                    Cate = obj = db.Categories.ToList();
+                     obj = db.Categories.ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetCate", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = Cate;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -156,13 +178,19 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Category>();
             try
             {
-                if (Cate.Count <= 0 || isUpdate)
+                // Lấy dữ liệu từ cache
+                var cachedValue = MemoryCacheManager.Get<List<Category>>("GetCate");
+                if (cachedValue==null || isUpdate)
                 {
-                    Cate = obj = db.Categories.ToList();
+                    obj = db.Categories.ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetCate", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = Cate;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -171,18 +199,22 @@ namespace KidsSchool.Models.Dao
             return obj.Where(x => !x.IsDelete).OrderBy(x => x.DisplayOrder).ToList();
         }
         public List<Menu> GetMenu(bool isUpdate)
-        
         {
             var obj = new List<Menu>();
             try
             {
-                if (menu.Count <= 0 || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<List<Menu>>("GetMenu");
+                if (cachedValue==null || isUpdate)
                 {
-                    menu = obj = db.Menus.ToList();
+                    obj = db.Menus.ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetMenu", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = menu;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -196,13 +228,18 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Menu>();
             try
             {
-                if (menu.Count <= 0 || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<List<Menu>>("GetMenu");
+                if (cachedValue==null || isUpdate)
                 {
-                    menu = obj = db.Menus.ToList();
+                    obj = db.Menus.ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetMenu", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = menu;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -216,13 +253,18 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Banner>();
             try
             {
-                if (banner.Count <= 0 || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<List<Banner>>("GetBanner");
+                if (cachedValue==null || isUpdate)
                 {
-                    banner = obj = db.Banners.ToList();
+                    obj = db.Banners.ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetBanner", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = banner;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -236,13 +278,18 @@ namespace KidsSchool.Models.Dao
             var obj = new List<Banner>();
             try
             {
-                if (banner.Count <= 0 || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<List<Banner>>("GetBanner");
+                if (cachedValue==null || isUpdate)
                 {
-                    banner = obj = db.Banners.ToList();
+                    obj = db.Banners.ToList();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetBanner", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = banner;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -256,13 +303,18 @@ namespace KidsSchool.Models.Dao
             var obj = new Config();
             try
             {
-                if (config.id == 0 || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<Config>("GetConfig");
+                if (cachedValue == null || isUpdate)
                 {
-                    config = obj = db.Configs.FirstOrDefault();
+                    obj = db.Configs.FirstOrDefault();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetConfig", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = config;
+                    obj = cachedValue;
                 }
             }
             catch
@@ -275,13 +327,18 @@ namespace KidsSchool.Models.Dao
             var obj = new Config();
             try
             {
-                if (config == null || isUpdate)
+                var cachedValue = MemoryCacheManager.Get<Config>("GetConfig");
+                if (cachedValue == null || isUpdate)
                 {
-                    config = obj = db.Configs.FirstOrDefault();
+                    obj = db.Configs.FirstOrDefault();
+                    // Lưu dữ liệu vào cache
+                    MemoryCacheManager.Set("GetConfig", obj, DateTimeOffset.Now.AddHours(1));
+                    // Xóa dữ liệu khỏi cache
+                    //MemoryCacheManager.Remove("cacheKey");
                 }
                 else
                 {
-                    obj = config;
+                    obj = cachedValue;
                 }
             }
             catch

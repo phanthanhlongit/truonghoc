@@ -5,21 +5,21 @@
         var banner = DataPuplic.GetInstance().GetBanner(false).Where(x => x.Active && x.BannerPositionId == 1).ToList();
         if (banner != null && banner.Count > 0)
         {
-        <div class="blk-banner-slider md-slider">
-            <div class="ctn-blk-banner">
-                <div class="owl-carousel owl-theme" id="bannerCarousel">
-                    @foreach (var info in banner)
-                    {
-                        <div class="item">
-                            <a href="@info.Url" target="_blank">
-                                <img alt="@info.Name" title="@info.Name" src="@info.Images" />
-                            </a>
-                        </div>
-                    }
+            <div class="blk-banner-slider md-slider">
+                <div class="ctn-blk-banner">
+                    <div class="owl-carousel owl-theme" id="bannerCarousel">
+                        @foreach (var info in banner)
+                        {
+                            <div class="item">
+                                <a href="@info.Url" target="_blank">
+                                    <img alt="@info.Name" title="@info.Name" src="@info.Images?w=1500&h=600" />
+                                </a>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
-            }
+        }
     }
     catch { }
 }
