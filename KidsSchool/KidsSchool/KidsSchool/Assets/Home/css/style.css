@@ -170,7 +170,7 @@ input[type="submit"] {
         margin: 0 auto;
         -webkit-box-shadow: 0.5px 0px 2px 1px #E0DFDF;
         box-shadow: 0.5px 0px 2px 1px #E0DFDF;
-        border-radius: 60px;
+        border-radius: 10px;
         min-width: 1000px;
     }
 
@@ -4005,7 +4005,7 @@ p.error {
 }
 
     .blk-banner-slider .ctn-blk-banner .owl-carousel .owl-stage-outer {
-        border-radius: 70px;
+        border-radius: 10px;
         overflow: hidden;
     }
 
