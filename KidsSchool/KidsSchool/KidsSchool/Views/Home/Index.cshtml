@@ -1,7 +1,7 @@
 ﻿@using KidsSchool.Models.Dao;
 
 @{
-    var metaconfig = DataPuplic.GetInstance().GetConfig(false);
+    var metaconfig = CacheHelper.GetInstance().GetConfig(false);
     ViewBag.Title = metaconfig.MetaTitle;
     Layout = "~/Views/Shared/_Layout.cshtml";
 

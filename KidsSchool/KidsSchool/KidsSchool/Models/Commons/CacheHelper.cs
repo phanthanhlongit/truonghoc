@@ -10,23 +10,12 @@ using KidsSchool.Controllers;
 
 namespace KidsSchool.Models.Dao
 {
-    public class DataPuplic: BaseController
+    public class CacheHelper: BaseController
     {
-        public static DataPuplic instance = new DataPuplic();
-        public static DataPuplic GetInstance()
+        public static CacheHelper GetInstance()
         {
-            return instance;
+            return new CacheHelper();
         }
-
-        public void RegisterDataPuplic(Entities db)
-        {
-            GetPage(false);
-            GetPost(false);
-            GetCate(false);
-            GetMenu(false);
-            GetConfig(false);
-        }   
-
         public Page SpecialPage(string slug)
         {
             var obj = new List<Page>();

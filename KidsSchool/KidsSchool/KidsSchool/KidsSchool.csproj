@@ -191,6 +191,7 @@
     <Compile Include="App_Start\SeoFriendlyRoute.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AspNetUsersController.cs" />
     <Compile Include="Areas\Admin\Common\CustomAuthenticationFilter.cs" />
     <Compile Include="Areas\Admin\Common\CustomAuthorizeAttribute.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
@@ -216,7 +217,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Cache.cs" />
+    <Compile Include="Models\Commons\MemoryCacheManager.cs" />
     <Compile Include="Models\Commons\I18N\Firebase.cs" />
     <Compile Include="Models\Commons\Libs\Alert.cs" />
     <Compile Include="Models\Commons\Libs\Base64.cs" />
@@ -237,14 +238,13 @@
     <Compile Include="Models\Commons\Libs\XCaptcha.cs" />
     <Compile Include="Models\Commons\Libs\XMail.cs" />
     <Compile Include="Models\Commons\Libs\XString.cs" />
-    <Compile Include="Models\Dao\DataPuplic.cs" />
+    <Compile Include="Models\Commons\CacheHelper.cs" />
     <Compile Include="Models\DB\AspNetRole.cs" />
     <Compile Include="Models\DB\AspNetUser.cs" />
     <Compile Include="Models\DB\AspNetUserClaim.cs" />
     <Compile Include="Models\DB\AspNetUserLogin.cs" />
     <Compile Include="Models\DB\Banner.cs" />
     <Compile Include="Models\DB\BannerPosition.cs" />
-    <Compile Include="Models\DB\BannerType.cs" />
     <Compile Include="Models\DB\Category.cs" />
     <Compile Include="Models\DB\Config.cs" />
     <Compile Include="Models\DB\ContactGHelp.cs" />
@@ -278,7 +278,6 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Views\Banners\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Banners\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Banners\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Banners\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Banners\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
@@ -3057,6 +3056,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Assets\Home\fonts\" />
+    <Folder Include="Models\Dao\" />
     <Folder Include="Static\" />
   </ItemGroup>
   <ItemGroup>

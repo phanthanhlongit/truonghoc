@@ -1,7 +1,7 @@
 ﻿@using KidsSchool.Models.Dao;
 @try
 {
-    var cate = DataPuplic.GetInstance().GetCate(false).Where(x => x.ShowIndex).ToList();
+    var cate = CacheHelper.GetInstance().GetCate(false).Where(x => x.ShowIndex).ToList();
     if (cate != null && cate.Count > 0)
     {
         <div class="truong-ngoai-khoa mrg-section">

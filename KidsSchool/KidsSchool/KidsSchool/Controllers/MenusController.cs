@@ -13,13 +13,13 @@ namespace KidsSchool.Controllers
 
         public ActionResult _MainMenu()
         {
-            var menus = DataPuplic.GetInstance().GetMenu(false);
+            var menus = CacheHelper.GetInstance().GetMenu(false);
             return PartialView(menus.Where(m => m.LocationId == 8 && m.ParentId == null).OrderBy(x => x.OrderBy).ToList());
         }
 
         public ActionResult _MobileMenu()
         {
-            var menus = DataPuplic.GetInstance().GetMenu(false);
+            var menus = CacheHelper.GetInstance().GetMenu(false);
             return PartialView(menus.Where(m => m.LocationId == 8 && m.ParentId == null).OrderBy(x => x.OrderBy).ToList());
 
         }

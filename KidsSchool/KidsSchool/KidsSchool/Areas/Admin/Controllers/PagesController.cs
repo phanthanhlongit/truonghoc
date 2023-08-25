@@ -18,7 +18,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: Admin/Pages
         public ActionResult Index()
         {
-            return View(DataPuplic.GetInstance().GetPage(false));
+            return View(CacheHelper.GetInstance().GetPage(false));
         }
         
         // GET: Admin/Pages/Details/5
@@ -93,7 +93,7 @@ namespace KidsSchool.Areas.Admin.Controllers
 
                 db.SaveChanges();
                 Success("Thêm thành công trang: " + page.title, true);
-                DataPuplic.GetInstance().GetPage(true, db);
+                CacheHelper.GetInstance().GetPage(true, db);
                 return RedirectToAction("Index");
             }
 
@@ -125,7 +125,7 @@ namespace KidsSchool.Areas.Admin.Controllers
             ValidatePage(page);
             if (ModelState.IsValid)
             {
-                var oldEntity = DataPuplic.GetInstance().GetPage(false).FirstOrDefault(x => x.id == page.id);
+                var oldEntity = CacheHelper.GetInstance().GetPage(false).FirstOrDefault(x => x.id == page.id);
                 if (oldEntity != null)
                 {
                     if (oldEntity.title != page.title || string.IsNullOrEmpty(page.slug))
@@ -166,7 +166,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 #endregion
                 db.SaveChanges();
                 Success("Thay đổi thông tin trang thành công: " + page.title, true);
-                DataPuplic.GetInstance().GetPage(true, db);
+                CacheHelper.GetInstance().GetPage(true, db);
                 return RedirectToAction("Index");
             }
             return View(page);
@@ -195,7 +195,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                             pro.DateUpdate = DateTime.Now;
                             db.Pages.Remove(pro);
                             db.SaveChanges();
-                            DataPuplic.GetInstance().GetPage(true);
+                            CacheHelper.GetInstance().GetPage(true);
                             info = new
                             {
                                 success = true,

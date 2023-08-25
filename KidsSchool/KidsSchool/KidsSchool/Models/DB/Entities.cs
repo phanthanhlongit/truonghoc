@@ -19,7 +19,6 @@ namespace KidsSchool.Models.DB
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<BannerPosition> BannerPositions { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
-        public virtual DbSet<BannerType> BannerTypes { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Config> Configs { get; set; }
         public virtual DbSet<ContactGHelp> ContactGHelps { get; set; }

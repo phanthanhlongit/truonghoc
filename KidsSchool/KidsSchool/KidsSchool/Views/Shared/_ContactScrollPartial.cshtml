@@ -1,6 +1,6 @@
 ﻿@using KidsSchool.Models.Dao;
 @{
-    var getconfig = DataPuplic.GetInstance().GetConfig(false);
+    var getconfig = CacheHelper.GetInstance().GetConfig(false);
     if (getconfig != null)
     {
         <!-- Modal -->

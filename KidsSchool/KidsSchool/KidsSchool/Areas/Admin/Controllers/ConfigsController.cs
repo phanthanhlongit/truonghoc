@@ -17,7 +17,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: Admin/Configs/Edit/5
         public ActionResult index()
         {
-            var config = DataPuplic.GetInstance().GetConfig(false);
+            var config = CacheHelper.GetInstance().GetConfig(false);
             ViewBag.CatId = new SelectList(db.Categories, "Id", "Name");
             if (config == null)
             {
@@ -37,7 +37,7 @@ namespace KidsSchool.Areas.Admin.Controllers
             {
                 db.Entry(config).State = EntityState.Modified;
                 db.SaveChanges();
-                DataPuplic.GetInstance().GetConfig(true, db);
+                CacheHelper.GetInstance().GetConfig(true, db);
                 Success("Sửa thành công thông cấu hình web", true);
             }
             ViewBag.CatId = new SelectList(db.Categories, "Id", "Name");

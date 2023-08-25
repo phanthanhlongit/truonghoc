@@ -1,6 +1,6 @@
 ﻿@using KidsSchool.Models.Dao;
 @{
-    var IsSpecialPage = DataPuplic.GetInstance().GetPage(false).FirstOrDefault(x => x.IsShowHome);
+    var IsSpecialPage = CacheHelper.GetInstance().GetPage(false).FirstOrDefault(x => x.IsShowHome);
     if (IsSpecialPage != null)
     {
         <div class="home-triet-ly mrg-section">

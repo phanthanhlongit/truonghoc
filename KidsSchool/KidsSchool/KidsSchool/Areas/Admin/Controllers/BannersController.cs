@@ -16,7 +16,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: Admin/Banners
         public ActionResult Index()
         {
-            var banners = db.Banners.Include(b => b.BannerPosition).Include(b => b.BannerType);
+            var banners = db.Banners.Include(b => b.BannerPosition);
             return View(banners.ToList());
         }
 
@@ -39,7 +39,6 @@ namespace KidsSchool.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.BannerPositionId = new SelectList(db.BannerPositions, "BannerPositionId", "Name");
-            ViewBag.BannerTypeId = new SelectList(db.BannerTypes, "BannerTypeId", "Name");
             return View();
         }
 
@@ -58,12 +57,11 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.Banners.Add(banner);
                 db.SaveChanges();
                 Success("Thêm thành công : " + banner.Name, true);
-                DataPuplic.GetInstance().GetBanner(true, db);
+                CacheHelper.GetInstance().GetBanner(true, db);
                 return RedirectToAction("Index");
             }
 
             ViewBag.BannerPositionId = new SelectList(db.BannerPositions, "BannerPositionId", "Name", banner.BannerPositionId);
-            ViewBag.BannerTypeId = new SelectList(db.BannerTypes, "BannerTypeId", "Name", banner.BannerTypeId);
             return View(banner);
         }
 
@@ -80,7 +78,6 @@ namespace KidsSchool.Areas.Admin.Controllers
                 return HttpNotFound();
             }
             ViewBag.BannerPositionId = new SelectList(db.BannerPositions, "BannerPositionId", "Name", banner.BannerPositionId);
-            ViewBag.BannerTypeId = new SelectList(db.BannerTypes, "BannerTypeId", "Name", banner.BannerTypeId);
             return View(banner);
         }
 
@@ -99,11 +96,10 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.Entry(banner).State = EntityState.Modified;
                 db.SaveChanges();
                 Success("Sửa thành công : " + banner.Name, true);
-                DataPuplic.GetInstance().GetBanner(true, db);
+                CacheHelper.GetInstance().GetBanner(true, db);
                 return RedirectToAction("Index");
             }
             ViewBag.BannerPositionId = new SelectList(db.BannerPositions, "BannerPositionId", "Name", banner.BannerPositionId);
-            ViewBag.BannerTypeId = new SelectList(db.BannerTypes, "BannerTypeId", "Name", banner.BannerTypeId);
             return View(banner);
         }
 

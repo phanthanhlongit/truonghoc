@@ -64,26 +64,26 @@ namespace KidsSchool.Controllers
         public ActionResult _Sidebar()
         {
 
-            ViewBag.Cats = DataPuplic.GetInstance().GetCate(false).Where(x => x.Name.ToLower() != "trang" && x.ParentId!=null).ToList();
-            ViewBag.CatSidebar = DataPuplic.GetInstance().GetCate(false).Where(x => x.ParentId==10).ToList();
+            ViewBag.Cats = CacheHelper.GetInstance().GetCate(false).Where(x => x.Name.ToLower() != "trang" && x.ParentId!=null).ToList();
+            ViewBag.CatSidebar = CacheHelper.GetInstance().GetCate(false).Where(x => x.ParentId==10).ToList();
             try
             {
-                var cate = DataPuplic.GetInstance().GetCate(false).FirstOrDefault(x => x.Slug.Contains("trang"));
+                var cate = CacheHelper.GetInstance().GetCate(false).FirstOrDefault(x => x.Slug.Contains("trang"));
                 if (cate != null)
                 {
-                    var model = DataPuplic.GetInstance().GetPost(false).Where(x => x.CatId != cate.Id && (x.AutoPostDate == null || x.AutoPostDate < DateTime.Now)).OrderByDescending(p => p.createDate).Take(50).ToList();
+                    var model = CacheHelper.GetInstance().GetPost(false).Where(x => x.CatId != cate.Id && (x.AutoPostDate == null || x.AutoPostDate < DateTime.Now)).OrderByDescending(p => p.createDate).Take(50).ToList();
                     return PartialView(model);
                 }
             }
             catch { }
-            var model2 = DataPuplic.GetInstance().GetPost(false).OrderByDescending(p => p.createDate).Take(50).ToList();
+            var model2 = CacheHelper.GetInstance().GetPost(false).OrderByDescending(p => p.createDate).Take(50).ToList();
             return PartialView(model2);
         }
 
         [OutputCache(VaryByParam = "Slug", Duration = 300)]
         public ActionResult _LastNews()
         {
-            var model = DataPuplic.GetInstance().GetPost(false).Where(p => (p.AutoPostDate == null || p.AutoPostDate < DateTime.Now)).OrderByDescending(p => p.Id).Take(4);
+            var model = CacheHelper.GetInstance().GetPost(false).Where(p => (p.AutoPostDate == null || p.AutoPostDate < DateTime.Now)).OrderByDescending(p => p.Id).Take(4);
             return PartialView(model);
         }
     }

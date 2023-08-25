@@ -79,7 +79,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.SeoUrlRecords.Add(seoUrl);
                 #endregion
                 db.SaveChanges();
-                DataPuplic.GetInstance().GetCate(true, db);
+                CacheHelper.GetInstance().GetCate(true, db);
                 Success("Thêm danh mục thành công: " + cate.Name, true);
                 ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name", cate.ParentId);
                 return RedirectToAction("Index");
@@ -114,7 +114,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-               var oldEntity = DataPuplic.GetInstance().GetCate(false).FirstOrDefault(x => x.Id == category.Id);
+               var oldEntity = CacheHelper.GetInstance().GetCate(false).FirstOrDefault(x => x.Id == category.Id);
                 if (oldEntity!=null)
                 {
                     if(oldEntity.Name != category.Name || string.IsNullOrEmpty(category.Slug))
@@ -151,7 +151,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 #endregion
                 db.SaveChanges();
                 Success("Sửa thành công thông tin danh mục: " + category.Name, true);
-                DataPuplic.GetInstance().GetCate(true, db);
+                CacheHelper.GetInstance().GetCate(true, db);
                 return RedirectToAction("Index");
             }
             ViewBag.ParentId = new SelectList(db.Categories, "Id", "Name", category.ParentId);

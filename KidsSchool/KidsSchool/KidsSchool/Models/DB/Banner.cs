@@ -11,9 +11,6 @@
         [Display(Name = "Tiêu đề")]
         public string Name { get; set; }
 
-        [Display(Name = "Loại banner")]
-        public int BannerTypeId { get; set; }
-
         [Column(TypeName = "ntext")]
         [Display(Name = "Nội dung")]
         public string Description { get; set; }
@@ -49,8 +46,6 @@
         public string Url { get; set; }
 
         public virtual BannerPosition BannerPosition { get; set; }
-
-        public virtual BannerType BannerType { get; set; }
     }
 
 }

@@ -26,7 +26,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var posts = db.Posts.Include(p => p.Category);
-            ViewBag.Group= DataPuplic.GetInstance().GetCate(false).Where(x=>!x.IsDelete&& x.ParentId!=null && !x.Slug.Equals("trang"));
+            ViewBag.Group= CacheHelper.GetInstance().GetCate(false).Where(x=>!x.IsDelete&& x.ParentId!=null && !x.Slug.Equals("trang"));
             return View(posts.ToList());
         }
 
@@ -98,7 +98,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.SeoUrlRecords.Add(seoUrl);
                 #endregion
                 db.SaveChanges();
-                DataPuplic.GetInstance().GetPost(true,db);
+                CacheHelper.GetInstance().GetPost(true,db);
                 Success("Thêm trang thành công: " + post.Title, true);
                 return RedirectToAction("Index");
             }
@@ -133,7 +133,7 @@ namespace KidsSchool.Areas.Admin.Controllers
             ValidatePost(post);
             if (ModelState.IsValid)
             {
-                var oldEntity = DataPuplic.GetInstance().GetPost(false).FirstOrDefault(x => x.Id == post.Id);
+                var oldEntity = CacheHelper.GetInstance().GetPost(false).FirstOrDefault(x => x.Id == post.Id);
                 if (oldEntity != null)
                 {
                     if (oldEntity.Title != post.Title || string.IsNullOrEmpty(post.Slug))
@@ -171,7 +171,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 #endregion
                 db.SaveChanges();
                 Success("Thay đổi thông tin tin thành công: " + post.Title, true);
-                DataPuplic.GetInstance().GetPost(true,db);
+                CacheHelper.GetInstance().GetPost(true,db);
                 return RedirectToAction("Index");
             }
             ViewBag.CatId = new SelectList(db.Categories, "Id", "Name", post.CatId);
@@ -200,7 +200,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                         {
                             db.Posts.Remove(pro);
                             db.SaveChanges();
-                            DataPuplic.GetInstance().GetPost(true);
+                            CacheHelper.GetInstance().GetPost(true);
                             info = new
                             {
                                 success = true,
@@ -246,7 +246,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                             pro.DateUpdate = DateTime.Now;
                             pro.IsDelete = true;
                             db.SaveChanges();
-                            DataPuplic.GetInstance().GetCate(true);
+                            CacheHelper.GetInstance().GetCate(true);
                             info = new
                             {
                                 success = true,
@@ -304,7 +304,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.SeoUrlRecords.Add(seoUrl);
                 #endregion
                 db.SaveChanges();
-                DataPuplic.GetInstance().GetCate(true);
+                CacheHelper.GetInstance().GetCate(true);
                 info = new
                 {
                     success = true,

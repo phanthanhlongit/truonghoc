@@ -3,7 +3,7 @@
 {
     <header class="page-header">
         <div class="container-header">
-            @{var config = DataPuplic.GetInstance().GetConfig(false);
+            @{var config = CacheHelper.GetInstance().GetConfig(false);
             }
             <div class="logo">
                 <a href="/">
@@ -23,7 +23,7 @@
                 <ul class="ul-main">
                     @foreach (var item in Model)
                     {
-                        var MenuChild = DataPuplic.GetInstance().GetMenu(false).Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
+                        var MenuChild = CacheHelper.GetInstance().GetMenu(false).Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
                         if (MenuChild.Count > 0)
                         {
                             <li class="has-sub-menu-1">
