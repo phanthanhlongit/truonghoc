@@ -68,11 +68,14 @@
             }
     </style>
     <main class="page-main page-about">
-        <div class="md-banner">
-            <div class="container-90">
-                <img title="" class="md-desktop wow zoomIn" alt="" src="@Model.Image" style="visibility: visible; animation-name: zoomIn;">
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            <div class="md-banner">
+                <div class="container-90">
+                    <img title="" class="md-desktop wow zoomIn" alt="@Model.Title" src="@Model.Image?h=600" style="visibility: visible; animation-name: zoomIn;">
+                </div>
             </div>
-        </div>
+        }
         <div class="meta-group clearfix">
             <div class="container-90">
                 <div class="bls-title">

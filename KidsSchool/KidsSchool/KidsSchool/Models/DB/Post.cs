@@ -34,6 +34,10 @@
         [StringLength(250)]
         public string Image { get; set; }
 
+        [Display(Name = "Biểu tượng")]
+        [StringLength(250)]
+        public string Icon { get; set; }
+
         [Display(Name = "Ngày tạo")]
         public DateTime? createDate { get; set; }
 

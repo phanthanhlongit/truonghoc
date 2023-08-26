@@ -58,7 +58,7 @@
                         <div class="inner">
                             <div class="thumb">
                                 <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">
-                                    <img onerror="this.src = '/Images/noimage.gif';" src="@item.Image" alt="@item.Title">
+                                    <img onerror="this.src = '/Images/noimage.gif';" src="@item.Icon?w=420&h=420&mode=crop" alt="@item.Title">
                                 </a>
                             </div>
                             <div class="info clearfix customer_hight">

@@ -7,7 +7,7 @@
             <div class="container-70">
                 @if (IsSpecialPage.IsImgLeft)
                 {
-                    <div class="thumb-nail wow fadeInRight" data-wow-delay="0.2s"> <img alt="" title="" src="@IsSpecialPage.Image?w=420&h=420&mode=crop"> </div>
+                    <div class="thumb-nail wow fadeInRight" data-wow-delay="0.2s"> <img alt="" title="" src="@IsSpecialPage.Icon?w=420&h=420&mode=crop"> </div>
                     <div class="content clearfix wow fadeInLeft" data-wow-delay="0.2s">
                         <h3 class="md-title">@IsSpecialPage.title</h3>
                         <div class="info">
@@ -23,7 +23,7 @@
                             <p>@Html.Raw(IsSpecialPage.Description.Remove_Html_Tags().LimitLength(400, "..."))</p>
                         </div> <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = IsSpecialPage.slug })" class="read-more">Xem thêm</a>
                     </div>
-                    <div class="thumb-nail wow fadeInLeft" data-wow-delay="0.2s"> <img alt="" title="" src="@IsSpecialPage.Image"> </div>
+                    <div class="thumb-nail wow fadeInLeft" data-wow-delay="0.2s"> <img alt="" title="" src="@IsSpecialPage.Icon?w=420&h=420&mode=crop"> </div>
                 }
             </div>
         </div>

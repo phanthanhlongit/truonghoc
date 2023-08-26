@@ -79,11 +79,11 @@
         data.OtherTags.Count == 0
     );
     <main class="page-main page-triet-ly">
-        @if (imgOnlyData != null)
+        @if (!string.IsNullOrEmpty(Model.Image))
         {
             <div class="md-banner">
                 <div class="container-90">
-                    <img title="" class="md-desktop wow zoomIn" alt="@Model.title" src="@imgOnlyData.Images" style="visibility: visible; animation-name: zoomIn;">
+                    <img title="" class="md-desktop wow zoomIn" alt="@Model.title" src="@Model.Image?h=600" style="visibility: visible; animation-name: zoomIn;">
                 </div>
             </div>
         }

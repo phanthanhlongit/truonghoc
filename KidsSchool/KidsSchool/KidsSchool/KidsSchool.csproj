@@ -3036,8 +3036,6 @@
     <Content Include="Views\Pages\Index.cshtml" />
     <Content Include="Views\Blogs\Category.cshtml" />
     <Content Include="Views\Blogs\ShowPost.cshtml" />
-    <Content Include="Views\Blogs\_LastNews.cshtml" />
-    <Content Include="Views\Blogs\_Sidebar.cshtml" />
     <Content Include="Views\Shared\_Alerts.cshtml" />
     <Content Include="Views\Home\_SliderShow.cshtml" />
     <Content Include="Views\Home\_SpecialPage.cshtml" />

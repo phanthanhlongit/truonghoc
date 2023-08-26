@@ -2,7 +2,7 @@
 @{
     try
     {
-        var banner = CacheHelper.GetInstance().GetBanner(false).FirstOrDefault(x => x.Active && x.BannerPositionId == 2);
+        var banner = CacheHelper.GetInstance().GetBanner(false).FirstOrDefault(x => x.Active && x.BannerPositionId == 3);
         if (banner != null)
         {
         <div class="modal" tabindex="-1" role="dialog" id="myDialog">
@@ -15,7 +15,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <img alt="@banner.Name" style="width:100%;" title="@banner.Name" src="@banner.Images" />
+                        <img alt="@banner.Name" style="width:100%;" title="@banner.Name" src="@banner.Images?w=850" />
                     </div>
                 </div>
             </div>

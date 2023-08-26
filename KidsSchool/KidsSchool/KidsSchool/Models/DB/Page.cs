@@ -22,6 +22,10 @@
         [Display(Name = "Hình ảnh")]
         public string Image { get; set; }
 
+        [Display(Name = "Biểu tượng")]
+        [StringLength(250)]
+        public string Icon { get; set; }
+
         [Display(Name = "Mô tả")]
         public string Description { get; set; }
 
