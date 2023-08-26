@@ -15,7 +15,7 @@ using static System.Data.Entity.Infrastructure.Design.Executor;
 namespace KidsSchool.Areas.Admin.Controllers
 {
 
-    [Authorize(Roles = "Quản trị viên")]
+    [Authorize]
     public class MenusController : AdminController
     {
 

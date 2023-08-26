@@ -7,7 +7,7 @@ using KidsSchool.Models.GenarateSitemap;
 namespace KidsSchool.Areas.Admin.Controllers
 {
 
-    [Authorize(Roles = "Quản trị viên,Nhân viên,Quản lý nguyên liệu,Quản lý công thức")]
+    [Authorize]
     public class HomeController : AdminController
     {
         // GET: admin/Default

@@ -2916,7 +2916,6 @@
     <Content Include="Assets\Login\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Assets\Login\vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Areas\Admin\Views\AspNetUsers\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\AspNetUsers\Decentralization.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetUsers\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetUsers\Details.cshtml" />
     <Content Include="Areas\Admin\Views\AspNetUsers\Edit.cshtml" />

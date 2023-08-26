@@ -12,7 +12,7 @@ using System.Web.Services.Description;
 namespace KidsSchool.Areas.Admin.Controllers
 {
 
-    [Authorize(Roles = "Quản trị viên")]
+    [Authorize]
     public class PagesController : AdminController
     {
         // GET: Admin/Pages

@@ -26,14 +26,7 @@
 
 
     @{ bool result = User.IsInRole("Quản trị viên"); }
-    @if (result)
-    {
-        @RenderPage("_sidebarAdmin.cshtml");
-    }
-    else
-    {
-        @RenderPage("_sidebar.cshtml");
-    }
+    @RenderPage("_sidebarAdmin.cshtml");
     <main class="app-content">
 
         @{ Html.RenderPartial("_Alerts"); }

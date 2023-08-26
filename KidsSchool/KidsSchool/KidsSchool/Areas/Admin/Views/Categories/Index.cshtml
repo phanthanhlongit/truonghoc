@@ -75,7 +75,7 @@
                                     @Html.DisplayFor(modelItem => item.Id)
                                 </td>
                                 <td>
-                                    <img src="@item.Image?w=155&h=155&mode=pad" style="max-width:48px;" />
+                                    <img onerror="this.src = '/Images/noimage.gif';" src="@item.Image?w=155&h=155&mode=pad" style="max-width:48px;" />
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Name)

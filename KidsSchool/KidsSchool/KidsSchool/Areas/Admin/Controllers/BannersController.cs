@@ -10,7 +10,7 @@ using System.Web.Mvc;
 namespace KidsSchool.Areas.Admin.Controllers
 {
 
-    [Authorize(Roles = "Quản trị viên,Nhân viên")]
+    [Authorize]
     public class BannersController : AdminController
     {
         // GET: Admin/Banners

@@ -4,7 +4,7 @@
     <div class="app-sidebar__user">
 
         @*@Html.GravatarImage(User.Identity.Name, new GravatarOptions { Size = 50, DefaultImageType = "wavatar", CssClass = "app-sidebar__user-avatar" })*@
-        <img class="app-sidebar__user-avatar" src="/Assets/Home/images/home/tomato.png">
+        <img class="app-sidebar__user-avatar" onerror="this.src = '/Images/noimage.gif';" src="/Assets/Home/images/home/tomato.png">
         <div>
             <p class="app-sidebar__user-name"><b>@User.Identity.Name</b></p>
             <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
@@ -43,7 +43,16 @@
                 <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý Banner</span>
             </a>
         </li>
-
+        @{ bool isfull = User.IsInRole("Quản trị viên");
+            if (isfull)
+            {
+                <li>
+                    <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/Admin/AspNetUsers") ? "active" : "")" href="/Admin/AspNetUsers">
+                        <i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý User</span>
+                    </a>
+                </li>
+            }
+        }
         <li>
             <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/contactghelps")? "active":"")" href="/Admin/ContactGHelps/Index">
                 <i class='app-menu__icon bx bx-id-card'></i> <span class="app-menu__label">Liên hệ</span>

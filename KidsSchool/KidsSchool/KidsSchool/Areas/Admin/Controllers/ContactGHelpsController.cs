@@ -9,7 +9,7 @@ namespace KidsSchool.Areas.Admin.Controllers
     public class ContactGHelpsController : AdminController
     {
 
-        [Authorize(Roles = "Quản trị viên,Nhân viên")]
+        [Authorize]
         // GET: Admin/ContactGHelps
         public ActionResult Index()
         {

@@ -60,7 +60,7 @@
                         <div class="form-group col-md-12">
                             <center>
                                 <div class="upload-btn-wrapper">
-                                    <img id="myImgIcon" src="" alt="your image" style="width:100%; border: 1px solid #ffd43b;">
+                                    <img id="myImgIcon" onerror="this.src = '/Images/noimage.gif';" src="" alt="your image" style="width:100%; border: 1px solid #ffd43b;">
                                     <br />
                                     @Html.EditorFor(model => model.Icon, new { htmlAttributes = new { @class = "form-control" } })
                                     <input type="button" value="Browse Server" onclick="BrowseServerIcon();" />
@@ -70,7 +70,7 @@
                         <div class="form-group col-md-12">
                             <center>
                                 <div class="upload-btn-wrapper">
-                                    <img id="myImg" src="" alt="your image" style="max-width:250px; border: 1px solid #ffd43b;">
+                                    <img id="myImg" onerror="this.src = '/Images/noimage.gif';" src="" alt="your image" style="max-width:250px; border: 1px solid #ffd43b;">
                                     <br />
                                     @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
                                     <input type="button" value="Browse Server" onclick="BrowseServer();" />

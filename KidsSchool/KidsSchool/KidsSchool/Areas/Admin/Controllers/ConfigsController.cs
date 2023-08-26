@@ -11,7 +11,7 @@ using KidsSchool.Models.Dao;
 
 namespace KidsSchool.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Quản trị viên")]
+    [Authorize]
     public class ConfigsController : AdminController
     {
         // GET: Admin/Configs/Edit/5
