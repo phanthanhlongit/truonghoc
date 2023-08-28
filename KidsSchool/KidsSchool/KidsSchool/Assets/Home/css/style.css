@@ -135,7 +135,7 @@ input[type="submit"] {
 .page-header {
     z-index: 500;
     position: relative;
-    margin-top: 20px;
+    background: #fff;
 }
 
     .page-header .container-header {
@@ -167,10 +167,6 @@ input[type="submit"] {
         padding: 0.5% 1.5%;
         width: 80%;
         display: table;
-        margin: 0 auto;
-        -webkit-box-shadow: 0.5px 0px 2px 1px #E0DFDF;
-        box-shadow: 0.5px 0px 2px 1px #E0DFDF;
-        border-radius: 10px;
         min-width: 1000px;
     }
 

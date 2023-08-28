@@ -8,10 +8,10 @@
             <div class="logo">
                 <a href="/">
                     <img src="@config.Icon?mode=pad" style="float:left" alt="">
-                    <div class="text-container slogan">
+                    @*<div class="text-container slogan">
                         <span class="logo-text">KOJIN</span>
                         <span class="additional-text">Tôn trọng, sáng tạo và yêu thương</span>
-                    </div>
+                    </div>*@
                 </a>
 
             </div>
@@ -27,10 +27,10 @@
                         if (MenuChild.Count > 0)
                         {
                             <li class="has-sub-menu-1">
-                                @if (!string.IsNullOrEmpty(item.Icon))
+                                @*@if (!string.IsNullOrEmpty(item.Icon))
                                 {
                                     <img src="@item.Icon?w=50&h=50&mode=pad" alt="" class="jet-menu-icon" style="width: 50px;">
-                                }
+                                }*@
                                 <a href="javascript:void(0)">
                                     <span class=" main">@item.Text.ToUpper()</span>
                                 </a>
@@ -47,10 +47,10 @@
                         else
                         {
                             <li>
-                                @if (!string.IsNullOrEmpty(item.Icon))
+                                @*@if (!string.IsNullOrEmpty(item.Icon))
                                 {
                                     <img src="@item.Icon?w=50&h=50&mode=pad" alt="" class="jet-menu-icon" style="width: 50px;">
-                                }
+                                }*@
                                 <a href="@item.Url" @Html.Display(item.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item.Text">@item.Text.ToUpper()</a>
                             </li>
                         }
