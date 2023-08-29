@@ -52,6 +52,14 @@
                     </a>
                 </li>
             }
+            else
+            {
+                <li>
+                    <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/user/changepassword") ? "active" : "")" href="/Admin/user/ChangePassword">
+                        <i class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Thay đổi mật khẩu</span>
+                    </a>
+                </li>
+            }
         }
         <li>
             <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/contactghelps")? "active":"")" href="/Admin/ContactGHelps/Index">

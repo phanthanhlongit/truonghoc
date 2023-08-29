@@ -1,6 +1,9 @@
 ﻿using KidsSchool.Models.Commons.Libs;
 using KidsSchool.Models.DB;
+using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace KidsSchool.Controllers
@@ -52,6 +55,18 @@ namespace KidsSchool.Controllers
             });
 
             TempData[Alert.TempDataKey] = alerts;
+        }
+
+        public ActionResult Logout()
+        {
+            // Xóa phiên đăng nhập của người dùng
+            var authenticationManager = HttpContext.GetOwinContext().Authentication;
+            authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+
+
+            // Thực hiện các hành động khác sau khi đăng xuất
+            // Ví dụ: chuyển hướng người dùng đến trang đăng nhập
+            return RedirectToAction("Login", "Account");
         }
     }
 }
