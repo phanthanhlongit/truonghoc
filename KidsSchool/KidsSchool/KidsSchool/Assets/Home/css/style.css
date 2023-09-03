@@ -4159,7 +4159,7 @@ p.error {
     }
 
     .home-triet-ly .content {
-        margin-top: -15%;
+        /*margin-top: -15%;*/
         position: relative;
         z-index: 10;
         padding: 25px 5% 20px 5%;
