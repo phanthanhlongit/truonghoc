@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using KidsSchool.Models;
+using System.Web.Services.Description;
 
 namespace KidsSchool
 {
@@ -14,6 +15,14 @@ namespace KidsSchool
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+            // Cấu hình xác thực cookie
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
+                LoginPath = new PathString("/Account/Login"), // Đường dẫn đến trang đăng nhập
+                ExpireTimeSpan = TimeSpan.FromMinutes(30), // Hẹn giờ hết hạn sau 30 phút
+                SlidingExpiration = true // Đặt lại thời gian hết hạn sau mỗi yêu cầu
+            });
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);

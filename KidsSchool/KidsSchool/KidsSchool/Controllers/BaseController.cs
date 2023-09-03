@@ -59,10 +59,13 @@ namespace KidsSchool.Controllers
 
         public ActionResult Logout()
         {
-            // Xóa phiên đăng nhập của người dùng
-            var authenticationManager = HttpContext.GetOwinContext().Authentication;
-            authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-
+            try
+            {
+                // Xóa phiên đăng nhập của người dùng
+                var authenticationManager = HttpContext.GetOwinContext().Authentication;
+                authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            }
+            catch { }
 
             // Thực hiện các hành động khác sau khi đăng xuất
             // Ví dụ: chuyển hướng người dùng đến trang đăng nhập

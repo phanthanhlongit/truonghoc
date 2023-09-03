@@ -15,7 +15,7 @@
                 <ul class="ul-main">
                     @foreach (var item in Model)
                     {
-                        var MenuChild = CacheHelper.menu.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
+                        var MenuChild = CacheHelper.GetInstance().GetMenu(false).Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
                         if (MenuChild.Count > 0)
                         {
                             <li class="has-sub-menu-1">

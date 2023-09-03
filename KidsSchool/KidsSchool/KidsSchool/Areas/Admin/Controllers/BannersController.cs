@@ -50,9 +50,9 @@ namespace KidsSchool.Areas.Admin.Controllers
         public ActionResult Create(Banner banner)
         {
             banner.Description = "banner";
-            banner.EndDate = banner.StartDate = DateTime.Now;
+            banner.DateUpdate =  banner.DateCreate = banner.EndDate = banner.StartDate = DateTime.Now;
             banner.ItemFor = banner.ItemForId = 1;
-            //if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 db.Banners.Add(banner);
                 db.SaveChanges();
@@ -90,8 +90,10 @@ namespace KidsSchool.Areas.Admin.Controllers
         {
             banner.Description = "banner";
             banner.EndDate = banner.StartDate = DateTime.Now;
+            _ = banner.DateUpdate ?? DateTime.Now;
+            _ = banner.DateCreate ?? DateTime.Now;
             banner.ItemFor = banner.ItemForId = 1;
-            //if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 db.Entry(banner).State = EntityState.Modified;
                 db.SaveChanges();
