@@ -23,7 +23,7 @@
             </a>
         </li>
         <li>
-            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/pages")? "active":"")" href="/Admin/Pages/Edit/26">
+            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/Admin/Pages/Edit/26")? "active":"")" href="/Admin/Pages/Edit/26">
                 <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Giới Thiệu</span>
             </a>
         </li>
@@ -40,7 +40,7 @@
 
         <li>
             <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/banners")? "active":"")" href="/Admin/banners/Index">
-                <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Quản lý Banner</span>
+                <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Banner/Popup/Hoạt động  </span>
             </a>
         </li>
         @{ bool isfull = User.IsInRole("Quản trị viên");

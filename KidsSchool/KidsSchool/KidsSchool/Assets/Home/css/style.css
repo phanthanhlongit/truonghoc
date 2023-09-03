@@ -1587,9 +1587,10 @@ body {
 }
 
 .body-template1 {
-    background: url(../images/bg-body.jpg) repeat;
+    /*background: url(../images/bg-body.jpg) repeat;*/
     -webkit-background-size: auto;
     background-size: auto;
+    background: #cae8ff57;
 }
 
 
@@ -4974,6 +4975,7 @@ p.error {
             width: 100%;
             text-align: center;
             max-height: auto;
+            display:none;
         }
 
             .home-register .img-right img {

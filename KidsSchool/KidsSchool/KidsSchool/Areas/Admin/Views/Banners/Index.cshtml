@@ -12,10 +12,10 @@
 </p>
 
 <div class="app-title">
-    <ul class="app-breadcrumb breadcrumb side">
+    @*<ul class="app-breadcrumb breadcrumb side">
         <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
     </ul>
-    <div id="clock"></div>
+    <div id="clock"></div>*@
 </div>
 <div class="row">
     <div class="col-md-12">
@@ -62,8 +62,8 @@
                                 @Html.DisplayFor(modelItem => item.Active)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.BannerId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.BannerId })
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.BannerId }) |
+                                @Html.ActionLink("Xóa", "Delete", new { id = item.BannerId })
                             </td>
                         </tr>
                         }

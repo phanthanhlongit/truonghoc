@@ -2975,8 +2975,6 @@
     <Content Include="Assets\Home\css\customer.css" />
     <Content Include="Assets\Home\css\style.css" />
     <Content Include="Assets\Home\images\home\children.png" />
-    <Content Include="Assets\Home\images\home\tomato-mb.png" />
-    <Content Include="Assets\Home\images\home\tomato.png" />
     <Content Include="Assets\Home\images\ico-fb-red.png" />
     <Content Include="Assets\Home\images\ico-fb.png" />
     <Content Include="Assets\Home\images\ico-instagram-red.png" />
@@ -2987,7 +2985,6 @@
     <Content Include="Assets\Home\images\logo.png" />
     <Content Include="Assets\Home\images\popup.png" />
     <Content Include="Assets\Home\images\register.png" />
-    <Content Include="Assets\Home\images\tomato-footer.png" />
     <Content Include="Assets\Home\Scripts\an.js" />
     <Content Include="Assets\Home\vendor\bootstrap\bootstrap.min.css" />
     <Content Include="Assets\Home\vendor\bootstrap\bootstrap.min.js" />
@@ -3016,7 +3013,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
