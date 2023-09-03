@@ -1,0 +1,77 @@
+﻿@model KidsSchool.Models.DB.ContactGHelp
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin liên hệ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thông tin liên hệ</h1>
+        <p>Dưới đây là thông tin liên hệ của người gửi:</p>
+
+        <ul>
+            <li><strong>ID:</strong> @Model.Id</li>
+            <li><strong>Số điện thoại:</strong> @Model.Phone</li>
+            <li><strong>Tên khách hàng:</strong> @Model.CusName</li>
+            <li><strong>Tên trẻ:</strong> @Model.ChilName</li>
+            <li><strong>Tuổi trẻ:</strong> @Model.ChilAge</li>
+            <li><strong>Email:</strong> @Model.Mail</li>
+            <li><strong>Địa chỉ:</strong> @Model.Address</li>
+            <li><strong>Nội dung:</strong> @Model.Content</li>
+        </ul>
+    </div>
+    <div class="footer">
+        <p>Xin chân thành cảm ơn!</p>
+    </div>
+</body>
+</html>
