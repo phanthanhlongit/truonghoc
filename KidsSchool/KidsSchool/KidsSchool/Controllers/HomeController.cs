@@ -2,10 +2,12 @@
 using KidsSchool.Models.DB;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
+using static KidsSchool.Models.Commons.Libs.XMail;
 
 namespace KidsSchool.Controllers
 {
@@ -38,6 +40,11 @@ namespace KidsSchool.Controllers
             return PartialView();
         }
 
+        public ActionResult TemplateMailContact()
+        {
+            return PartialView();
+        }
+
         public ActionResult SendContactAjax(string name,string chilname, string chilage, string email, string phone, string address, int type, string content)
         {
             var info = new
@@ -45,10 +52,6 @@ namespace KidsSchool.Controllers
                 success = false,
                 msg = ""
             };
-
-            #region sent sms contact
-            #endregion
-
             try
             {
                 var obj = new ContactGHelp();
@@ -69,6 +72,19 @@ namespace KidsSchool.Controllers
                     success = true,
                     msg = ""
                 };
+
+                #region send mail
+                var sw = new StringWriter();
+                var viewResult = ViewEngines.Engines.FindView(ControllerContext, "TemplateMailContact", null);
+                var viewContext = new ViewContext(ControllerContext, viewResult.View, new ViewDataDictionary(obj), new TempDataDictionary(), sw);
+
+                // Render view email và lấy nội dung HTML
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+
+                string emailBody = sw.ToString();
+                XMail.senmail(WebConfigurationManager.AppSettings["ToSentEmail"].ToString(), "Khách hàng: "+name +" liên hệ" , emailBody);
+                #endregion
             }
             catch (Exception ex)
             {

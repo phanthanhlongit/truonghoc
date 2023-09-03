@@ -17,7 +17,7 @@ namespace KidsSchool.Models.Commons.Libs
         public static string CredentialPassword = WebConfigurationManager.AppSettings["CredentialPassword"].ToString();
         public static string EnableSsl = "False";
         public static bool ssl = false;
-        public static string from = "dochoixxx@gmail.com";
+        public static string from = WebConfigurationManager.AppSettings["SendFrom"].ToString();
 
         public static int senmail(string to, string subject,string body)
         {
@@ -27,7 +27,7 @@ namespace KidsSchool.Models.Commons.Libs
 
                 string mailto = to.Trim();
                 string mailform = WebConfigurationManager.AppSettings["CredentialUserName"].ToString();
-                mailMessage.From = (new MailAddress(mailform, "KidsSchool", System.Text.Encoding.UTF8));
+                mailMessage.From = (new MailAddress(mailform, WebConfigurationManager.AppSettings["Domain"].ToString(), System.Text.Encoding.UTF8));
                 mailMessage.To.Add(mailto);
                 mailMessage.Subject = subject;
                 mailMessage.SubjectEncoding = System.Text.Encoding.UTF8;
@@ -231,7 +231,5 @@ namespace KidsSchool.Models.Commons.Libs
                 throw (ex);
             }
         }
-
-
     }
 }
