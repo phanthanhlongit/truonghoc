@@ -34,7 +34,6 @@
     @RenderBody()
     @Html.Action("Footer", "Home")
     @Html.Partial("_ContactScrollPartial")
-    @Html.Partial("_DialogPartial")
     <script src="/Assets/Home/vendor/bootstrap/popper.min.js"></script>
     <script src="/Assets/Home/vendor/bootstrap/bootstrap.min.js"></script>
     <script src="/Assets/Home/vendor/owlcarousel/owl.carousel.min.js"></script>
@@ -94,22 +93,24 @@
         }
 
         $(document).ready(function () {
-            if ($("#myDialog").length > 0) {
-                // Lấy thông tin thời gian truy cập gần nhất
-                var lastAccessTime = getLastAccessTime();
+            $("#myDialog").modal("show");
 
-                // Lấy thời gian hiện tại
-                var currentTime = new Date().getTime();
+            //if ($("#myDialog").length > 0) {
+            //    // Lấy thông tin thời gian truy cập gần nhất
+            //    var lastAccessTime = getLastAccessTime();
 
-                // Kiểm tra nếu chưa có thông tin thời gian truy cập hoặc đã qua ít nhất 15 phút kể từ lần trước
-                if (!lastAccessTime || currentTime - lastAccessTime >= 15 * 60 * 1000) {
-                    // Mở dialog
-                    $("#myDialog").modal("show");
+            //    // Lấy thời gian hiện tại
+            //    var currentTime = new Date().getTime();
 
-                    // Lưu thời gian truy cập gần nhất
-                    setLastAccessTime();
-                }
-            }
+            //    // Kiểm tra nếu chưa có thông tin thời gian truy cập hoặc đã qua ít nhất 15 phút kể từ lần trước
+            //    if (!lastAccessTime || currentTime - lastAccessTime >= 15 * 60 * 1000) {
+            //        // Mở dialog
+            //        $("#myDialog").modal("show");
+
+            //        // Lưu thời gian truy cập gần nhất
+            //        setLastAccessTime();
+            //    }
+            //}
         });
 
     </script>

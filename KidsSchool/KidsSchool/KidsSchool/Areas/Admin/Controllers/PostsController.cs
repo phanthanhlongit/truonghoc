@@ -23,9 +23,14 @@ namespace KidsSchool.Areas.Admin.Controllers
     public class PostsController : AdminController
     {
         // GET: Admin/Posts
-        public ActionResult Index()
+        public ActionResult Index(int? catId)
         {
             var posts = db.Posts.Include(p => p.Category);
+
+            if (catId != null)
+            {
+                posts = posts.Where(p=>p.CatId == catId);
+            }
             ViewBag.Group= CacheHelper.GetInstance().GetCate(false).Where(x=>!x.IsDelete&& x.ParentId!=null && !x.Slug.Equals("trang"));
             return View(posts.ToList());
         }

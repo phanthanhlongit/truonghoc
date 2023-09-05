@@ -30,6 +30,10 @@ namespace KidsSchool.Controllers
                 return Redirect("/404.html");
             }
             var model = Cat.Posts.Where(p => p.Active == true && (p.AutoPostDate == null || p.AutoPostDate<DateTime.Now)).OrderByDescending(p => p.createDate).ToList();
+            if (model != null && model.Count == 1)
+            {
+                return Redirect($"/{model.First().Slug}");
+            }
             ViewBag.Cat = Cat;
             return View(model.ToPagedList(pageNumber, pageSize));
         }

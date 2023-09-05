@@ -17,10 +17,21 @@
             <div class="tile-body">
                 <div class="row element-button">
                     <div class="col-sm-2">
-                        <a class="btn btn-add btn-sm" href="/Admin/Posts/Create" title="Thêm">
-                            <i class="fas fa-plus"></i>
-                            Tạo tin mới
-                        </a>
+                        @if(HttpContext.Current.Request.QueryString["catId"] != null)
+                        {
+                            <a class="btn btn-add btn-sm" href="/Admin/Posts/Create?catId=@HttpContext.Current.Request.QueryString["catId"]" title="Thêm">
+                                <i class="fas fa-plus"></i>
+                                Tạo tin mới
+                            </a>
+                         }
+                        else
+                        {
+                            <a class="btn btn-add btn-sm" href="/Admin/Posts/Create" title="Thêm">
+                                <i class="fas fa-plus"></i>
+                                Tạo tin mới
+                            </a>
+                        }
+                        
                     </div>
 
                     <div class="col-sm-2">
@@ -29,22 +40,22 @@
                         </a>
                     </div>
 
-                    <div class="col-sm-2">
+                    @*<div class="col-sm-2">
                         <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()">
                             <i class="fas fa-print"></i> In dữ liệu
                         </a>
-                    </div>
+                    </div>*@
                     <div class="col-sm-2">
                         <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="DeleteListPageCheck()">
                             <i class="fas fa-trash-alt"></i> Xóa các trang đã chọn
                         </a>
                     </div>
-                    <div class="col-sm-2">
+                    @*<div class="col-sm-2">
                         <a class="btn btn-excel btn-sm" onclick="ExportExcel()" title="In"><i class="fas fa-file-excel"></i> Xuất Excel Web</a>
                     </div>
                     <div class="col-sm-2">
                         <a class="btn btn-excel btn-sm" href="/admin/posts/ExportExcel" target="_blank" title="In"><i class="fas fa-file-excel"></i> Xuất Excel basic</a>
-                    </div>
+                    </div>*@
                 </div>
                 <table id="sampleTable" class="table table-striped table-bordered dt-responsive nowrap">
                     <thead>
@@ -111,7 +122,7 @@
                         </tr>
                         }
                     </tbody>
-                    <tfoot>
+                    @*<tfoot>
                         <tr>
                             <th width="10"><input type="checkbox" id="all"></th>
                             <th>
@@ -135,7 +146,7 @@
 
                             <th></th>
                         </tr>
-                    </tfoot>
+                    </tfoot>*@
                 </table>
             </div>
         </div>
