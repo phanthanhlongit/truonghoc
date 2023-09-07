@@ -21,7 +21,7 @@
                         {
                             <a class="btn btn-add btn-sm" href="/Admin/Posts/Create?catId=@HttpContext.Current.Request.QueryString["catId"]" title="Thêm">
                                 <i class="fas fa-plus"></i>
-                                Tạo tin mới
+                                Tạo mới
                             </a>
                          }
                         else
@@ -62,7 +62,7 @@
                         <tr>
                             <th width="10"><input type="checkbox" id="all"></th>
                             <th>
-                                Mã tin
+                                Danh mục
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Image)
@@ -70,15 +70,13 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.Title)
                             </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Category.Name)
-                            </th>
+
                             <th>
                                 @Html.DisplayNameFor(model => model.Active)
                             </th>
-                            <th>
+                            @*<th>
                                 @Html.DisplayNameFor(model => model.Views)
-                            </th>
+                            </th>*@
 
                             <th></th>
                         </tr>
@@ -90,7 +88,7 @@
                         <tr id="@("page_"+item.Id)">
                             <td class="colcheckbox" width="10"><input type="checkbox" class="Checkdel" name="check1" value="0"></td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Id)
+                                @Html.DisplayFor(modelItem => item.Category.Name)
                             </td>
                             <td>
                                 <img onerror="this.src = '/Images/noimage.gif';" src="@item.Image?w=155&h=155&mode=pad" style="max-width:48px;" />
@@ -98,15 +96,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Title)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Category.Name)
-                            </td>
+                            
                             <td>
                                 @Html.DisplayFor(modelItem => item.Active)
                             </td>
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => item.Views)
-                            </td>
+                            </td>*@
                             <td>
                                 <a class="btn btn-primary btn-sm view" target="_blank" href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">Xem</a>
 

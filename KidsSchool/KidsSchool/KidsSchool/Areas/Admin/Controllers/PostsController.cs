@@ -105,7 +105,14 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.SaveChanges();
                 CacheHelper.GetInstance().GetPost(true,db);
                 Success("Thêm trang thành công: " + post.Title, true);
-                return RedirectToAction("Index");
+                if (post.CatId != null && post.CatId != 0)
+                {
+                    return RedirectToAction("Index", new { catId = post.CatId });
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.CatId = new SelectList(db.Categories, "Id", "Name", post.CatId);
@@ -177,7 +184,14 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.SaveChanges();
                 Success("Thay đổi thông tin tin thành công: " + post.Title, true);
                 CacheHelper.GetInstance().GetPost(true,db);
-                return RedirectToAction("Index");
+                if (post.CatId != null && post.CatId != 0)
+                {
+                    return RedirectToAction("Index",new { catId = post.CatId });
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             ViewBag.CatId = new SelectList(db.Categories, "Id", "Name", post.CatId);
             return View(post);
