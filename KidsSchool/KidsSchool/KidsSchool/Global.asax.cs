@@ -1,5 +1,6 @@
 using KidsSchool.Controllers;
 using System;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -20,11 +21,11 @@ namespace KidsSchool
         }
         protected void Application_EndRequest(object sender, EventArgs e)
         {
-            if (Response.StatusCode == 401) // Ki?m tra xem c� l?i chua x�c th?c kh�ng
+            if (Response.StatusCode == 401) // Kiểm tra xem có lỗi chưa xác thực không
             {
                 HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
-                if (authCookie != null && authCookie.Expires < DateTime.Now) // Ki?m tra xem cookie c� h?t h?n hay kh�ng
+                if (authCookie != null && authCookie.Expires < DateTime.Now) // Kiểm tra xem cookie có hết hạn hay không
                 {
                     var authController = new BaseController();
                     authController.Logout();
@@ -32,6 +33,14 @@ namespace KidsSchool
             }
             else if (Response.StatusCode == 403)
             {
+                // Xóa tất cả cache trang
+                Response.Cache.SetCacheability(HttpCacheability.NoCache);
+                Response.Cache.SetNoStore();
+                Response.Cache.SetExpires(DateTime.MinValue);
+
+                // Xóa cache cookie (nếu có)
+                Response.Cookies.Clear();
+
                 var authController = new BaseController();
                 authController.Logout();
             }
