@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://xxx.vn/sitemap.xml
+Sitemap: http://kojin.edu.vn/sitemap.xml

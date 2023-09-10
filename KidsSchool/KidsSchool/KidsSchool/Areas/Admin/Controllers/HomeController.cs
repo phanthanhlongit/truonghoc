@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using KidsSchool.Models.GenarateSitemap;
 
@@ -10,6 +11,8 @@ namespace KidsSchool.Areas.Admin.Controllers
     [Authorize]
     public class HomeController : AdminController
     {
+        public static string siteUrl = WebConfigurationManager.AppSettings["SiteUrl"].ToString();
+
         // GET: admin/Default
         public ActionResult Index()
         {
@@ -45,9 +48,9 @@ namespace KidsSchool.Areas.Admin.Controllers
 
                 #region sitemap
                 var listsitemap = new List<SitemapItem>(){
-                new SitemapItem("https://KidsSchool.vn/category_sitemap.xml", lastModified: DateTime.Now, priority: 1.0),
-                new SitemapItem("https://KidsSchool.vn/page_sitemap.xml", lastModified: DateTime.Now, priority: 1),
-                new SitemapItem("https://KidsSchool.vn/post_sitemap.xml", lastModified: DateTime.Now, priority: 1)
+                new SitemapItem($"{siteUrl}/category_sitemap.xml", lastModified: DateTime.Now, priority: 1.0),
+                new SitemapItem($"{siteUrl}/page_sitemap.xml", lastModified: DateTime.Now, priority: 1),
+                new SitemapItem($"{siteUrl}/post_sitemap.xml", lastModified: DateTime.Now, priority: 1)
             };
                 #endregion
 

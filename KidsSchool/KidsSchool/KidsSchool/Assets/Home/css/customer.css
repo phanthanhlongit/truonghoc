@@ -144,7 +144,7 @@ li.has-sub-menu-2:hover .sub-menu-2{
     border-radius: 30px 0 0 30px;
     overflow: hidden;
     font-size: 0;
-    margin-top: -10px;
+    margin-top: -5px;
     -webkit-transform: translateX(0);
     -ms-transform: translateX(0);
     transform: translateX(0);
@@ -184,7 +184,7 @@ li.has-sub-menu-2:hover .sub-menu-2{
 
 .side-tool__sign-up__expand-btn {
     width: 59px;
-    background: #ea351ad1;
+    background: #03a9f4b3;
     color: #fff;
     height: 270px;
     text-align: center;
@@ -343,9 +343,9 @@ a[data-click-download-book]{
 
 .side-tool__tools {
     margin: 0;
-    padding: 10px 0;
+    padding: 0px 0;
     list-style: none;
-    width: 180px;
+    width: 189px;
     background: #fff;
     border-radius: 30px 0 0 30px;
     -webkit-transform: translateX(0);

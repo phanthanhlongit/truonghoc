@@ -4009,7 +4009,7 @@ p.error {
 
 .blk-banner-slider .ctn-blk-banner {
     margin: 0 auto;
-    max-width: 88%;
+    max-width: 100%;
 }
 
     .blk-banner-slider .ctn-blk-banner .owl-carousel .owl-stage-outer {
@@ -5387,3 +5387,61 @@ p.error {
         width: 80%;
     }
 }
+#button-contact-vr .button-contact {
+    position: relative;
+    margin-top: -5px;
+}
+#button-contact-vr .button-contact .phone-vr {
+    position: relative;
+    visibility: visible;
+    background-color: transparent;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    z-index: 11;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateZ(0);
+    transition: visibility .5s;
+    left: 0;
+    bottom: 0;
+    display: block;
+}
+.phone-bar a, #phone-vr .phone-vr-circle-fill, #phone-vr .phone-vr-img-circle, #phone-vr .phone-bar a {
+    background-color: #ea351ad1;
+}
+.phone-bar a, #phone-vr .phone-vr-circle-fill, #phone-vr .phone-vr-img-circle, #phone-vr .phone-bar a {
+    background-color: #ea351ad1;
+}
+.phone-vr-img-circle {
+    background-color: #e60808;
+    width: 59px;
+    height: 59px;
+    line-height: 40px;
+    top: 25px;
+    left: 25px;
+    /*position: absolute;*/
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    -webkit-animation: phonering-alo-circle-img-anim 1s infinite ease-in-out;
+    animation: phone-vr-circle-fill 1s infinite ease-in-out;
+}
+    .phone-vr-img-circle a {
+        display: block;
+        line-height: 37px;
+    }
+    .phone-vr-img-circle img {
+        max-height: 37px;
+        max-width: 37px;
+        position: absolute;
+        top: 50%;
+         /*left: 50%;*/ 
+        transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        -webkit-transform: translate(-50%,-50%);
+        -o-transform: translate(-50%,-50%);
+    }
+
+
+

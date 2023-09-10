@@ -6,7 +6,7 @@
         if (banner != null)
         {
         <div class="modal" tabindex="-1" role="dialog" id="myDialog">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-primary text-white">
                         <h5 class="modal-title">KOJIN</h5>
@@ -15,7 +15,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <img alt="@banner.Name" style="width:100%;" title="@banner.Name" src="@banner.Images?w=850" />
+                        <img alt="@banner.Name" style="width:100%;" title="@banner.Name" src="@banner.Images" /> @*?w=850*@
                     </div>
                 </div>
             </div>
@@ -25,7 +25,11 @@
     catch { }
  }
 
-
+@*<div style="position: fixed;
+    width: 100%;
+    background: #61743308;
+    height: 100%;
+    z-index: 9999;top: 0;"></div>*@
 
         <div class="modal" tabindex="-1" role="dialog" id="exampleModalContact">
             <div class="modal-dialog" role="document">
