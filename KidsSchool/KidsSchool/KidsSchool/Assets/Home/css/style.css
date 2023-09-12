@@ -4914,13 +4914,13 @@ p.error {
 
 @media screen and (min-width: 768.1px) {
     .home-register .content {
-        width: 53%;
+        width: 100%;
         display: inline-block;
     }
 
     .home-register .img-right {
         position: absolute;
-        left: 46%;
+        right: 0;
         z-index: 10;
         top: 50%;
         height: 120%;

@@ -9,51 +9,91 @@
     </style>
     <div class="home-register" id="register_form">
         <div class="container-70">
-            <div class="img-right"> <img class=" wow fadeInLeft" data-wow-delay="0.2s" src="/Assets/Home/images/home/children.png?w=400" alt=""> </div>
-            <div class="content wow fadeInRight" data-wow-delay="0.2s">
-                <p> Liên hệ ngay với chúng tôi để nhận được những tư vấn chu đáo nhất </p>
-                <form action="javascript:SubmitSentContact('txtName','txtchildName','txtchildAge','txtmail','txtphone','none','selectCT','txtquestion', 1)">
-                    <div class="md-row">
-                        <input type="text" id="txtName"  placeholder="Họ tên phụ huynh *" required>
-                    </div>
-                    <div class="md-row clearfix">
-                        <div class="md-col-1">
-                            <input type="text" id="txtchildName" placeholder="Họ tên bé *" required>
-                        </div>
-                    </div>
-                    <div class="md-row clearfix">
-                        <div class="md-col-2">
-                            <input type="number" id="txtchildAge"  placeholder="Tuổi của bé *" required>
-                        </div>
-                    </div>
-                    <div class="md-row clearfix">
-                        <div class="md-col">
-                            <input type="email" id="txtmail" placeholder="Email *" required>
-                        </div>
-                    </div>
-                    <div class="md-row clearfix">
-                        <div class="md-col">
-                            <input type="phone" id="txtphone"  placeholder="Số điện thoại *" required>
-                        </div>
-                    </div>
-                    <div class="md-chuongtrinh md-row">
-                        <select id="selectCT">
-                            <option value="" disabled="disabled" selected="selected">Chương trình học quan tâm
-                            <option value="Chương trình tiểu học">Chương trình tiểu học
-                            <option value="Chương trình mầm non">Chương trình mầm non
-                            <option value="Bé vào lớp 1">Bé vào lớp 1
-                            <option value="Chương trình Hè">Chương trình Hè
-                        </select>
-                    </div>
-                    <div class="md-row clearfix">
-                        <div class="md-col">
-                            <textarea name=""  id="txtquestion" cols="30" rows="3" placeholder="Câu hỏi…"></textarea>
-                        </div>
+            <div class="row">
+
+                <div class="col-md-5">
+                    <div>
+                        <p>
+                            <span>
+                                <strong>Địa chỉ</strong>
+                                <span style="font-weight: 400">
+                                    <strong>:</strong>
+                                    <a target="_blank" rel="noopener"> phường An Hải Tây, quận Sơn Trà, ĐN</a>.
+                                </span><span style="font-weight: 400"></span>
+                            </span>
+                        </p>
+                        <p>
+                            <span>
+                                <strong>Điện thoại</strong>
+                                <span style="font-weight: 400">
+                                    <strong>:</strong>
+                                    <a target="_blank" rel="noopener">092831231232</a>.
+                                </span><span style="font-weight: 400"></span>
+                            </span>
+                        </p>
+                        <p>
+                            <span>
+                                <strong>Mail</strong>
+                                <span style="font-weight: 400">
+                                    <strong>:</strong>
+                                    <a target="_blank" rel="noopener">abc@gmail.com</a>.
+                                </span><span style="font-weight: 400"></span>
+                            </span>
+                        </p>
                     </div>
 
-                    <input v-if="!submit"  onclick="SubmitSentContact('txtName','txtchildName','txtchildAge','txtmail','txtphone','none','selectCT','txtquestion', 1)" type="button" click="onSubmit" value="Đăng ký ngay">
-                </form>
+                </div>
+                <div class="col-md-7">
+                    <div class="content wow fadeInRight" data-wow-delay="0.2s">
+                        <p> Liên hệ ngay với chúng tôi để nhận được những tư vấn chu đáo nhất </p>
+                        <form action="javascript:SubmitSentContact('txtName','txtchildName','txtchildAge','txtmail','txtphone','none','selectCT','txtquestion', 1)">
+                            <div class="md-row">
+                                <input type="text" id="txtName" placeholder="Họ tên phụ huynh *" required>
+                            </div>
+                            <div class="md-row clearfix">
+                                <div class="md-col-1">
+                                    <input type="text" id="txtchildName" placeholder="Họ tên bé *" required>
+                                </div>
+                            </div>
+                            <div class="md-row clearfix">
+                                <div class="md-col-2">
+                                    <input type="number" id="txtchildAge" placeholder="Tuổi của bé *" required>
+                                </div>
+                            </div>
+                            <div class="md-row clearfix">
+                                <div class="md-col">
+                                    <input type="email" id="txtmail" placeholder="Email *" required>
+                                </div>
+                            </div>
+                            <div class="md-row clearfix">
+                                <div class="md-col">
+                                    <input type="phone" id="txtphone" placeholder="Số điện thoại *" required>
+                                </div>
+                            </div>
+                            <div class="md-chuongtrinh md-row">
+                                <select id="selectCT">
+                                    <option value="" disabled="disabled" selected="selected">Chương trình học quan tâm
+                                    <option value="Chương trình tiểu học">Chương trình tiểu học
+                                    <option value="Chương trình mầm non">Chương trình mầm non
+                                    <option value="Bé vào lớp 1">Bé vào lớp 1
+                                    <option value="Chương trình Hè">Chương trình Hè
+                                </select>
+                            </div>
+                            <div class="md-row clearfix">
+                                <div class="md-col">
+                                    <textarea name="" id="txtquestion" cols="30" rows="3" placeholder="Câu hỏi…"></textarea>
+                                </div>
+                            </div>
+
+                            <input v-if="!submit" onclick="SubmitSentContact('txtName','txtchildName','txtchildAge','txtmail','txtphone','none','selectCT','txtquestion', 1)" type="button" click="onSubmit" value="Đăng ký ngay">
+                        </form>
+                    </div>
+                    <div class="img-right" style="right:  -150px"> <img class=" wow fadeInLeft" data-wow-delay="0.2s" src="/Assets/Home/images/home/children.png?w=400" alt=""> </div>
+
+                </div>
             </div>
+            
+       
         </div>
     </div>
 </div>
