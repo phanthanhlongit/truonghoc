@@ -34,14 +34,14 @@
             <img title="" class="md-desktop wow zoomIn" alt="" src="@ViewBag.Cat.Image" style="visibility: visible; animation-name: zoomIn;">
         </div>
     </div>
-    <div class="meta-group clearfix">
+    @*<div class="meta-group clearfix">
         <div class="container-70">
             <div class="bls-title">
                 <h1 title="@ViewBag.Cat.Name">@ViewBag.Cat.Name</h1>
             </div>
         </div>
-    </div>
-    <div class="blk-lop-hoc md-relative">
+    </div>*@
+    <div style="margin-top:7px" class="blk-lop-hoc md-relative">
         <div class="container-70">
             <div class="blk-1">
                 <h3 class="title wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
@@ -58,7 +58,7 @@
                         <div class="inner">
                             <div class="thumb">
                                 <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">
-                                    <img onerror="this.src = '/Images/noimage.gif';" src="@item.Icon?w=420&h=420&mode=crop" alt="@item.Title">
+                                    <img onerror="this.src = '/Images/noimage.gif';" src="@item.Icon" alt="@item.Title">
                                 </a>
                             </div>
                             <div class="info clearfix customer_hight">
