@@ -384,7 +384,7 @@ namespace KidsSchool.Areas.Admin.Controllers
 
             foreach(var info in posts)
             {
-                table.Rows.Add(info.Id, info.Title, "http://KidsSchool.vn/" + info.Slug, info.MetaKeyword, info.Category.Name);
+                table.Rows.Add(info.Id, info.Title, "http://kojin.edu.vn/" + info.Slug, info.MetaKeyword, info.Category.Name);
             }    
             return table;
         }

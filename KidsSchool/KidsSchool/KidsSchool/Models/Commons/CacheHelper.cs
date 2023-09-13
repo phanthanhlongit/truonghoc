@@ -206,8 +206,9 @@ namespace KidsSchool.Models.Dao
                     obj = cachedValue;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                throw (ex);
             }
             return obj.OrderBy(x => x.OrderBy).ToList();
         }

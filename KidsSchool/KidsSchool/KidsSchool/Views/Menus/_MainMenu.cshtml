@@ -4,6 +4,7 @@
     <header class="page-header">
         <div class="container-header">
             @{var config = CacheHelper.GetInstance().GetConfig(false);
+                var MenuChildLst = CacheHelper.GetInstance().GetMenu(false);
             }
             <div class="logo">
                 <div>
@@ -20,16 +21,17 @@
             </div>
             <div class="main-menu">
                 <ul class="ul-main">
+                    
                     @foreach (var item in Model)
                     {
-                        var MenuChild = CacheHelper.GetInstance().GetMenu(false).Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
+                        var MenuChild = MenuChildLst.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
                         if (MenuChild.Count > 0)
                         {
                             <li class="has-sub-menu-1">
                                 @*@if (!string.IsNullOrEmpty(item.Icon))
-                                {
-                                    <img src="@item.Icon?w=50&h=50&mode=pad" alt="" class="jet-menu-icon" style="width: 50px;">
-                                }*@
+                    {
+                        <img src="@item.Icon?w=50&h=50&mode=pad" alt="" class="jet-menu-icon" style="width: 50px;">
+                    }*@
                                 <a href="javascript:void(0)">
                                     <span class=" main">@item.Text.ToUpper()</span>
                                 </a>
@@ -47,9 +49,9 @@
                         {
                             <li>
                                 @*@if (!string.IsNullOrEmpty(item.Icon))
-                                {
-                                    <img src="@item.Icon?w=50&h=50&mode=pad" alt="" class="jet-menu-icon" style="width: 50px;">
-                                }*@
+                    {
+                        <img src="@item.Icon?w=50&h=50&mode=pad" alt="" class="jet-menu-icon" style="width: 50px;">
+                    }*@
                                 <a href="@item.Url" @Html.Display(item.Target == 1 ? "target=\"_blank\" rel=\"nofollow\"" : "") title="@item.Text">@item.Text.ToUpper()</a>
                             </li>
                         }

@@ -41,8 +41,9 @@ namespace KidsSchool.Areas.Admin.Controllers
                     obj = cachedValue;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                throw (ex);
             }
 
             return View(obj.ToList());

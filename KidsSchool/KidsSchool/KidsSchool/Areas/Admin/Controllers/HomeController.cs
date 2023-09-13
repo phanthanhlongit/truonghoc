@@ -95,7 +95,9 @@ namespace KidsSchool.Areas.Admin.Controllers
                 docCate.Save(Server.MapPath("~/category_sitemap.xml"));
             }
             catch(Exception ex)
-            { }
+            {
+                throw (ex);
+            }
             return PartialView();
 
         }
