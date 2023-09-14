@@ -4,9 +4,8 @@ using System.Web.Mvc;
 using System;
 using KidsSchool.Models.DB;
 using System.Text.RegularExpressions;
-using static System.Data.Entity.Infrastructure.Design.Executor;
-using KidsSchool.Areas.Admin.Controllers;
 using KidsSchool.Controllers;
+using KidsSchool.Models.Helpers;
 
 namespace KidsSchool.Models.Dao
 {
@@ -16,6 +15,7 @@ namespace KidsSchool.Models.Dao
         {
             return new CacheHelper();
         }
+
         public Page SpecialPage(string slug)
         {
             var obj = new List<Page>();
@@ -26,7 +26,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Pages.ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetPage", obj, DateTimeOffset.Now.AddMinutes(10));
+                    MemoryCacheManager.Set("GetPage", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -38,7 +38,7 @@ namespace KidsSchool.Models.Dao
             catch
             {
             }
-            return obj.Where(x=>x.slug.Contains(slug)).FirstOrDefault();
+            return obj.FirstOrDefault(x => x.slug.Contains(slug));
         }
 
         public List<Page> GetPage(bool isUpdate)
@@ -51,7 +51,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Pages.ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetPage", obj, DateTimeOffset.Now.AddMinutes(10));
+                    MemoryCacheManager.Set("GetPage", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -75,7 +75,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Pages.ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetPage", obj, DateTimeOffset.Now.AddMinutes(10));
+                    MemoryCacheManager.Set("GetPage", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -99,7 +99,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Posts.Where(x => x.Active == true).ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetPost", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetPost", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -123,7 +123,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Posts.Where(x => x.Active == true).ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetPost", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetPost", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -148,7 +148,7 @@ namespace KidsSchool.Models.Dao
                 {
                      obj = db.Categories.ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetCate", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetCate", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -173,7 +173,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Categories.ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetCate", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetCate", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -197,7 +197,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Menus.ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetMenu", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetMenu", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -223,7 +223,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Menus.ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetMenu", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetMenu", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -248,7 +248,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Banners.ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetBanner", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetBanner", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -273,7 +273,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Banners.ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetBanner", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetBanner", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -298,7 +298,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Configs.FirstOrDefault();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetConfig", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetConfig", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -322,7 +322,7 @@ namespace KidsSchool.Models.Dao
                 {
                     obj = db.Configs.FirstOrDefault();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("GetConfig", obj, DateTimeOffset.Now.AddHours(1));
+                    MemoryCacheManager.Set("GetConfig", obj, DateTimeOffset.Now.AddHours(6));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }

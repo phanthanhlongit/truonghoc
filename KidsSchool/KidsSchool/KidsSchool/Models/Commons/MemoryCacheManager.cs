@@ -1,29 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Caching;
-using System.Web;
+using Microsoft.Extensions.Caching.Memory; // Import the required namespace
 
-namespace KidsSchool.Models
+namespace KidsSchool.Models.Helpers
 {
-    public class MemoryCacheManager
+    // Make MemoryCacheManager a static class
+    public static class MemoryCacheManager
     {
-        private static readonly MemoryCache Cache = MemoryCache.Default;
+        // Create a static MemoryCache instance
+        private static readonly MemoryCache _cache = new MemoryCache(new MemoryCacheOptions());
 
+        // Create a static method to get data from the cache
         public static T Get<T>(string key)
         {
-            return (T)Cache.Get(key);
+            if (_cache.TryGetValue(key, out T value))
+            {
+                return value;
+            }
+            return default(T);
         }
 
-        public static void Set(string key, object value, DateTimeOffset absoluteExpiration)
+        // Create a static method to set data in the cache
+        public static void Set<T>(string key, T value, DateTimeOffset absoluteExpiration)
         {
-            Cache.Set(key, value, absoluteExpiration);
+            _cache.Set(key, value, absoluteExpiration);
         }
 
+        // Create a static method to remove data from the cache
         public static void Remove(string key)
         {
-            Cache.Remove(key);
+            _cache.Remove(key);
         }
     }
-
 }
