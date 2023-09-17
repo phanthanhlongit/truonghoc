@@ -22,10 +22,7 @@
     <link href="/Assets/Home/css/customer.css" media="screen" rel="stylesheet" type="text/css">
     <link href="~/Assets/Admin/css/sweetalert.css" rel="stylesheet" />
     <link href="~/Assets/Home/css/dialog.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha256-JirYRqbf+qzfqVtEE4GETyHlAbiCpC005yBTa4rj6xg=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/Assets/Home/vendor/jquery/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="/Assets/Home/vendor/jquery/vue.js"></script>
-    <script type="text/javascript" src="/Assets/Home/vendor/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+   
     @RenderSection("headerScript", false)
 </head>
 <body class="body-template1">
@@ -38,6 +35,9 @@
     <div class="back-to-top show">
         @*<img src="Assets/Home/images/toTop.png" />*@
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.js" integrity="sha256-JirYRqbf+qzfqVtEE4GETyHlAbiCpC005yBTa4rj6xg=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/Assets/Home/vendor/jquery/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/Assets/Home/vendor/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="/Assets/Home/vendor/bootstrap/popper.min.js"></script>
     <script src="/Assets/Home/vendor/bootstrap/bootstrap.min.js"></script>
     <script src="/Assets/Home/vendor/owlcarousel/owl.carousel.min.js"></script>
@@ -67,7 +67,7 @@
                 return;
             }
             var content = "";
-            content = coldata.idquestion + " - " + coldata.idselect
+            content = coldata.idselect + ": " + coldata.idquestion
 
             $.ajax({
                 url: '/Home/SendContactAjax',

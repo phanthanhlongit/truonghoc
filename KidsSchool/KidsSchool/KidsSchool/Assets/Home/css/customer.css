@@ -409,6 +409,11 @@ a[data-click-download-book]{
     .box-shadow-mb{
         display: none;
     }
+    .side-tool__tools:hover {
+        -webkit-transform: translateX(-130px);
+        -ms-transform: translateX(-130px);
+        transform: translateX(0px);
+    }
 }
 .fade:not(.show){
     opacity: 1 !important;

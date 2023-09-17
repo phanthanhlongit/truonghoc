@@ -167,7 +167,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 db.SaveChanges();
                 Success("Thay đổi thông tin trang thành công: " + page.title, true);
                 CacheHelper.GetInstance().GetPage(true, db);
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
             return View(page);
         }
