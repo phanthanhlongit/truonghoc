@@ -33,6 +33,7 @@
 </style>
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(model => model.Target, new { Value = 1 })
     @Html.AntiForgeryToken()
     <div class="row">
         <div class="form-group col-md-3 col-md-12">
