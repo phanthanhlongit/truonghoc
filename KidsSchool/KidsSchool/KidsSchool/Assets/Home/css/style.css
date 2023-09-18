@@ -1643,9 +1643,11 @@ body {
 }
 
 .color-green {
-    color: #74B537;
+    color: #03a9f4;
 }
-
+/*.color-kojin {
+    color: #03a9f4;
+}*/
 p.error {
     display: none;
     font-size: -webkit-calc(7px + 0.6vw);
@@ -2051,7 +2053,7 @@ p.error {
 
 .md-news .md-col .md-more {
     text-decoration: underline;
-    color: #74B537;
+    color: #03a9f4;
     position: absolute;
     bottom: 25px;
     right: 12%;
@@ -3016,7 +3018,7 @@ p.error {
 
     .blk-lop-hoc .blk-1 h3.title {
         text-align: center;
-        color: #46B44B;
+        color: #03a9f4;
         font-size: -webkit-calc( 13px + 1.2vw);
         font-size: calc( 13px + 1.2vw);
         margin: 0px 0px 20px;

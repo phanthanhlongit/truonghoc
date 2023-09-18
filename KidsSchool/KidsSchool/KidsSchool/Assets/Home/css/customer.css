@@ -519,7 +519,7 @@ h1,h2,h3,h4,h5,h6{
    
 }
 .container-70.wysiwyg p span, .container-70.wysiwyg li span, .container-70.wysiwyg table span{
-    font-size: 16px !important;
+    font-size: 17px; /*!important;*/
     line-height: 1.4285em  !important;
 
 }
@@ -703,16 +703,17 @@ p {
 .blk-lop-hoc  .md-news .md-col .thumb img{
     height: auto;
 }
-.bls-title h1{
+.bls-title h1 {
     margin-top: 15px;
     margin-bottom: 15px;
     font-size: 22px;
-    color: #3a3939;
+    color: #03a9f4;
     font-weight: 700;
     text-align: left;
     font-size: calc(1.2vw + 9px);
-    color: #74B537;
     text-transform: uppercase;
+    text-align: center;
+    margin-top: 32px;
 }
 .meta-post p.shortText{
     display: block;
