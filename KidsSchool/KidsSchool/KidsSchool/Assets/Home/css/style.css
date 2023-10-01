@@ -197,7 +197,7 @@ input[type="submit"] {
     }
 
                 .page-header .logo a img {
-                    width: 90px;
+                    width: 170px;
                 }
 
     .main-menu {
@@ -1046,7 +1046,7 @@ input[type="submit"] {
 
 @media screen and (max-width: 768px) {
     .page-header .logo a img {
-        width: 54px;
+        width: 122px;
         max-height: 70px;
     }
 
