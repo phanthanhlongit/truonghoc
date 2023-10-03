@@ -18,7 +18,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         // GET: Admin/Pages
         public ActionResult Index()
         {
-            return View(CacheHelper.GetInstance().GetPage(false));
+            return View(db.Pages.Where(p=>p.id !=26).ToList());// (CacheHelper.GetInstance().GetPage(false));
         }
         
         // GET: Admin/Pages/Details/5

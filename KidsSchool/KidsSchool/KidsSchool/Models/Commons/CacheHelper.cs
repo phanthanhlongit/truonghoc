@@ -354,5 +354,20 @@ namespace KidsSchool.Models.Dao
             return slug;
         }
 
+        public List<Page> GetNews()
+        {
+            var obj = new List<Page>();
+            try
+            {
+                obj = db.Pages.Where(p=>p.id != 26).OrderByDescending(p => p.id).Take(7).ToList();
+
+            }
+            catch
+            {
+            }
+
+            return obj.OrderByDescending(x => x.id).ToList();
+        }
+
     }
 }

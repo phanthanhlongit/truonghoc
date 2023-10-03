@@ -97,24 +97,23 @@
         }
 
         $(document).ready(function () {
-            $("#myDialog").modal("show");
 
-            //if ($("#myDialog").length > 0) {
-            //    // Lấy thông tin thời gian truy cập gần nhất
-            //    var lastAccessTime = getLastAccessTime();
+            if ($("#myDialog").length > 0) {
+                // Lấy thông tin thời gian truy cập gần nhất
+                var lastAccessTime = getLastAccessTime();
 
-            //    // Lấy thời gian hiện tại
-            //    var currentTime = new Date().getTime();
+                // Lấy thời gian hiện tại
+                var currentTime = new Date().getTime();
 
-            //    // Kiểm tra nếu chưa có thông tin thời gian truy cập hoặc đã qua ít nhất 15 phút kể từ lần trước
-            //    if (!lastAccessTime || currentTime - lastAccessTime >= 15 * 60 * 1000) {
-            //        // Mở dialog
-            //        $("#myDialog").modal("show");
+                // Kiểm tra nếu chưa có thông tin thời gian truy cập hoặc đã qua ít nhất 15 phút kể từ lần trước
+                if (!lastAccessTime || currentTime - lastAccessTime >= 15 * 60 * 1000) {
+                    // Mở dialog
+                    $("#myDialog").modal("show");
 
-            //        // Lưu thời gian truy cập gần nhất
-            //        setLastAccessTime();
-            //    }
-            //}
+                    // Lưu thời gian truy cập gần nhất
+                    setLastAccessTime();
+                }
+            }
         });
 
     </script>

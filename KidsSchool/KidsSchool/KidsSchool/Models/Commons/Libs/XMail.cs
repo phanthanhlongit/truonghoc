@@ -26,7 +26,7 @@ namespace KidsSchool.Models.Commons.Libs
                 MailMessage mailMessage = new MailMessage();
 
                 string mailto = to.Trim();
-                string mailform = WebConfigurationManager.AppSettings["CredentialUserName"].ToString();
+                string mailform = WebConfigurationManager.AppSettings["SendFrom"].ToString();
                 mailMessage.From = (new MailAddress(mailform, WebConfigurationManager.AppSettings["Domain"].ToString(), System.Text.Encoding.UTF8));
                 mailMessage.To.Add(mailto);
                 mailMessage.Subject = subject;

@@ -28,6 +28,11 @@
             </a>
         </li>
         <li>
+            <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/Admin/Pages")? "active":"")" href="/Admin/Pages">
+                <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Chia sẻ</span>
+            </a>
+        </li>
+        <li>
             <a class="app-menu__item @(Request.Url.AbsoluteUri.ToLower().Contains("/admin/categories") ? "active":"")" href="/Admin/categories/Index">
                 <i class='app-menu__icon bx bx-task'></i><span class="app-menu__label">Danh mục chương trình</span>
             </a>

@@ -12,17 +12,17 @@ namespace KidsSchool.Models.Helpers
         // Create a static method to get data from the cache
         public static T Get<T>(string key)
         {
-            if (_cache.TryGetValue(key, out T value))
-            {
-                return value;
-            }
+            //if (_cache.TryGetValue(key, out T value))
+            //{
+            //    return value;
+            //}
             return default(T);
         }
 
         // Create a static method to set data in the cache
         public static void Set<T>(string key, T value, DateTimeOffset absoluteExpiration)
         {
-            _cache.Set(key, value, absoluteExpiration);
+           // _cache.Set(key, value, absoluteExpiration);
         }
 
         // Create a static method to remove data from the cache

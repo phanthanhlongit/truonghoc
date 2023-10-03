@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using KidsSchool.Models.Dao;
 using KidsSchool.Models;
 using static System.Data.Entity.Infrastructure.Design.Executor;
+using KidsSchool.Models.Helpers;
 
 namespace KidsSchool.Areas.Admin.Controllers
 {
@@ -32,7 +33,7 @@ namespace KidsSchool.Areas.Admin.Controllers
                 {
                     obj = db.RecursiveMenuViews.OrderBy(x => x.Path).ToList();
                     // Lưu dữ liệu vào cache
-                    MemoryCacheManager.Set("RecursiveMenuView", obj, DateTimeOffset.Now.AddHours(1));
+                    //MemoryCacheManager.Set("RecursiveMenuView", obj, DateTimeOffset.Now.AddHours(1));
                     // Xóa dữ liệu khỏi cache
                     //MemoryCacheManager.Remove("cacheKey");
                 }
@@ -80,7 +81,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Menu menu)
         {
-            if (ModelState.IsValid)
+           // if (ModelState.IsValid)
             {
                 db.Menus.Add(menu);
                 db.SaveChanges();
