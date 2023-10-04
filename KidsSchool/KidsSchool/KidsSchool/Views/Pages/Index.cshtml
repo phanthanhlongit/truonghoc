@@ -91,7 +91,6 @@
             <div class="container-70">
 
                 <div class="bls-title">
-                    sadasdasd
                     <h1 title="@Model.title">@Model.title</h1>
                 </div>
             </div>
@@ -197,29 +196,37 @@
 }
 else
 {
-    <main class="page-main page-about">
-        @*<div class="md-banner">
+<main class="page-main page-about">
+    @*<div class="md-banner">
             <div class="container-90">
                 <img title="" class="md-desktop wow zoomIn" alt="" src="@Model.Image" style="visibility: visible; animation-name: zoomIn;">
             </div>
         </div>*@
-        <div class="meta-group clearfix">
+    @if (Model.id == 26 )
+    {
+        <div class="md-banner">
             <div class="container-90">
-                <div class="bls-title">
-                    <h1 title="@Model.title">@Model.title</h1>
+                <img title="" class="md-desktop wow zoomIn" alt="@Model.title" src="@Model.Image?h=600" style="visibility: visible; animation-name: zoomIn;">
+            </div>
+        </div>
+    }
+    <div class="meta-group clearfix">
+        <div class="container-90">
+            <div class="bls-title">
+                <h1 title="@Model.title">@Model.title</h1>
+            </div>
+        </div>
+    </div>
+    <div class="blk-about-us md-relative">
+        <div class="container-70 wysiwyg">
+            <div class="title_page">
+                <div class="detail col-md-12" data-content>
+                    @Html.Raw(Model.content)
                 </div>
             </div>
         </div>
-        <div class="blk-about-us md-relative">
-            <div class="container-70 wysiwyg">
-                <div class="title_page">
-                    <div class="detail col-md-12" data-content>
-                        @Html.Raw(Model.content)
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
+    </div>
+</main>
 }
 @section scripts{
     @(string.IsNullOrEmpty(Model.Script) ? Model.Script : "")
