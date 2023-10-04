@@ -67,7 +67,7 @@
                 return;
             }
             var content = "";
-            content = coldata.idselect + ": " + coldata.idquestion
+            content = coldata.idquestion;//coldata.idselect + ": " + coldata.idquestion
 
             $.ajax({
                 url: '/Home/SendContactAjax',

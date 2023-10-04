@@ -93,7 +93,7 @@ namespace KidsSchool.Areas.Admin.Controllers
 
                 db.SaveChanges();
                 Success("Thêm thành công trang: " + page.title, true);
-                CacheHelper.GetInstance().GetPage(true, db);
+                //CacheHelper.GetInstance().GetPage(true, db);
                 return RedirectToAction("Index");
             }
 
@@ -166,8 +166,11 @@ namespace KidsSchool.Areas.Admin.Controllers
                 #endregion
                 db.SaveChanges();
                 Success("Thay đổi thông tin trang thành công: " + page.title, true);
-                CacheHelper.GetInstance().GetPage(true, db);
-                //return RedirectToAction("Index");
+                //CacheHelper.GetInstance().GetPage(true, db);
+                if (page.id != 26)
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View(page);
         }
