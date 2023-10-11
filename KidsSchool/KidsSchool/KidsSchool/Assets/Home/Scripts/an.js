@@ -150,18 +150,18 @@ var newsOwl = $('#newsCarousel').owlCarousel({
         0: {
             items: 1
         },
-        333: {
+        550: {
             items: 2
         },
-        666: {
+        770: {
             items: 3
         },
         1000: {
             items: 4
-        },
-        autoplay: true,
-        autoplayTimeout: 5000
-    }
+        }
+    },
+    autoplay: true,
+    autoplayTimeout: 5000
 });
 
 
