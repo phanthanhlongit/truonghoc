@@ -146,17 +146,21 @@ var newsOwl = $('#newsCarousel').owlCarousel({
     margin: 10,
     nav: false,
     dots: true,
-    nav: true,
     responsive: {
         0: {
             items: 1
         },
-        600: {
+        333: {
             items: 2
         },
-        1000: {
+        666: {
             items: 3
-        }
+        },
+        1000: {
+            items: 4
+        },
+        autoplay: true,
+        autoplayTimeout: 5000
     }
 });
 

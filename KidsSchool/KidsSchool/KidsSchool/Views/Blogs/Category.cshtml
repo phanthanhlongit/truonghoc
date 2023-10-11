@@ -30,8 +30,35 @@
 }
 <main class="page-main page-lop-hoc">
     <div class="md-banner">
-        <div class="container-90">
-            <img title="" class="md-desktop wow zoomIn" alt="" src="@ViewBag.Cat.Image" style="visibility: visible; animation-name: zoomIn;">
+        <div class="container-70" style="display:block">
+            @*<img title="" class="md-desktop wow zoomIn" alt="" src="@ViewBag.Cat.Image" style="visibility: visible; animation-name: zoomIn;">*@
+            @*<div class="ctn-blk-banner">
+                <div class="owl-carousel owl-theme" id="bannerCarousel">
+                    @foreach (var item in Model)
+                    {
+                        <div class="item">
+                            <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">
+                                <img alt="@item.Title" title="@item.Title" src="@item.Icon" />
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>*@
+
+            <div class="blk-banner-slider md-slider">
+                <div class="ctn-blk-banner">
+                    <div class="owl-carousel owl-theme" id="bannerCarousel">
+                        @foreach (var item in Model)
+                        {
+                        <div class="item">
+                            <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = item.Slug })">
+                                <img alt="@item.Title" title="@item.Title" src="@item.Icon" />
+                            </a>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     @*<div class="meta-group clearfix">
