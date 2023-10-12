@@ -17,9 +17,9 @@
                                         <img alt="" title="" src="@info.Icon?h=250&mode=crop">
                                     </div> @*?w=170&h=170&mode=pad*@
                                     <div class="content">
-                                        <h2 class="font-size-35" style="font-size: 20px; color: #2185d0;">@info.title</h2>
+                                        <h2 class="font-size-35" >@info.title</h2>
                                         <div class="info">
-                                            <p>@Html.Raw(info.Description.Remove_Html_Tags().LimitLength(120, "..."))</p>
+                                            <p>@Html.Raw(info.Description.LimitLength(120, "..."))</p>
                                         </div>
                                         <div class="bottom"><a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = info.slug })" class="md-more">Xem thêm</a></div>
                                     </div>
@@ -49,6 +49,7 @@ catch { }
         display: block;
         width: auto;
         margin-bottom: 14px;
+        max-width: 100%;
     }
 
     #NewsList .item .inner-item {
@@ -57,12 +58,14 @@ catch { }
         border-radius: 25px;
         height: 100%;
         position: relative;
-        padding-bottom: 60px;
+        padding-bottom: 20px;
     }
+
     #NewsList .info{
         padding: 17px;
-        font-size: 17.5px;
+        font-size: 14.5px;
     }
+
     #NewsList .bottom {
         text-align: center;
         position: absolute;
@@ -70,8 +73,13 @@ catch { }
         bottom: 20px;
         right: 40px;
     }
+
     #NewsList .owl-stage {
         display: flex;
+    }
+    #NewsList h2 {
+        font-size: 17.5px;
+        color: #2185d0;
     }
     
 </style>
