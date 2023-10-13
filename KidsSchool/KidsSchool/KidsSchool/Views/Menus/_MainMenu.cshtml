@@ -5,6 +5,7 @@
         <div class="container-header">
             @{var config = CacheHelper.GetInstance().GetConfig(false);
                 var MenuChildLst = CacheHelper.GetInstance().GetMenu(false);
+                var cate = CacheHelper.GetInstance().GetCate(false).Where(x => x.ShowIndex).ToList();
             }
             <div class="logo">
                 <div>
@@ -21,7 +22,40 @@
             </div>
             <div class="main-menu">
                 <ul class="ul-main">
-                    
+
+                    <li class="has-sub-menu-1">
+
+                        <a href="javascript:void(0)">
+                            <span class=" main">CHƯƠNG TRÌNH</span>
+                        </a>
+                        <div class="sub-menu-1">
+                            <ul>
+                                @foreach (var info in cate)
+                                {
+                                    var childPro = info.Posts.Where(p => p.Active == true);
+
+                                    <li id="sub2Box" class=" has-sub-menu-2">
+                                        <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = info.Slug })">
+                                            <span class=" main">@info.Name</span>
+                                        </a>
+                                        <div class="sub-menu-2">
+                                            <ul>
+                                                @foreach (var chPro in childPro)
+                                                {
+                                                    <a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = chPro.Slug })" title="@chPro.Title">@chPro.Title</a>
+                                                }
+
+
+                                            </ul>
+                                        </div>
+                                    </li>
+                                }
+
+                                
+                            </ul>
+                        </div>
+                    </li>
+
                     @foreach (var item in Model)
                     {
                         var MenuChild = MenuChildLst.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
@@ -56,6 +90,9 @@
                             </li>
                         }
                     }
+
+
+
                 </ul>
             </div>
         </div>
@@ -87,4 +124,56 @@
         margin-left: 9px;
         color: #c7c74a;
     }
+
+    #sub2Box{
+        height: auto;
+        background: inherit;
+    }
+
+        #sub2Box a {
+            white-space: inherit;
+            color: inherit;
+            border-radius: 7px;
+        }
+
+        #sub2Box :hover {
+            background: none;
+           /* border: none;
+            padding: 0;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0;*/
+        }
+    #sub2Box > a:hover {
+        background: linear-gradient(to right, #FF5733, #FFC300, #36A2EB, #4CAF50);
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+        #sub2Box :hover a {
+            background: white;
+        }
+        #sub2Box ul a:hover {
+            background: #03a9f4b5;
+        }
+        /*  #sub2Box > a :hover {
+            background: inherit;
+            border: none;
+            padding: 0;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 0;
+        }*/
 </style>

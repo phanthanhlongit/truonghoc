@@ -384,7 +384,7 @@ input[type="submit"] {
         }
 
         .main-menu ul li .sub-menu-1 ul li:hover a {
-            background: #EA351A;
+            /*background: #EA351A;*/
             color: #FFF;
             -webkit-transition-duration: 0.2s;
             -o-transition-duration: 0.2s;
@@ -417,8 +417,8 @@ input[type="submit"] {
     .main-menu ul li .sub-menu-1 .sub-menu-2 {
         display: none;
         position: absolute;
-        left: 100%;
-        top: 0px;
+        left: 97%;
+        top: 10px;
         padding-left: 10px;
     }
 

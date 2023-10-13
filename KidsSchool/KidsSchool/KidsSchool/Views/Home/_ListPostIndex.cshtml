@@ -17,7 +17,7 @@
                                     <div class="content">
                                         <h4 class="font-size-35">@info.Name</h4>
                                         <div class="info">
-                                            <p>@Html.Raw(info.Description.Remove_Html_Tags().LimitLength(120, "..."))</p>
+                                            <p>@Html.Raw(info.Description.LimitLength(120, "..."))</p>
                                         </div>
                                         <div class="bottom"><a href="@Url.RouteUrl("FriendlyRoute", new { FriendlyUrl = info.Slug })" class="md-more">Chi tiết</a></div>
                                     </div>
