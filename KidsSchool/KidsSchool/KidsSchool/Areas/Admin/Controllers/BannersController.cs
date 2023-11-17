@@ -17,7 +17,7 @@ namespace KidsSchool.Areas.Admin.Controllers
         public ActionResult Index()
         {
             var banners = db.Banners.Include(b => b.BannerPosition);
-            return View(banners.ToList());
+            return View(banners.OrderByDescending(p=>p.BannerPositionId).OrderByDescending(p=>p.BannerId).ToList());
         }
 
         // GET: Admin/Banners/Details/5

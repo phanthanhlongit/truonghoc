@@ -22,7 +22,9 @@
             </div>
             <div class="main-menu">
                 <ul class="ul-main">
-
+                    <li class="">
+                        <a href="/" title="Trang chủ">TRANG CHỦ</a>
+                    </li>
                     <li class="has-sub-menu-1">
 
                         <a href="javascript:void(0)">
@@ -51,13 +53,17 @@
                                     </li>
                                 }
 
-                                
+
                             </ul>
                         </div>
                     </li>
 
                     @foreach (var item in Model)
                     {
+                        if(item.Text.ToLower() == "trang chủ" || item.Text.ToLower() == "chương trình")
+                        {
+                            continue;
+                        }
                         var MenuChild = MenuChildLst.Where(m => m.ParentId == item.Id).OrderBy(x => x.OrderBy).ToList();
                         if (MenuChild.Count > 0)
                         {

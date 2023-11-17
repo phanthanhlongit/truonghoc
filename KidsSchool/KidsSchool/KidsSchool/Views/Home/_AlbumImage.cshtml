@@ -1,7 +1,7 @@
 ﻿@using KidsSchool.Models.Dao;
 @try
 {
-    var banner = CacheHelper.GetInstance().GetBanner(false).Where(x => x.Active && x.BannerPositionId == 2).ToList();
+    var banner = CacheHelper.GetInstance().GetBanner(false).Where(x => x.Active && x.BannerPositionId == 2).OrderBy(p=>p.BannerId).ToList();
     if (banner != null && banner.Count > 0)
     {
         <div class="blk-home-gellary">

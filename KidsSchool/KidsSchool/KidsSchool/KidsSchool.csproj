@@ -3087,6 +3087,7 @@
     <Content Include="Views\Home\_GGMapPartial.cshtml" />
     <Content Include="Views\Menus\_MainMenu-Center.cshtml" />
     <Content Include="Views\Home\TemplateMailContact.cshtml" />
+    <Content Include="Views\Home\_PartialNewsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
